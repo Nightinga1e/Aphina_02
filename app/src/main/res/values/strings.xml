@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Aphina_02</string>
+    <string name="help_info">Математика! это алгебраический тренажер.\n\n
+    Для начала - выберите сложность тренировки.\n\n
+    Выберите правильный ответ, используя кнопки на экране.\n\n</string>
+    <integer name="com_vk_sdk_AppId">5896323</integer>
+</resources>
