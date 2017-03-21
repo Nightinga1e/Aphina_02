@@ -26,3 +26,4 @@ public class ApplicationVk extends android.app.Application {
             VKSdk.initialize(this);
         }
     }
+//kekshpek
