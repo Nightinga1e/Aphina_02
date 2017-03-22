@@ -44,7 +44,7 @@ public class Matem extends Activity implements OnClickListener {
 
     @Override
     public void onClick(View view) {
-        // TODO Auto-generated method stub
+        //
         if (view.getId() == R.id.play_btn) {
             // play button
             if (view.getId() == R.id.play_btn) {
@@ -66,10 +66,10 @@ public class Matem extends Activity implements OnClickListener {
             Intent helpIntent = new Intent(this, HowTo.class);
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
-                // high scores button
-                Intent highIntent = new Intent(this, HighScores.class);
-                this.startActivity(highIntent);
-            }
             // high scores button
+            Intent highIntent = new Intent(this, HighScores.class);
+            this.startActivity(highIntent);
         }
+        // high scores button
     }
+}

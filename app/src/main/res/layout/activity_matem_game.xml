@@ -69,19 +69,6 @@
             android:textColor="#ff333333"
             android:textSize="30sp" />
 
-        <Button
-            android:id="@+id/clear"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/enter_back"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="C"
-            android:textColor="#ff333333"
-            android:textSize="30sp"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -90,57 +77,13 @@
         android:layout_weight="1"
         android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/btn7"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/num_back"
-            android:gravity="center"
-            android:padding="5dp"
-            android:tag="7"
-            android:text="7"
-            android:textColor="#ffcccccc"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn8"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/num_back"
-            android:gravity="center"
-            android:padding="5dp"
-            android:tag="8"
-            android:text="8"
-            android:textColor="#ffcccccc"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn9"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/num_back"
-            android:gravity="center"
-            android:padding="5dp"
-            android:tag="9"
-            android:text="9"
-            android:textColor="#ffcccccc"
-            android:textSize="30sp"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn4"
@@ -152,13 +95,12 @@
             android:gravity="center"
             android:padding="5dp"
             android:tag="4"
-            android:text="4"
             android:textColor="#ffcccccc"
             android:textSize="30sp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn5"
+            android:id="@+id/btn3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="1dp"
@@ -166,26 +108,11 @@
             android:background="@drawable/num_back"
             android:gravity="center"
             android:padding="5dp"
-            android:tag="5"
-            android:text="5"
+            android:tag="3"
             android:textColor="#ffcccccc"
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btn6"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/num_back"
-            android:gravity="center"
-            android:padding="5dp"
-            android:tag="6"
-            android:text="6"
-            android:textColor="#ffcccccc"
-            android:textSize="30sp"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -204,7 +131,6 @@
             android:gravity="center"
             android:padding="5dp"
             android:tag="1"
-            android:text="1"
             android:textColor="#ffcccccc"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -219,25 +145,10 @@
             android:gravity="center"
             android:padding="5dp"
             android:tag="2"
-            android:text="2"
             android:textColor="#ffcccccc"
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btn3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/num_back"
-            android:gravity="center"
-            android:padding="5dp"
-            android:tag="3"
-            android:text="3"
-            android:textColor="#ffcccccc"
-            android:textSize="30sp"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -246,34 +157,6 @@
         android:layout_weight="1"
         android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/btn0"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/num_back"
-            android:gravity="center"
-            android:padding="5dp"
-            android:tag="0"
-            android:text="0"
-            android:textColor="#ffcccccc"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/enter"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="2"
-            android:background="@drawable/enter_back"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="Enter"
-            android:textColor="#ff333333"
-            android:textSize="30sp"
-            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>
