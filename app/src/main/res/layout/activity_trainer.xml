@@ -66,8 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/textView4"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/PlayButton">
+        android:layout_alignParentStart="true">
 
         <Button
             android:text="Математика"
@@ -110,18 +109,20 @@
             android:textColor="@color/windowBackground"/>
 
         <Button
-            android:text="Ассоциации"
+            android:id="@+id/StartAssoc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/StartAssoc"
-            android:textColor="@color/windowBackground"/>
+            android:onClick="toAssoc"
+            android:text="Ассоциации"
+            android:textColor="@color/windowBackground" />
 
         <Button
-            android:text="Лабиринт"
+            android:id="@+id/StartLabirint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/StartLabirint"
-            android:textColor="@color/windowBackground"/>
+            android:onClick="Tolabirint"
+            android:text="Лабиринт"
+            android:textColor="@color/windowBackground" />
     </LinearLayout>
 
     <ImageButton

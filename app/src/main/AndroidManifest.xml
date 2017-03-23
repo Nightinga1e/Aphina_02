@@ -64,7 +64,8 @@
             android:name=".number"
             android:screenOrientation="portrait" />
         <activity android:name=".pamyat" />
-        <activity android:name=".Labirint"></activity>
+        <activity android:name=".Labirint" />
+        <activity android:name=".Assoc"></activity>
     </application>
 
 </manifest>

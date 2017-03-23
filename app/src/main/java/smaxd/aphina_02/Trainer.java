@@ -59,4 +59,8 @@ public class Trainer extends AppCompatActivity {
         Intent intent = new Intent(this, Labirint.class);
         startActivity(intent);
     }
+    public void ToAssoc(View view) {
+        Intent intent = new Intent(this, Assoc.class);
+        startActivity(intent);
+    }
 }
