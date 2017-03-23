@@ -78,6 +78,14 @@
             android:onClick="ToMatem" />
 
         <Button
+            android:id="@+id/StartPamyat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="Tonumber"
+            android:text="Память"
+            android:textColor="@color/windowBackground" />
+
+        <Button
             android:text="След"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,13 +99,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/StartVihr"
             android:onClick="ToVihr"
-            android:textColor="@color/windowBackground"/>
-
-        <Button
-            android:text="Память"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/StartPamyat"
             android:textColor="@color/windowBackground"/>
 
         <Button
