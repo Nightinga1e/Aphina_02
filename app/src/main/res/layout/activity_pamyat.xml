@@ -446,7 +446,7 @@
             android:layout_weight="1"
             android:gravity="center|start"
             android:paddingRight="20dp"
-            android:text="Повторите последовательность"
+            android:text="Укажите выделенные"
             android:textColor="#ffffffff"
             android:textSize="20sp"
             android:textStyle="bold" />

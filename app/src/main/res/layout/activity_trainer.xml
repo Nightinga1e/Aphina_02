@@ -81,7 +81,7 @@
             android:id="@+id/StartPamyat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="Tonumber"
+            android:onClick="Topamyat"
             android:text="Память"
             android:textColor="@color/windowBackground" />
 
@@ -106,6 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/StartKolvo"
+            android:onClick="Tonumber"
             android:textColor="@color/windowBackground"/>
 
         <Button

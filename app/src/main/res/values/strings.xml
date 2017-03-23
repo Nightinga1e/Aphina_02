@@ -4,4 +4,5 @@
     Для начала - выберите сложность тренировки.\n\n
     Выберите правильный ответ, используя кнопки на экране.\n\n</string>
     <integer name="com_vk_sdk_AppId">5896323</integer>
+    <string name="title_activity_namya_tb">namyaTb</string>
 </resources>

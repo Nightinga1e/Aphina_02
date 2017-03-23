@@ -51,5 +51,12 @@ public class Trainer extends AppCompatActivity {
         Intent intent = new Intent(this, number.class);
         startActivity(intent);
     }
-
+    public void Topamyat(View view) {
+        Intent intent = new Intent(this, pamyat.class);
+        startActivity(intent);
+    }
+    public void Tolabirint(View view) {
+        Intent intent = new Intent(this, Labirint.class);
+        startActivity(intent);
+    }
 }
