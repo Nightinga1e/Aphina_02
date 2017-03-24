@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import android.content.SharedPreferences;
@@ -42,13 +43,15 @@ public class number extends Activity implements OnClickListener {
     private TextView scoreTxt;
     private ImageView response;
     private Button btn1, btn2, btn3, btn4;
-    private ImageButton imgtest, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10;
+ //   private ImageButton imgtest, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10;
+
     private int[] fillarray = {0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0};
+
     private List<ImageButton> imgbuttons;
     private static final int[] IMGBUTTON_IDS = {
             R.id.img1, R.id.img2, R.id.img3, R.id.img4, R.id.img5, R.id.img6,
@@ -71,33 +74,10 @@ public class number extends Activity implements OnClickListener {
         // buttons = new ArrayList<Button>(BUTTON_IDS.length);
         for (int id : IMGBUTTON_IDS) {
             ImageButton imgbut = (ImageButton) findViewById(id);
-            imgbut.setOnClickListener(this); // maybe
+          //  imgbut.setOnClickListener(this); //
             imgbuttons.add(imgbut);
         }
 
-        /*
-        imgbuttons.get(0).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(0).setVisibility(View.INVISIBLE);
-        imgbuttons.get(1).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(2).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(2).setVisibility(View.INVISIBLE);
-        imgbuttons.get(3).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(4).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(5).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(6).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(7).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(7).setVisibility(View.INVISIBLE);
-        imgbuttons.get(8).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(9).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(10).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(11).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(11).setVisibility(View.INVISIBLE);
-        imgbuttons.get(12).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(13).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(14).setImageResource(R.mipmap.pic4);
-        imgbuttons.get(14).setVisibility(View.INVISIBLE);
-        imgbuttons.get(15).setImageResource(R.mipmap.pic4);
-*/
         response = (ImageView) findViewById(R.id.response);
         scoreTxt = (TextView) findViewById(R.id.score);
         response.setVisibility(View.INVISIBLE);
@@ -141,9 +121,9 @@ public class number extends Activity implements OnClickListener {
         answer = 0;
         int otv = random.nextInt(4) + 1;
 
-        for (int l = 1; l <= fillarray.length; l++) {
+        for (int l = 0; l < fillarray.length; l++) {
             int chance = random.nextInt(100) + 1;
-            int imgtype = random.nextInt(6) + 1;
+            int imgtype = random.nextInt(6);
             if (chance < 40) {
                 fillarray[l] = imgtype;
             } else {
@@ -152,15 +132,15 @@ public class number extends Activity implements OnClickListener {
             }
         }
 
-            for (int l = 1; l <= fillarray.length; l++) {
-                if (fillarray[l] < 0) {
-                    imgbuttons.get(l).setImageResource(Imgarr[fillarray[l]]);
+            for (int l = 0; l < fillarray.length; l++) {
+                if (fillarray[l] > 0) {
                     imgbuttons.get(l).setVisibility(View.VISIBLE);
+                    imgbuttons.get(l).setImageResource(Imgarr[fillarray[l]]);
                 } else if (fillarray[l] == 0) {
                     imgbuttons.get(l).setVisibility(View.INVISIBLE);
                 }
             }
-
+/*
             if (otv == 1) {
                 btn1.setText(Integer.toString(answer));
                 btn2.setText(Integer.toString(answer + 1));
@@ -181,19 +161,6 @@ public class number extends Activity implements OnClickListener {
                 btn2.setText(Integer.toString(answer + 1));
                 btn1.setText(Integer.toString(answer - otv));
                 btn3.setText(Integer.toString(answer + otv));
-            }
+            }*/
         }
-/*
-    private int getOperand() {
-        // return operand number
-        return random.nextInt(levelMax[operator][level]
-                - levelMin[operator][level] + 1)
-                + levelMin[operator][level];
-    }
-
-    private int getScore(){
-        String scoreStr = scoreTxt.getText().toString();
-        return Integer.parseInt(scoreStr.substring(scoreStr.lastIndexOf(" ")+1));
-    }
-    */
     }
