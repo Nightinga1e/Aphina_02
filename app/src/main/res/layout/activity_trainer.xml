@@ -112,7 +112,7 @@
             android:id="@+id/StartAssoc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="toAssoc"
+            android:onClick="ToAssoc"
             android:text="Ассоциации"
             android:textColor="@color/windowBackground" />
 

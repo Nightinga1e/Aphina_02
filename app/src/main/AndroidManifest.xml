@@ -65,7 +65,14 @@
             android:screenOrientation="portrait" />
         <activity android:name=".pamyat" />
         <activity android:name=".Labirint" />
-        <activity android:name=".Assoc"></activity>
+        <activity android:name=".Assoc" />
+        <activity android:name=".number_menu" />
+        <activity android:name=".pamyat_menu" />
+        <activity android:name=".Sled_menu" />
+        <activity android:name=".Vihr_menu" />
+        <activity android:name=".Labirint_menu" />
+        <activity android:name=".Assoc_menu" />
+        <activity android:name=".HowToNumber"></activity>
     </application>
 
 </manifest>

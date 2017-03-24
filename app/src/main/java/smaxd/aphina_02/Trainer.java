@@ -36,11 +36,11 @@ public class Trainer extends AppCompatActivity {
         startActivity(intent);
     }
     public void ToSled(View view) {
-        Intent intent = new Intent(this, Sled.class);
+        Intent intent = new Intent(this, Sled_menu.class);
         startActivity(intent);
     }
     public void ToVihr(View view) {
-        Intent intent = new Intent(this, Vihr.class);
+        Intent intent = new Intent(this, Vihr_menu.class);
         startActivity(intent);
     }
     public void ToMatem(View view) {
@@ -48,19 +48,19 @@ public class Trainer extends AppCompatActivity {
         startActivity(intent);
     }
     public void Tonumber(View view) {
-        Intent intent = new Intent(this, number.class);
+        Intent intent = new Intent(this, number_menu.class);
         startActivity(intent);
     }
     public void Topamyat(View view) {
-        Intent intent = new Intent(this, pamyat.class);
+        Intent intent = new Intent(this, pamyat_menu.class);
         startActivity(intent);
     }
     public void Tolabirint(View view) {
-        Intent intent = new Intent(this, Labirint.class);
+        Intent intent = new Intent(this, Labirint_menu.class);
         startActivity(intent);
     }
     public void ToAssoc(View view) {
-        Intent intent = new Intent(this, Assoc.class);
+        Intent intent = new Intent(this, Assoc_menu.class);
         startActivity(intent);
     }
 }
