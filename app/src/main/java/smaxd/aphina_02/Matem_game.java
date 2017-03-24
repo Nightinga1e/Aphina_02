@@ -21,7 +21,7 @@ public class Matem_game extends Activity implements OnClickListener {
 
     private int level = 0, answer = 0, operator = 0, operand1 = 0,
             operand2 = 0;
-    String enteredAnswer;
+    private String enteredAnswer;
     private final int ADD_OPERATOR = 0, SUBTRACT_OPERATOR = 1,
             MULTIPLY_OPERATOR = 2, DIVIDE_OPERATOR = 3;
     private String[] operators = { "+", "-", "x", "/" };
