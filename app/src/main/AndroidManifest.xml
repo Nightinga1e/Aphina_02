@@ -72,7 +72,8 @@
         <activity android:name=".Vihr_menu" />
         <activity android:name=".Labirint_menu" />
         <activity android:name=".Assoc_menu" />
-        <activity android:name=".HowToNumber"></activity>
+        <activity android:name=".HowToNumber" />
+        <activity android:name=".numberscore"></activity>
     </application>
 
 </manifest>
