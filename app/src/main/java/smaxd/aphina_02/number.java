@@ -29,6 +29,9 @@ public class number extends Activity implements OnClickListener {
     private int[][] levelMax = {{10, 25, 50}, {10, 20, 30}, {5, 10, 15},
             {10, 50, 100}};
 
+    private SharedPreferences numPrefs;
+    public static final String NUM_PREFS = "NumberFile";
+
     private int[] Imgarr = {R.mipmap.pic1,
             R.mipmap.pic2,
             R.mipmap.pic3,
@@ -37,9 +40,6 @@ public class number extends Activity implements OnClickListener {
             R.mipmap.pic6};
 
     private Random random;
-    private SharedPreferences gamePrefs;
-    public static final String GAME_PREFS = "NumberFile";
-
     private TextView scoreTxt;
     private ImageView response;
     private Button btn1, btn2, btn3, btn4;
@@ -67,7 +67,8 @@ public class number extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_number);
-        gamePrefs = getSharedPreferences(GAME_PREFS, 0);
+
+        numPrefs = getSharedPreferences(NUM_PREFS, 0);
 
         imgbuttons = new ArrayList<ImageButton>();
         // or slightly better
@@ -93,14 +94,89 @@ public class number extends Activity implements OnClickListener {
         btn4.setOnClickListener(this);
 
 
+        if (savedInstanceState != null) {
+            // restore state
+            level = savedInstanceState.getInt("level");
+            int exScore = savedInstanceState.getInt("score");
+            scoreTxt.setText("Score: " + exScore);
+        } else {
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+                int passedLevel = extras.getInt("level", -1);
+                if (passedLevel >= 0)
+                    level = passedLevel;
+            }
+        }
+
         random = new Random();
         chooseField();
     }
 
+
+    private void setHighScore() {
+        // set high score
+        int exScore = getScore();
+        if (exScore > 0) {
+            SharedPreferences.Editor scoreEdit = numPrefs.edit();
+            DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
+            String dateOutput = dateForm.format(new Date());
+            String scores = numPrefs.getString("highScores", "");
+
+            if (scores.length() > 0) {
+                // we have existing scores
+                List<Score> scoreStrings = new ArrayList<Score>();
+                String[] exScores = scores.split("\\|");
+                for (String eSc : exScores) {
+                    String[] parts = eSc.split(" - ");
+                    scoreStrings.add(new Score(parts[0], Integer
+                            .parseInt(parts[1])));
+                }
+
+                Score newScore = new Score(dateOutput, exScore);
+                scoreStrings.add(newScore);
+                Collections.sort(scoreStrings);
+
+                StringBuilder scoreBuild = new StringBuilder("");
+                for (int s = 0; s < scoreStrings.size(); s++) {
+                    if (s >= 10)
+                        break;// only want ten
+                    if (s > 0)
+                        scoreBuild.append("|");// pipe separate the score
+                    // strings
+                    scoreBuild.append(scoreStrings.get(s).getScoreText());
+                }
+                // write to prefs
+                scoreEdit.putString("highScores", scoreBuild.toString());
+                scoreEdit.commit();
+            } else {
+                // no existing scores
+                scoreEdit.putString("highScores", "" + dateOutput + " - "
+                        + exScore);
+                scoreEdit.commit();
+            }
+        }
+    }
+
+
+    protected void onDestroy() {
+        setHighScore();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        //     save state
+        int exScore = getScore();
+        savedInstanceState.putInt("score", exScore);
+        savedInstanceState.putInt("level", level);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+
     @Override
     public void onClick(View view) {
-        // TODO Auto-generated method stub
-        switch (view.getId()) {
+        response.setVisibility(View.INVISIBLE);
+        switch (view.getId()){
             case R.id.btn1:
                 enteredAnswer = (btn1).getText().toString();
                 break;
@@ -114,6 +190,22 @@ public class number extends Activity implements OnClickListener {
                 enteredAnswer = (btn4).getText().toString();
                 break;
         }
+        if(enteredAnswer!=null){
+            int exScore = getScore();
+            if(enteredAnswer==(Integer.toString(answer))){
+                //correct
+                scoreTxt.setText("Score: "+(exScore+1));
+                response.setImageResource(R.drawable.tick);
+                response.setVisibility(View.VISIBLE);
+            }else{
+                //incorrect
+                setHighScore();
+                scoreTxt.setText("Score: 0");
+                response.setImageResource(R.drawable.cross);
+                response.setVisibility(View.VISIBLE);
+            }
+            chooseField();
+            }
     }
 
     private void chooseField() {
@@ -123,44 +215,50 @@ public class number extends Activity implements OnClickListener {
 
         for (int l = 0; l < fillarray.length; l++) {
             int chance = random.nextInt(100) + 1;
-            int imgtype = random.nextInt(6);
-            if (chance < 40) {
+                if (chance < 40) {
+                int imgtype = random.nextInt(6);
                 fillarray[l] = imgtype;
-            } else {
-                fillarray[l] = 0;
-                answer += 1;
-            }
+                    answer=answer+1;
+              } else if (chance>=40){
+                fillarray[l] = 6;
+              }
         }
 
             for (int l = 0; l < fillarray.length; l++) {
-                if (fillarray[l] > 0) {
+                if (fillarray[l] <6) {
                     imgbuttons.get(l).setVisibility(View.VISIBLE);
                     imgbuttons.get(l).setImageResource(Imgarr[fillarray[l]]);
-                } else if (fillarray[l] == 0) {
+                } else if (fillarray[l] == 6) {
                     imgbuttons.get(l).setVisibility(View.INVISIBLE);
+
                 }
             }
-/*
+
             if (otv == 1) {
                 btn1.setText(Integer.toString(answer));
                 btn2.setText(Integer.toString(answer + 1));
-                btn3.setText(Integer.toString(answer - otv));
-                btn4.setText(Integer.toString(answer + otv));
+                btn3.setText(Integer.toString(answer - 1));
+                btn4.setText(Integer.toString(answer + 2));
             } else if (otv == 2) {
                 btn2.setText(Integer.toString(answer));
                 btn1.setText(Integer.toString(answer + 1));
-                btn3.setText(Integer.toString(answer - otv));
-                btn4.setText(Integer.toString(answer + otv));
+                btn3.setText(Integer.toString(answer - 1));
+                btn4.setText(Integer.toString(answer + 2));
             } else if (otv == 3) {
                 btn3.setText(Integer.toString(answer));
                 btn2.setText(Integer.toString(answer + 1));
-                btn1.setText(Integer.toString(answer - otv));
-                btn4.setText(Integer.toString(answer + otv));
+                btn1.setText(Integer.toString(answer - 1));
+                btn4.setText(Integer.toString(answer + 2));
             } else if (otv == 4) {
                 btn4.setText(Integer.toString(answer));
                 btn2.setText(Integer.toString(answer + 1));
-                btn1.setText(Integer.toString(answer - otv));
-                btn3.setText(Integer.toString(answer + otv));
-            }*/
+                btn1.setText(Integer.toString(answer - 1));
+                btn3.setText(Integer.toString(answer + 2));
+            }
         }
+
+    private int getScore(){
+        String scoreStr = scoreTxt.getText().toString();
+        return Integer.parseInt(scoreStr.substring(scoreStr.lastIndexOf(" ")+1));
+    }
     }

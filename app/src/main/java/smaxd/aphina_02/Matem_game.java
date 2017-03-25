@@ -55,19 +55,13 @@ public class Matem_game extends Activity implements OnClickListener {
         btn2 = (Button) findViewById(R.id.btn2);
         btn3 = (Button) findViewById(R.id.btn3);
         btn4 = (Button) findViewById(R.id.btn4);
-      //  enterBtn = (Button) findViewById(R.id.enter);
+
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
         btn3.setOnClickListener(this);
         btn4.setOnClickListener(this);
-       // enterBtn.setOnClickListener(this);
 
-//        Bundle extras = getIntent().getExtras();
-        //      if (extras != null) {
-        //        int passedLevel = extras.getInt("level", -1);
-        //      if (passedLevel >= 0)
-        //        level = passedLevel;
-        //}
+
         if (savedInstanceState != null) {
             // restore state
             level = savedInstanceState.getInt("level");

@@ -67,7 +67,7 @@ public class number_menu extends Activity implements OnClickListener {
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
             // high scores button
-            Intent highIntent = new Intent(this, HighScores.class);
+            Intent highIntent = new Intent(this, numberscore.class);
             this.startActivity(highIntent);
         }
         // high scores button
