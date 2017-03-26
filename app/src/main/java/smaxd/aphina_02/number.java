@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +21,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class number extends Activity implements OnClickListener {
 
@@ -45,7 +48,7 @@ public class number extends Activity implements OnClickListener {
     private TextView scoreTxt;
     private ImageView response;
     private Button btn1, btn2, btn3, btn4;
- //   private ImageButton imgtest, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10;
+    private TextView mTimer;
 
     private int[] fillarray = {0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0,
@@ -64,6 +67,8 @@ public class number extends Activity implements OnClickListener {
             R.id.img31, R.id.img32, R.id.img33, R.id.img34, R.id.img35, R.id.img36
     };
 
+    CountDownTimer countDownTimer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +82,7 @@ public class number extends Activity implements OnClickListener {
         // buttons = new ArrayList<Button>(BUTTON_IDS.length);
         for (int id : IMGBUTTON_IDS) {
             ImageButton imgbut = (ImageButton) findViewById(id);
-          //  imgbut.setOnClickListener(this); //
+            //  imgbut.setOnClickListener(this); //
             imgbuttons.add(imgbut);
         }
 
@@ -101,7 +106,7 @@ public class number extends Activity implements OnClickListener {
         life3.setVisibility(View.VISIBLE);
         life2.setVisibility(View.VISIBLE);
         life1.setVisibility(View.VISIBLE);
-
+        mTimer = (TextView) findViewById(R.id.timer);
 
         if (savedInstanceState != null) {
             // restore state
@@ -119,6 +124,32 @@ public class number extends Activity implements OnClickListener {
 
         random = new Random();
         chooseField();
+
+        //Создаем таймер обратного отсчета на 20 секунд с шагом отсчета
+        //в 1 секунду (задаем значения в миллисекундах):
+        countDownTimer = new CountDownTimer(10000, 1000) {
+            //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
+            public void onTick(long millisUntilFinished) {
+                mTimer.setText("" + millisUntilFinished / 1000);
+            }
+
+            @Override
+            public void onFinish() {
+                response.setImageResource(R.drawable.cross);
+                lifecount-=1;
+                if (lifecount==2) {
+                    life1.setVisibility(View.INVISIBLE);
+                }else if (lifecount==1) {
+                    life2.setVisibility(View.INVISIBLE);
+                }else if (lifecount==0){
+                    finish();
+                }
+                response.setVisibility(View.VISIBLE);
+                chooseField();
+                countDownTimer.start();
+            }
+        };
+        countDownTimer.start();
     }
 
 
@@ -206,6 +237,8 @@ public class number extends Activity implements OnClickListener {
                 scoreTxt.setText("Score: "+(exScore+1));
                 response.setImageResource(R.drawable.tick);
                 response.setVisibility(View.VISIBLE);
+                countDownTimer.start();
+
             }else{
                 //incorrect
                 scoreTxt.setText("Score: "+(exScore));
@@ -223,6 +256,7 @@ public class number extends Activity implements OnClickListener {
                 response.setVisibility(View.VISIBLE);
             }
             chooseField();
+            countDownTimer.start();
             }
     }
 
