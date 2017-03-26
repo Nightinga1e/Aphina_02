@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
@@ -14,13 +15,14 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Matem_game extends Activity implements OnClickListener {
 
     private int level = 0, answer = 0, operator = 0, operand1 = 0,
-            operand2 = 0;
+            operand2 = 0, lifecount= 3;
     private String enteredAnswer;
     private final int ADD_OPERATOR = 0, SUBTRACT_OPERATOR = 1,
             MULTIPLY_OPERATOR = 2, DIVIDE_OPERATOR = 3;
@@ -37,6 +39,7 @@ public class Matem_game extends Activity implements OnClickListener {
 
     private TextView question, answerTxt, scoreTxt;
     private ImageView response;
+    private ImageButton life1,life2,life3;
     private Button btn1, btn2, btn3, btn4, enterBtn;
 
     @Override
@@ -50,6 +53,12 @@ public class Matem_game extends Activity implements OnClickListener {
         answerTxt = (TextView) findViewById(R.id.answer);
         response = (ImageView) findViewById(R.id.response);
         scoreTxt = (TextView) findViewById(R.id.score);
+        life1 = (ImageButton) findViewById(R.id.life1);
+        life2 = (ImageButton) findViewById(R.id.life2);
+        life3 = (ImageButton) findViewById(R.id.life3);
+        life3.setVisibility(View.VISIBLE);
+        life2.setVisibility(View.VISIBLE);
+        life1.setVisibility(View.VISIBLE);
         response.setVisibility(View.INVISIBLE);
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
@@ -155,13 +164,21 @@ public class Matem_game extends Activity implements OnClickListener {
                 response.setVisibility(View.VISIBLE);
             }else{
                 //incorrect
-                setHighScore();
-                scoreTxt.setText("Score: 0");
+                scoreTxt.setText("Score: "+(exScore));
                 response.setImageResource(R.drawable.cross);
+                lifecount-=1;
+                if (lifecount==2) {
+                    life1.setVisibility(View.INVISIBLE);
+                }else if (lifecount==1) {
+                    life2.setVisibility(View.INVISIBLE);
+                }else if (lifecount==0){
+                    Intent intent = new Intent(this, Matem.class);
+                    startActivity(intent);
+                }
                 response.setVisibility(View.VISIBLE);
             }
             chooseQuestion();
-            response.setVisibility(View.INVISIBLE);
+            //response.setVisibility(View.INVISIBLE);
         }
     }
 
