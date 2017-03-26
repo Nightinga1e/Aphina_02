@@ -172,8 +172,9 @@ public class Matem_game extends Activity implements OnClickListener {
                 }else if (lifecount==1) {
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
-                    Intent intent = new Intent(this, Matem.class);
-                    startActivity(intent);
+                  //  Intent intent = new Intent(this, Matem.class);
+                   // startActivity(intent);
+                    finish();
                 }
                 response.setVisibility(View.VISIBLE);
             }
