@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -40,7 +41,10 @@ public class Matem_game extends Activity implements OnClickListener {
     private TextView question, answerTxt, scoreTxt;
     private ImageView response;
     private ImageButton life1,life2,life3;
-    private Button btn1, btn2, btn3, btn4, enterBtn;
+    private Button btn1, btn2, btn3, btn4;
+    private TextView mTimer;
+
+    CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,8 @@ public class Matem_game extends Activity implements OnClickListener {
         btn3.setOnClickListener(this);
         btn4.setOnClickListener(this);
 
+        mTimer = (TextView) findViewById(R.id.timer);
+
 
         if (savedInstanceState != null) {
             // restore state
@@ -86,6 +92,32 @@ public class Matem_game extends Activity implements OnClickListener {
         }
         random = new Random();
         chooseQuestion();
+
+        //Создаем таймер обратного отсчета на 10 секунд с шагом отсчета
+        //в 1 секунду (задаем значения в миллисекундах):
+        countDownTimer = new CountDownTimer(6000, 1000) {
+            //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
+            public void onTick(long millisUntilFinished) {
+                mTimer.setText("" + millisUntilFinished / 1000);
+            }
+
+            @Override
+            public void onFinish() {
+                response.setImageResource(R.drawable.cross);
+                lifecount-=1;
+                if (lifecount==2) {
+                    life1.setVisibility(View.INVISIBLE);
+                }else if (lifecount==1) {
+                    life2.setVisibility(View.INVISIBLE);
+                }else if (lifecount==0){
+                    finish();
+                }
+                response.setVisibility(View.VISIBLE);
+                chooseQuestion();
+                countDownTimer.start();
+            }
+        };
+        countDownTimer.start();
     }
 
     /*@Override
@@ -162,6 +194,7 @@ public class Matem_game extends Activity implements OnClickListener {
                 scoreTxt.setText("Score: "+(exScore+1));
                 response.setImageResource(R.drawable.tick);
                 response.setVisibility(View.VISIBLE);
+                countDownTimer.start();
             }else{
                 //incorrect
                 scoreTxt.setText("Score: "+(exScore));
@@ -175,10 +208,12 @@ public class Matem_game extends Activity implements OnClickListener {
                   //  Intent intent = new Intent(this, Matem.class);
                    // startActivity(intent);
                     finish();
+
                 }
                 response.setVisibility(View.VISIBLE);
             }
             chooseQuestion();
+            countDownTimer.start();
             //response.setVisibility(View.INVISIBLE);
         }
     }

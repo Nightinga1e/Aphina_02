@@ -125,7 +125,7 @@ public class number extends Activity implements OnClickListener {
         random = new Random();
         chooseField();
 
-        //Создаем таймер обратного отсчета на 20 секунд с шагом отсчета
+        //Создаем таймер обратного отсчета на 10 секунд с шагом отсчета
         //в 1 секунду (задаем значения в миллисекундах):
         countDownTimer = new CountDownTimer(10000, 1000) {
             //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
