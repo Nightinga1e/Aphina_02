@@ -412,8 +412,18 @@ public class Labirint extends Activity implements OnClickListener {
 
         int tempcoordl =hercules_coordm;
         int tempcoordm =hercules_coordl;
-
-        for (int l = 0; l < 6 ;l++){
+        int hard=0;
+        if (level==0) {
+            hard = 4 ;
+            putbuttons.get(4).setVisibility(View.INVISIBLE);
+            putbuttons.get(5).setVisibility(View.INVISIBLE);
+        }else if (level==1) {
+            hard = 5 ;
+            putbuttons.get(5).setVisibility(View.INVISIBLE);
+        }else if (level==2) {
+            hard = 6 ;
+        }
+        for (int l = 0; l < hard ;l++){
             int exither =random.nextInt(4);
             switch (exither){
                 case 0:
