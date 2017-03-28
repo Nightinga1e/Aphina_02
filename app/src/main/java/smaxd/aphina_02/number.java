@@ -1,28 +1,25 @@
 package smaxd.aphina_02;
-import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.CountDownTimer;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class number extends Activity implements OnClickListener {
 
@@ -143,20 +140,6 @@ public class number extends Activity implements OnClickListener {
 
             @Override
             public void onFinish() {
-                /*
-                response.setImageResource(R.drawable.cross);
-                lifecount-=1;
-                if (lifecount==2) {
-                    life1.setVisibility(View.INVISIBLE);
-                }else if (lifecount==1) {
-                    life2.setVisibility(View.INVISIBLE);
-                }else if (lifecount==0){
-                    finish();
-                }
-                response.setVisibility(View.VISIBLE);
-                chooseField();
-                countDownTimer.start();
-                */
                 mTimer.setText("0");
                 for (int l = 0; l < fillarray.length; l++) {
                     imgbuttons.get(l).setVisibility(View.INVISIBLE);
@@ -250,6 +233,7 @@ public class number extends Activity implements OnClickListener {
                 enteredAnswer = (btn4).getText().toString();
                 break;
         }
+
         if(enteredAnswer!=null){
             int exScore = getScore();
             if(enteredAnswer==(Integer.toString(answer))){
@@ -269,9 +253,20 @@ public class number extends Activity implements OnClickListener {
                 }else if (lifecount==1) {
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
-                //    Intent intent = new Intent(this, number_menu.class);
-                 //   startActivity(intent);
+                    life3.setVisibility(View.INVISIBLE);
                     finish();
+                   /* AlertDialog.Builder builder = new AlertDialog.Builder(number.this);
+                    builder.setTitle("")
+                            .setMessage("Попытки закончились!")
+                            .setNegativeButton("ОК",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                            finish();
+                                        }
+                                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();*/
                 }
                 response.setVisibility(View.VISIBLE);
             }
@@ -279,6 +274,8 @@ public class number extends Activity implements OnClickListener {
             countDownTimer.start();
             }
     }
+
+
 
     private void chooseField() {
 

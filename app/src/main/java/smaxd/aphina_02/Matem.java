@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class Matem extends Activity implements OnClickListener {
 
-    private String[] levelNames = { "Легко", "Нормально", "Сложно" };
+    private String[] levelNames = {"Легко", "Нормально", "Сложно" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class Matem extends Activity implements OnClickListener {
             if (view.getId() == R.id.play_btn) {
                 // play button
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Выберите уровень сложности").setSingleChoiceItems(levelNames,
+                builder.setTitle("").setSingleChoiceItems(levelNames,
                         0, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();

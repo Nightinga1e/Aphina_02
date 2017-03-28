@@ -73,7 +73,9 @@
         <activity android:name=".Labirint_menu" />
         <activity android:name=".Assoc_menu" />
         <activity android:name=".HowToNumber" />
-        <activity android:name=".numberscore"></activity>
+        <activity android:name=".numberscore" />
+        <activity android:name=".labirint_score" />
+        <activity android:name=".Howtolab"></activity>
     </application>
 
 </manifest>

@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
@@ -20,18 +22,19 @@ import android.widget.TextView;
 
 public class Labirint extends Activity implements OnClickListener {
 
+    private String[] alert = {"Время вышло!" };
+
     private int level = 0, answer = 0, lifecount= 3, hercules_coordl =0, hercules_coordm =0;
     private int enteredAnswer;
 
-    private Button btn1, btn2, btn3, btn4;
-    private String entAns;
+    private int entAns;
     private int[][] levelMin = {{1, 11, 21}, {1, 5, 10}, {2, 5, 10},
             {2, 3, 5}};
     private int[][] levelMax = {{10, 25, 50}, {10, 20, 30}, {5, 10, 15},
             {10, 50, 100}};
 
-    private SharedPreferences numPrefs;
-    public static final String NUM_PREFS = "LabirintFile";
+    private SharedPreferences LabPrefs;
+    public static final String LAB_PREFS = "LabirFile";
 
     private int[] Imgarr2 = {
             R.mipmap.ic_labirint,
@@ -46,9 +49,7 @@ public class Labirint extends Activity implements OnClickListener {
     };
 
     private int hercules_coords;
-    private ImageButton life1,life2,life3,img1, img2, img3, img4, img5, img6,img7, img8, img9, img10,
-            img11 , img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22, img23,
-            img24,  img25, img26, img27, img28, img29, img30, img31, img32, img33, img34, img35, img36;
+    private ImageButton life1,life2,life3;
     private Random random;
     private TextView scoreTxt;
     private ImageView response;
@@ -87,12 +88,12 @@ public class Labirint extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_labirint);
 
-        numPrefs = getSharedPreferences(NUM_PREFS, 0);
+        LabPrefs = getSharedPreferences(LAB_PREFS, 0);
 
         imgbuttons = new ArrayList<ImageButton>();
         for (int id : IMGBUTTON_IDS) {
             ImageButton imgbut = (ImageButton) findViewById(id);
-            //  imgbut.setOnClickListener(this); //
+              imgbut.setOnClickListener(this); //
             imgbuttons.add(imgbut);
         }
         for (int i=0;i<fillarray.length;i++){
@@ -102,7 +103,7 @@ public class Labirint extends Activity implements OnClickListener {
         putbuttons = new ArrayList<ImageButton>();
         for (int id : PUT_IDS) {
             ImageButton putbut = (ImageButton) findViewById(id);
-            //  imgbut.setOnClickListener(this); //
+              //imgbut.setOnClickListener(this); //
             putbuttons.add(putbut);
         }
 
@@ -115,58 +116,8 @@ public class Labirint extends Activity implements OnClickListener {
         life2.setVisibility(View.VISIBLE);
         life1.setVisibility(View.VISIBLE);
 
-        img1 = (ImageButton) findViewById(R.id.img1);
-        img2 = (ImageButton) findViewById(R.id.img2);
-        img3 = (ImageButton) findViewById(R.id.img3);
-        img4 = (ImageButton) findViewById(R.id.img4);
-        img5 = (ImageButton) findViewById(R.id.img5);
-        img6 = (ImageButton) findViewById(R.id.img6);
-        img7 = (ImageButton) findViewById(R.id.img7);
-        img8 = (ImageButton) findViewById(R.id.img8);
-        img9 = (ImageButton) findViewById(R.id.img9);
-        img10 = (ImageButton) findViewById(R.id.img10);
-        img11 = (ImageButton) findViewById(R.id.img11);
-        img12 = (ImageButton) findViewById(R.id.img12);
-        img13 = (ImageButton) findViewById(R.id.img13);
-        img14 = (ImageButton) findViewById(R.id.img14);
-        img15 = (ImageButton) findViewById(R.id.img15);
-        img16 = (ImageButton) findViewById(R.id.img16);
-        img17 = (ImageButton) findViewById(R.id.img17);
-        img18 = (ImageButton) findViewById(R.id.img18);
-        img19 = (ImageButton) findViewById(R.id.img19);
-        img20 = (ImageButton) findViewById(R.id.img20);
-        img21 = (ImageButton) findViewById(R.id.img21);
-        img22 = (ImageButton) findViewById(R.id.img22);
-        img23 = (ImageButton) findViewById(R.id.img23);
-        img24 = (ImageButton) findViewById(R.id.img24);
-        img25 = (ImageButton) findViewById(R.id.img25);
-        img26 = (ImageButton) findViewById(R.id.img26);
-        img27 = (ImageButton) findViewById(R.id.img27);
-        img28 = (ImageButton) findViewById(R.id.img28);
-        img29 = (ImageButton) findViewById(R.id.img29);
-        img30 = (ImageButton) findViewById(R.id.img30);
-        img31 = (ImageButton) findViewById(R.id.img31);
-        img32 = (ImageButton) findViewById(R.id.img32);
-        img33 = (ImageButton) findViewById(R.id.img33);
-        img34 = (ImageButton) findViewById(R.id.img34);
-        img35 = (ImageButton) findViewById(R.id.img35);
-        img36 = (ImageButton) findViewById(R.id.img36);
-
         response = (ImageView) findViewById(R.id.response);
-        scoreTxt = (TextView) findViewById(R.id.score);
         response.setVisibility(View.INVISIBLE);
-
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn4 = (Button) findViewById(R.id.btn4);
-
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
-        btn3.setOnClickListener(this);
-        btn4.setOnClickListener(this);
-
-
 
         mTimer = (TextView) findViewById(R.id.timer);
 
@@ -197,12 +148,22 @@ public class Labirint extends Activity implements OnClickListener {
 
             @Override
             public void onFinish() {
-
                 mTimer.setText("0");
-                for (int l = 0; l < fillarray.length; l++) {
-                   // imgbuttons.get(l).setVisibility(View.INVISIBLE);
-                }
-              //  answerfu.setVisibility(View.VISIBLE);
+                finish();
+                    /*AlertDialog.Builder builder = new AlertDialog.Builder(Labirint.this);
+                    builder.setTitle("")
+                            .setMessage("Время вышло!")
+                            .setNegativeButton("ОК",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                            finish();
+                                        }
+                                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+*/
+
             }
         };
         countDownTimer.start();
@@ -214,10 +175,10 @@ public class Labirint extends Activity implements OnClickListener {
         // set high score
         int exScore = getScore();
         if (exScore > 0) {
-            SharedPreferences.Editor scoreEdit = numPrefs.edit();
+            SharedPreferences.Editor scoreEdit = LabPrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
             String dateOutput = dateForm.format(new Date());
-            String scores = numPrefs.getString("highScores", "");
+            String scores = LabPrefs.getString("highScores", "");
 
             if (scores.length() > 0) {
                 // we have existing scores
@@ -275,136 +236,125 @@ public class Labirint extends Activity implements OnClickListener {
     public void onClick(View view) {
         //  response.setVisibility(View.INVISIBLE);
         switch (view.getId()){
-           /* case R.id.btn1:
-                entAns = "1";
-                break;
-            case R.id.btn2:
-                entAns = "2";
-                break;
-            case R.id.btn3:
-                entAns="3";
-                break;
-            case R.id.btn4:
-                entAns="4";
-                break;*/
             case R.id.img1:
-                entAns = "0";
+                entAns = 1;
                 break;
             case R.id.img2:
-                entAns = "1";
+                entAns = 1;
                 break;
             case R.id.img3:
-                entAns = "2";
+                entAns = 2;
                 break;
             case R.id.img4:
-                entAns = "3";
+                entAns = 3;
                 break;
             case R.id.img5:
-                entAns = "4";
+                entAns = 4;
                 break;
             case R.id.img6:
-                entAns = "5";
+                entAns = 5;
                 break;
             case R.id.img7:
-                entAns = "6";
+                entAns = 6;
                 break;
             case R.id.img8:
-                entAns = "7";
+                entAns = 7;
                 break;
             case R.id.img9:
-                entAns = "8";
+                entAns = 8;
                 break;
             case R.id.img10:
-                entAns = "9";
+                entAns = 9;
                 break;
             case R.id.img11:
-                entAns = "10";
+                entAns = 10;
                 break;
             case R.id.img12:
-                entAns = "11";
+                entAns = 11;
                 break;
             case R.id.img13:
-                entAns = "12";
+                entAns = 12;
                 break;
             case R.id.img14:
-                entAns = "13";
+                entAns = 13;
                 break;
             case R.id.img15:
-                entAns = "14";
+                entAns = 14;
                 break;
             case R.id.img16:
-                entAns = "15";
+                entAns = 15;
                 break;
             case R.id.img17:
-                entAns = "16";
+                entAns = 16;
                 break;
             case R.id.img18:
-                entAns = "17";
+                entAns = 17;
                 break;
             case R.id.img19:
-                entAns = "18";
+                entAns = 18;
                 break;
             case R.id.img20:
-                entAns = "19";
+                entAns = 19;
                 break;
             case R.id.img21:
-                entAns = "20";
+                entAns = 20;
                 break;
             case R.id.img22:
-                entAns = "21";
+                entAns = 21;
                 break;
             case R.id.img23:
-                entAns = "22";
+                entAns = 22;
                 break;
             case R.id.img24:
-                entAns = "23";
+                entAns = 23;
                 break;
             case R.id.img25:
-                entAns = "24";
+                entAns = 24;
                 break;
             case R.id.img26:
-                entAns = "25";
+                entAns = 25;
                 break;
             case R.id.img27:
-                entAns = "26";
+                entAns = 26;
                 break;
             case R.id.img28:
-                entAns = "27";
+                entAns = 27;
                 break;
             case R.id.img29:
-                entAns = "28";
+                entAns = 28;
                 break;
             case R.id.img30:
-                entAns = "29";
+                entAns = 29;
                 break;
             case R.id.img31:
-                entAns = "30";
+                entAns = 30;
                 break;
             case R.id.img32:
-                entAns = "31";
+                entAns = 31;
                 break;
             case R.id.img33:
-                entAns = "32";
+                entAns = 32;
                 break;
             case R.id.img34:
-                entAns = "33";
+                entAns = 33;
                 break;
             case R.id.img35:
-                entAns = "34";
+                entAns = 34;
                 break;
             case R.id.img36:
-                entAns = "35";
+                entAns = 35;
                 break;
-
         }
-        if(entAns!=null){
+
+        if(entAns!=0){
             int exScore = getScore();
-            if(entAns==(Integer.toString(answer))){
+            if((Integer.toString(entAns))==(Integer.toString(answer))){
                 //correct
                 scoreTxt.setText("Score: "+(exScore+1));
                 response.setImageResource(R.drawable.tick);
                 response.setVisibility(View.VISIBLE);
                 countDownTimer.start();
+                chooseField();
 
             }else{
                 //incorrect
@@ -417,10 +367,23 @@ public class Labirint extends Activity implements OnClickListener {
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
                     finish();
+                    /*
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Labirint.this);
+                    builder.setTitle("")
+                            .setMessage("Попытки закончились")
+                            .setNegativeButton("ОК",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                            finish();
+                                        }
+                                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();*/
                 }
                 response.setVisibility(View.VISIBLE);
             }
-            chooseField();
+           // chooseField();
             countDownTimer.start();
         }
     }
@@ -436,7 +399,7 @@ public class Labirint extends Activity implements OnClickListener {
                 fillarray[l][m] = 0;
                 if (l == hercules_coordl && m ==hercules_coordm) {
                     fillarray[l][m] = 1;
-                    answer = l*6+m;
+
                     }
             }
         }
@@ -492,6 +455,7 @@ public class Labirint extends Activity implements OnClickListener {
             }
 
         }
+         answer = tempcoordm*6+tempcoordl;
 
     }
 

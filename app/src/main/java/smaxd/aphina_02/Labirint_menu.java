@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class Labirint_menu extends Activity implements OnClickListener {
 
-    private String[] levelNames = { "Easy", "Medium", "Hard" };
+    private String[] levelNames = {"Легко", "Нормально", "Сложно" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class Labirint_menu extends Activity implements OnClickListener {
             if (view.getId() == R.id.play_btn) {
                 // play button
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Choose a level").setSingleChoiceItems(levelNames,
+                builder.setTitle("").setSingleChoiceItems(levelNames,
                         0, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -63,11 +63,11 @@ public class Labirint_menu extends Activity implements OnClickListener {
             }
         } else if (view.getId() == R.id.help_btn) {
             // how to play button
-            Intent helpIntent = new Intent(this, HowToNumber.class);
+            Intent helpIntent = new Intent(this, Howtolab.class);
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
             // high scores button
-            Intent highIntent = new Intent(this, HighScores.class);
+            Intent highIntent = new Intent(this, labirint_score.class);
             this.startActivity(highIntent);
         }
         // high scores button
