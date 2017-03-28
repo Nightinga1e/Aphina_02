@@ -95,38 +95,81 @@ public class Matem_game extends Activity implements OnClickListener {
 
         //Создаем таймер обратного отсчета на 10 секунд с шагом отсчета
         //в 1 секунду (задаем значения в миллисекундах):
-        countDownTimer = new CountDownTimer(6000, 1000) {
-            //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
-            public void onTick(long millisUntilFinished) {
-                mTimer.setText("" + millisUntilFinished / 1000);
-            }
-
-            @Override
-            public void onFinish() {
-                response.setImageResource(R.drawable.cross);
-                lifecount-=1;
-                if (lifecount==2) {
-                    life1.setVisibility(View.INVISIBLE);
-                }else if (lifecount==1) {
-                    life2.setVisibility(View.INVISIBLE);
-                }else if (lifecount==0){
-                    finish();
+        if (level == 0) {
+            countDownTimer = new CountDownTimer(10000, 1000) {
+                //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
+                public void onTick(long millisUntilFinished) {
+                    mTimer.setText("" + millisUntilFinished / 1000);
                 }
-                response.setVisibility(View.VISIBLE);
-                chooseQuestion();
-                countDownTimer.start();
-            }
-        };
-        countDownTimer.start();
+
+                @Override
+                public void onFinish() {
+                    response.setImageResource(R.drawable.cross);
+                    lifecount -= 1;
+                    if (lifecount == 2) {
+                        life1.setVisibility(View.INVISIBLE);
+                    } else if (lifecount == 1) {
+                        life2.setVisibility(View.INVISIBLE);
+                    } else if (lifecount == 0) {
+                        finish();
+                    }
+                    response.setVisibility(View.VISIBLE);
+                    chooseQuestion();
+                    countDownTimer.start();
+                }
+            };
+            countDownTimer.start();
+        }else if (level == 1) {
+            countDownTimer = new CountDownTimer(8000, 1000) {
+                //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
+                public void onTick(long millisUntilFinished) {
+                    mTimer.setText("" + millisUntilFinished / 1000);
+                }
+
+                @Override
+                public void onFinish() {
+                    response.setImageResource(R.drawable.cross);
+                    lifecount -= 1;
+                    if (lifecount == 2) {
+                        life1.setVisibility(View.INVISIBLE);
+                    } else if (lifecount == 1) {
+                        life2.setVisibility(View.INVISIBLE);
+                    } else if (lifecount == 0) {
+                        finish();
+                    }
+                    response.setVisibility(View.VISIBLE);
+                    chooseQuestion();
+                    countDownTimer.start();
+                }
+            };
+            countDownTimer.start();
+        } else if (level == 2) {
+            countDownTimer = new CountDownTimer(6000, 1000) {
+                //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
+                public void onTick(long millisUntilFinished) {
+                    mTimer.setText("" + millisUntilFinished / 1000);
+                }
+
+                @Override
+                public void onFinish() {
+                    response.setImageResource(R.drawable.cross);
+                    lifecount -= 1;
+                    if (lifecount == 2) {
+                        life1.setVisibility(View.INVISIBLE);
+                    } else if (lifecount == 1) {
+                        life2.setVisibility(View.INVISIBLE);
+                    } else if (lifecount == 0) {
+                        finish();
+                    }
+                    response.setVisibility(View.VISIBLE);
+                    chooseQuestion();
+                    countDownTimer.start();
+                }
+            };
+            countDownTimer.start();
+        }
     }
 
-    /*@Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            // Inflate the menu; this adds items to the action bar if it is present.
-            getMenuInflater().inflate(R.menu.main, menu);
-            return true;
-        }
-    */
     private void setHighScore() {
         // set high score
         int exScore = getScore();
@@ -273,32 +316,30 @@ public class Matem_game extends Activity implements OnClickListener {
 
         if (otv == 1) {
             btn1.setText(Integer.toString(answer));
-            btn2.setText(Integer.toString(answer + 1));
-            btn3.setText(Integer.toString(answer - 1));
-            btn4.setText(Integer.toString(answer + 2));
+            btn2.setText(Integer.toString(answer + (random.nextInt(1)+1)));
+            btn3.setText(Integer.toString(answer - (random.nextInt(1)+1)));
+            btn4.setText(Integer.toString(answer + (random.nextInt(1)+2)));
         } else if (otv == 2) {
             btn2.setText(Integer.toString(answer));
-            btn1.setText(Integer.toString(answer + 1));
-            btn3.setText(Integer.toString(answer - 1));
-            btn4.setText(Integer.toString(answer + 2));
+            btn1.setText(Integer.toString(answer + (random.nextInt(1)+1)));
+            btn3.setText(Integer.toString(answer - (random.nextInt(1)+1)));
+            btn4.setText(Integer.toString(answer + (random.nextInt(1)+2)));
         } else if (otv == 3) {
             btn3.setText(Integer.toString(answer));
-            btn2.setText(Integer.toString(answer + 1));
-            btn1.setText(Integer.toString(answer - 1));
-            btn4.setText(Integer.toString(answer + 2));
+            btn2.setText(Integer.toString(answer + (random.nextInt(1)+1)));
+            btn1.setText(Integer.toString(answer - (random.nextInt(1)+1)));
+            btn4.setText(Integer.toString(answer + (random.nextInt(1)+2)));
         } else if (otv == 4) {
             btn4.setText(Integer.toString(answer));
-            btn2.setText(Integer.toString(answer + 1));
-            btn1.setText(Integer.toString(answer - 1));
-            btn3.setText(Integer.toString(answer + 2));
+            btn2.setText(Integer.toString(answer + (random.nextInt(1)+1)));
+            btn1.setText(Integer.toString(answer - (random.nextInt(1)+1)));
+            btn3.setText(Integer.toString(answer + (random.nextInt(1)+2)));
         }
     }
 
     private int getOperand() {
         // return operand number
-        return random.nextInt(levelMax[operator][level]
-                - levelMin[operator][level] + 1)
-                + levelMin[operator][level];
+        return random.nextInt(levelMax[operator][level] - levelMin[operator][level] + 1) + levelMin[operator][level];
     }
 
     private int getScore(){
