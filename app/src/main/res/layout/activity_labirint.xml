@@ -84,401 +84,413 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/img1"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
-            android:contentDescription="@null"
-            android:src="@mipmap/pic1"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img2"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic2"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img3"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic3"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img4"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic4"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img5"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic5"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img6"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic6"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
+
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/img7"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic1"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img8"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic2"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img9"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic3"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img10"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic4"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img11"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic5"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img12"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic6"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
+
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/LinearLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/img13"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic1"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img14"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic2"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img15"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic3"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img16"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic4"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img17"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic5"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img18"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic6"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
+
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/img19"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic1"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img20"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic2"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img21"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic3"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img22"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic4"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img23"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic5"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img24"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic6"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
+
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/img25"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic1"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img26"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic2"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img27"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic3"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img28"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic4"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img29"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic5"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img30"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic6"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
+
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/img31"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic1"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img32"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic2"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img33"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic3"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img34"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic4"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img35"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic5"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
 
         <ImageButton
             android:id="@+id/img36"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@null"
             android:contentDescription="@null"
-            android:src="@mipmap/pic6"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_labirint"
             android:visibility="visible" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -489,6 +501,38 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="2" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="3" />
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="4" />
+
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
@@ -496,22 +540,72 @@
             android:layout_weight="1"
             android:gravity="center|start"
             android:paddingRight="20dp"
-            android:text="Повторите путь"
+            android:text="Путь на свободу:"
             android:textColor="#ffffffff"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/Answerfu2"
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/put1"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center|start"
-            android:paddingRight="20dp"
-            android:text="pravo levo niz niz niz"
-            android:textColor="#ffffffff"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@null"
+            android:visibility="visible"
+            android:src="@mipmap/ic_left" />
+
+        <ImageButton
+            android:id="@+id/put2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@null"
+            android:visibility="visible"
+            android:src="@mipmap/ic_right" />
+
+        <ImageButton
+            android:id="@+id/put3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@null"
+            android:visibility="visible"
+            android:src="@mipmap/ic_down" />
+
+        <ImageButton
+            android:id="@+id/put4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@null"
+            android:visibility="visible"
+            android:src="@mipmap/ic_down" />
+
+        <ImageButton
+            android:id="@+id/put5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@null"
+            android:visibility="visible"
+            android:src="@mipmap/ic_left" />
+
+        <ImageButton
+            android:id="@+id/put6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@null"
+            android:visibility="visible"
+            android:src="@mipmap/ic_right" />
 
     </LinearLayout>
 

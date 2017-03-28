@@ -27,7 +27,7 @@ import java.util.TimerTask;
 public class number extends Activity implements OnClickListener {
 
     private int level = 0, answer = 0, lifecount= 3;
-    String enteredAnswer;
+    private String enteredAnswer;
     private int[][] levelMin = {{1, 11, 21}, {1, 5, 10}, {2, 5, 10},
             {2, 3, 5}};
     private int[][] levelMax = {{10, 25, 50}, {10, 20, 30}, {5, 10, 15},
