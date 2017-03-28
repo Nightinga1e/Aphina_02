@@ -323,28 +323,27 @@ public class number extends Activity implements OnClickListener {
                     imgbuttons.get(l).setVisibility(View.INVISIBLE);
                 }*/
             }
-
-            if (otv == 1) {
-                btn1.setText(Integer.toString(answer));
-                btn2.setText(Integer.toString(answer + (random.nextInt(1)+1)));
-                btn3.setText(Integer.toString(answer - (random.nextInt(1)+1)));
-                btn4.setText(Integer.toString(answer + (random.nextInt(1)+2)));
-            } else if (otv == 2) {
-                btn2.setText(Integer.toString(answer));
-                btn1.setText(Integer.toString(answer + (random.nextInt(1)+1)));
-                btn3.setText(Integer.toString(answer - (random.nextInt(1)+1)));
-                btn4.setText(Integer.toString(answer + (random.nextInt(1)+2)));
-            } else if (otv == 3) {
-                btn3.setText(Integer.toString(answer));
-                btn2.setText(Integer.toString(answer + (random.nextInt(1)+1)));
-                btn1.setText(Integer.toString(answer - (random.nextInt(1)+1)));
-                btn4.setText(Integer.toString(answer + (random.nextInt(1)+2)));
-            } else if (otv == 4) {
-                btn4.setText(Integer.toString(answer));
-                btn2.setText(Integer.toString(answer + (random.nextInt(1)+1)));
-                btn1.setText(Integer.toString(answer - (random.nextInt(1)+1)));
-                btn3.setText(Integer.toString(answer + (random.nextInt(1)+2)));
-            }
+        if (otv == 1) {
+            btn1.setText(Integer.toString(answer));
+            btn2.setText(Integer.toString(answer + 1));
+            btn3.setText(Integer.toString(answer + 2));
+            btn4.setText(Integer.toString(answer + 3));
+        } else if (otv == 2) {
+            btn2.setText(Integer.toString(answer));
+            btn1.setText(Integer.toString(answer - 1));
+            btn3.setText(Integer.toString(answer + 1));
+            btn4.setText(Integer.toString(answer + 2));
+        } else if (otv == 3) {
+            btn3.setText(Integer.toString(answer));
+            btn2.setText(Integer.toString(answer - 1));
+            btn1.setText(Integer.toString(answer - 2));
+            btn4.setText(Integer.toString(answer + 1));
+        } else if (otv == 4) {
+            btn4.setText(Integer.toString(answer));
+            btn2.setText(Integer.toString(answer - 2));
+            btn1.setText(Integer.toString(answer - 3));
+            btn3.setText(Integer.toString(answer - 1));
+        }
         }
 
     private int getScore(){

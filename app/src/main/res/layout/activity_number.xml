@@ -532,7 +532,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn4"
+            android:id="@+id/btn1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="1dp"
@@ -547,7 +547,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn3"
+            android:id="@+id/btn2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="1dp"
@@ -570,7 +570,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn1"
+            android:id="@+id/btn3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="1dp"
@@ -585,7 +585,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn2"
+            android:id="@+id/btn4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="1dp"
