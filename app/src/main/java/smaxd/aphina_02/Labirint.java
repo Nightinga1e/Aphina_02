@@ -353,7 +353,7 @@ public class Labirint extends Activity implements OnClickListener {
                 scoreTxt.setText("Score: "+(exScore+1));
                 response.setImageResource(R.drawable.tick);
                 response.setVisibility(View.VISIBLE);
-                countDownTimer.start();
+              //  countDownTimer.start();
                 chooseField();
 
             }else{
@@ -384,7 +384,7 @@ public class Labirint extends Activity implements OnClickListener {
                 response.setVisibility(View.VISIBLE);
             }
            // chooseField();
-            countDownTimer.start();
+          // countDownTimer.start();
         }
     }
 

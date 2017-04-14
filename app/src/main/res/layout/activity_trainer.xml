@@ -69,60 +69,68 @@
         android:layout_alignParentStart="true">
 
         <Button
-            android:text="Математика"
+            android:id="@+id/StartLabirint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
+            android:onClick="Tolabirint"
+            android:text="Лабиринт"
+            android:textColor="@color/windowBackground" />
+
+        <Button
             android:id="@+id/StartMatem"
-            android:textColor="@color/windowBackground"
-            android:onClick="ToMatem" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
+            android:onClick="ToMatem"
+            android:text="Математика"
+            android:textColor="@color/windowBackground" />
+
+        <Button
+            android:id="@+id/StartKolvo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
+            android:onClick="Tonumber"
+            android:text="Количество"
+            android:textColor="@color/windowBackground" />
 
         <Button
             android:id="@+id/StartPamyat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
             android:onClick="Topamyat"
             android:text="Память"
             android:textColor="@color/windowBackground" />
 
         <Button
-            android:text="След"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/StartSled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
             android:onClick="ToSled"
-            android:textColor="@color/windowBackground"/>
+            android:text="След"
+            android:textColor="@color/windowBackground" />
 
         <Button
-            android:text="Вихрь"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/StartVihr"
-            android:onClick="ToVihr"
-            android:textColor="@color/windowBackground"/>
-
-        <Button
-            android:text="Количество"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/StartKolvo"
-            android:onClick="Tonumber"
-            android:textColor="@color/windowBackground"/>
+            android:background="@drawable/enter_back"
+            android:onClick="ToVihr"
+            android:text="Вихрь"
+            android:textColor="@color/windowBackground" />
 
         <Button
             android:id="@+id/StartAssoc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
             android:onClick="ToAssoc"
             android:text="Ассоциации"
             android:textColor="@color/windowBackground" />
 
-        <Button
-            android:id="@+id/StartLabirint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="Tolabirint"
-            android:text="Лабиринт"
-            android:textColor="@color/windowBackground" />
     </LinearLayout>
 
     <ImageButton
