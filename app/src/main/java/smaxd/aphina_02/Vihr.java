@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 public class Vihr extends Activity implements OnClickListener {
 
-    private int level = 0, answer = 0, lifecount= 3;
+    private int level = 0, answer = 1, lifecount= 3;
     private int entAns;
     private String enteredAnswer;
     private int[][] levelMin = {{1, 11, 21}, {1, 5, 10}, {2, 5, 10},
@@ -89,7 +89,7 @@ public class Vihr extends Activity implements OnClickListener {
             13, 14, 15, 16, 17, 18,
             19, 20, 21, 22, 23, 24,
             25, 26, 27, 28, 29, 30,
-            31, 32, 33, 34, 35, 36};
+            31, 32, 33, 34, 35};
 
     private List<ImageButton> imgbuttons;
     private static final int[] IMGBUTTON_IDS = {
@@ -112,7 +112,7 @@ public class Vihr extends Activity implements OnClickListener {
         VihrPrefs = getSharedPreferences(VIHR_PREFS, 0);
 
 
-       shuffleArray(picnumarray);
+        shuffleArray(picnumarray);
 
 
         imgbuttons = new ArrayList<ImageButton>();
@@ -362,6 +362,9 @@ public class Vihr extends Activity implements OnClickListener {
                 response.setVisibility(View.VISIBLE);
                 //  countDownTimer.start();
                 lvl=lvl+1;
+                if (lvl==35){
+                    finish();
+                }
                 chooseField();
 
             }else{
@@ -409,15 +412,17 @@ public class Vihr extends Activity implements OnClickListener {
 
         for (int l=0; l < lvl; l++){
             fillarray[l]= picnumarray[l];
+
         }
 
         shuffleArray(fillarray);
 
         for (int l=0; l < 36; l++){
-            if (fillarray[l]==picnumarray[lvl-1]) {
+            if (fillarray[l]==picnumarray[lvl-1] && l!=0) {
                 answer = l;
             }
         }
+
 
         for (int l = 0; l < 36; l++) {
             if (fillarray[l]!=0) {
