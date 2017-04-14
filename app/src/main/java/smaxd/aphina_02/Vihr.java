@@ -32,7 +32,7 @@ public class Vihr extends Activity implements OnClickListener {
             {10, 50, 100}};
     private int lvl= 1;
 
-    private SharedPreferences vihrPrefs;
+    private SharedPreferences VihrPrefs;
     public static final String VIHR_PREFS = "VihrFile";
 
     private int[] Imgarr = {R.mipmap.pic1,
@@ -109,7 +109,7 @@ public class Vihr extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vihr);
 
-        vihrPrefs = getSharedPreferences(VIHR_PREFS, 0);
+        VihrPrefs = getSharedPreferences(VIHR_PREFS, 0);
 
 
        shuffleArray(picnumarray);
@@ -182,10 +182,10 @@ public class Vihr extends Activity implements OnClickListener {
         // set high score
         int exScore = getScore();
         if (exScore > 0) {
-            SharedPreferences.Editor scoreEdit = vihrPrefs.edit();
+            SharedPreferences.Editor scoreEdit = VihrPrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
             String dateOutput = dateForm.format(new Date());
-            String scores = vihrPrefs.getString("highScores", "");
+            String scores = VihrPrefs.getString("highScores", "");
 
             if (scores.length() > 0) {
                 // we have existing scores
@@ -375,24 +375,8 @@ public class Vihr extends Activity implements OnClickListener {
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
                     finish();
-                    /*
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Labirint.this);
-                    builder.setTitle("")
-                            .setMessage("Попытки закончились")
-                            .setNegativeButton("ОК",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.cancel();
-                                            finish();
-                                        }
-                                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();*/
                 }
-              //  response.setVisibility(View.VISIBLE);
             }
-            // chooseField();
-            // countDownTimer.start();
         }
     }
 

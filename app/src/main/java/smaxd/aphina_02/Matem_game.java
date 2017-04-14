@@ -37,6 +37,7 @@ public class Matem_game extends Activity implements OnClickListener {
             { 10, 50, 100 } };
 
     private Random random;
+
     private SharedPreferences gamePrefs;
     public static final String GAME_PREFS = "ArithmeticFile";
 
