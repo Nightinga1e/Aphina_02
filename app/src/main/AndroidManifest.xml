@@ -77,7 +77,9 @@
         <activity android:name=".labirint_score" />
         <activity android:name=".Howtolab" />
         <activity android:name=".Vihr_score" />
-        <activity android:name=".Vihr_How"></activity>
+        <activity android:name=".Vihr_How" />
+        <activity android:name=".howtopamyat" />
+        <activity android:name=".pamyatscore"></activity>
     </application>
 
 </manifest>

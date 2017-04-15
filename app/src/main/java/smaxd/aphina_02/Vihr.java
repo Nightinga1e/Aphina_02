@@ -247,109 +247,109 @@ public class Vihr extends Activity implements OnClickListener {
                 entAns = 1;
                 break;
             case R.id.img2:
-                entAns = 1;
-                break;
-            case R.id.img3:
                 entAns = 2;
                 break;
-            case R.id.img4:
+            case R.id.img3:
                 entAns = 3;
                 break;
-            case R.id.img5:
+            case R.id.img4:
                 entAns = 4;
                 break;
-            case R.id.img6:
+            case R.id.img5:
                 entAns = 5;
                 break;
-            case R.id.img7:
+            case R.id.img6:
                 entAns = 6;
                 break;
-            case R.id.img8:
+            case R.id.img7:
                 entAns = 7;
                 break;
-            case R.id.img9:
+            case R.id.img8:
                 entAns = 8;
                 break;
-            case R.id.img10:
+            case R.id.img9:
                 entAns = 9;
                 break;
-            case R.id.img11:
+            case R.id.img10:
                 entAns = 10;
                 break;
-            case R.id.img12:
+            case R.id.img11:
                 entAns = 11;
                 break;
-            case R.id.img13:
+            case R.id.img12:
                 entAns = 12;
                 break;
-            case R.id.img14:
+            case R.id.img13:
                 entAns = 13;
                 break;
-            case R.id.img15:
+            case R.id.img14:
                 entAns = 14;
                 break;
-            case R.id.img16:
+            case R.id.img15:
                 entAns = 15;
                 break;
-            case R.id.img17:
+            case R.id.img16:
                 entAns = 16;
                 break;
-            case R.id.img18:
+            case R.id.img17:
                 entAns = 17;
                 break;
-            case R.id.img19:
+            case R.id.img18:
                 entAns = 18;
                 break;
-            case R.id.img20:
+            case R.id.img19:
                 entAns = 19;
                 break;
-            case R.id.img21:
+            case R.id.img20:
                 entAns = 20;
                 break;
-            case R.id.img22:
+            case R.id.img21:
                 entAns = 21;
                 break;
-            case R.id.img23:
+            case R.id.img22:
                 entAns = 22;
                 break;
-            case R.id.img24:
+            case R.id.img23:
                 entAns = 23;
                 break;
-            case R.id.img25:
+            case R.id.img24:
                 entAns = 24;
                 break;
-            case R.id.img26:
+            case R.id.img25:
                 entAns = 25;
                 break;
-            case R.id.img27:
+            case R.id.img26:
                 entAns = 26;
                 break;
-            case R.id.img28:
+            case R.id.img27:
                 entAns = 27;
                 break;
-            case R.id.img29:
+            case R.id.img28:
                 entAns = 28;
                 break;
-            case R.id.img30:
+            case R.id.img29:
                 entAns = 29;
                 break;
-            case R.id.img31:
+            case R.id.img30:
                 entAns = 30;
                 break;
-            case R.id.img32:
+            case R.id.img31:
                 entAns = 31;
                 break;
-            case R.id.img33:
+            case R.id.img32:
                 entAns = 32;
                 break;
-            case R.id.img34:
+            case R.id.img33:
                 entAns = 33;
                 break;
-            case R.id.img35:
+            case R.id.img34:
                 entAns = 34;
                 break;
-            case R.id.img36:
+            case R.id.img35:
                 entAns = 35;
+                break;
+            case R.id.img36:
+                entAns = 36;
                 break;
         }
 
@@ -419,7 +419,7 @@ public class Vihr extends Activity implements OnClickListener {
 
         for (int l=0; l < 36; l++){
             if (fillarray[l]==picnumarray[lvl-1] && l!=0) {
-                answer = l;
+                answer = l+1;
             }
         }
 

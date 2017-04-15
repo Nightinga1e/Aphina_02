@@ -49,8 +49,8 @@ public class Vihr_menu extends Activity implements OnClickListener {
             // play button
             if (view.getId() == R.id.play_btn) {
 
-                Intent helpIntent = new Intent(this, Vihr.class);
-                this.startActivity(helpIntent);
+                Intent startintent = new Intent(this, Vihr.class);
+                this.startActivity(startintent);
             }
         } else if (view.getId() == R.id.help_btn) {
             // how to play button
