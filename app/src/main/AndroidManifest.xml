@@ -79,7 +79,9 @@
         <activity android:name=".Vihr_score" />
         <activity android:name=".Vihr_How" />
         <activity android:name=".howtopamyat" />
-        <activity android:name=".pamyatscore"></activity>
+        <activity android:name=".pamyatscore" />
+        <activity android:name=".howtosled" />
+        <activity android:name=".sledscore"></activity>
     </application>
 
 </manifest>
