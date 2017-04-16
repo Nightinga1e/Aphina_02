@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -123,16 +124,6 @@ public class Sled extends Activity implements OnClickListener {
         for (int l = 0; l < 36; l++) {
             imgbuttons.get(l).setClickable(false);
         }
-
-        countDownTimer3 = new CountDownTimer(1000, 1000) {
-            //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
-            public void onTick(long millisUntilFinished) {
-                //  mTimer.setText("" + millisUntilFinished / 1000);
-            }
-
-            public void onFinish() {
-            }
-        };
 
         countDownTimer2 = new CountDownTimer(2000, 1000) {
             //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
@@ -429,6 +420,7 @@ public class Sled extends Activity implements OnClickListener {
 
   for (int l = 0; l < 36; l++) {
             if (fillarray[l]==1) {
+
                 imgbuttons.get(l).setImageResource(R.mipmap.fillsquare);
                 fillarray2[x]=l;
                 x=x+1;

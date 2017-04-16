@@ -81,7 +81,9 @@
         <activity android:name=".howtopamyat" />
         <activity android:name=".pamyatscore" />
         <activity android:name=".howtosled" />
-        <activity android:name=".sledscore"></activity>
+        <activity android:name=".sledscore" />
+        <activity android:name=".Assocscore" />
+        <activity android:name=".howtoassoc"></activity>
     </application>
 
 </manifest>

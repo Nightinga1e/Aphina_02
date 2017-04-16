@@ -48,26 +48,16 @@ public class Assoc_menu extends Activity implements OnClickListener {
         if (view.getId() == R.id.play_btn) {
             // play button
             if (view.getId() == R.id.play_btn) {
-                // play button
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Choose a level").setSingleChoiceItems(levelNames,
-                        0, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                                // start gameplay
-                                startPlay(which);
-                            }
-                        });
-                AlertDialog ad = builder.create();
-                ad.show();
+                Intent startintent = new Intent(this, Assoc.class);
+                this.startActivity(startintent);
             }
         } else if (view.getId() == R.id.help_btn) {
             // how to play button
-            Intent helpIntent = new Intent(this, HowToNumber.class);
+            Intent helpIntent = new Intent(this, howtoassoc.class);
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
             // high scores button
-            Intent highIntent = new Intent(this, HighScores.class);
+            Intent highIntent = new Intent(this, Assocscore.class);
             this.startActivity(highIntent);
         }
         // high scores button
