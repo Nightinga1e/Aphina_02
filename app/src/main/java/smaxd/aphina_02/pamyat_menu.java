@@ -46,12 +46,12 @@ public class pamyat_menu extends Activity implements OnClickListener {
             // play button
             if (view.getId() == R.id.play_btn) {
 
-                Intent startintent = new Intent(this, pamyat.class);
+                Intent startintent = new Intent(this, howtopamyat.class);
                 this.startActivity(startintent);
             }
         } else if (view.getId() == R.id.Menubut) {
             // how to play button
-            Intent helpIntent = new Intent(this, howtopamyat.class);
+            Intent helpIntent = new Intent(this, Trainer.class);
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
             // high scores button

@@ -33,13 +33,13 @@ public class number_menu extends Activity implements OnClickListener {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }*/
-
+/*
     private void startPlay(int chosenLevel) {
         // start gameplay
         Intent playIntent = new Intent(this, number.class);
         playIntent.putExtra("level", chosenLevel);
         this.startActivity(playIntent);
-    }
+    }*/
 
     @Override
     public void onClick(View view) {
@@ -48,21 +48,12 @@ public class number_menu extends Activity implements OnClickListener {
             // play button
             if (view.getId() == R.id.play_btn) {
                 // play button
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("").setSingleChoiceItems(levelNames,
-                        0, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                                // start gameplay
-                                startPlay(which);
-                            }
-                        });
-                AlertDialog ad = builder.create();
-                ad.show();
+                Intent helpIntent = new Intent(this, HowToNumber.class);
+                this.startActivity(helpIntent);
             }
         } else if (view.getId() == R.id.Menubut) {
             // how to play button
-            Intent helpIntent = new Intent(this, HowToNumber.class);
+            Intent helpIntent = new Intent(this, Trainer.class);
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
             // high scores button

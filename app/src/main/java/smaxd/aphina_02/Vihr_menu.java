@@ -39,12 +39,12 @@ public class Vihr_menu extends Activity implements OnClickListener {
             // play button
             if (view.getId() == R.id.play_btn) {
 
-                Intent startintent = new Intent(this, Vihr.class);
+                Intent startintent = new Intent(this, Vihr_How.class);
                 this.startActivity(startintent);
             }
         } else if (view.getId() == R.id.Menubut) {
             // how to play button
-            Intent helpIntent = new Intent(this, Vihr_How.class);
+            Intent helpIntent = new Intent(this, Trainer.class);
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
             // high scores button
