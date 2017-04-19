@@ -7,14 +7,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.CountDownTimer;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -116,18 +112,6 @@ public class Matem_game extends Activity implements OnClickListener {
                     } else if (lifecount == 0) {
                         life3.setVisibility(View.INVISIBLE);
                         finish();
-                        /*AlertDialog.Builder builder = new AlertDialog.Builder(Matem_game.this);
-                        builder.setTitle("")
-                                .setMessage("Попытки закончились!")
-                                .setNegativeButton("ОК",
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                dialog.cancel();
-                                                finish();
-                                            }
-                                        });
-                        AlertDialog alert = builder.create();
-                        alert.show();*/
                     }
                     response.setVisibility(View.VISIBLE);
                     chooseQuestion();
@@ -153,18 +137,6 @@ public class Matem_game extends Activity implements OnClickListener {
                     } else if (lifecount == 0) {
                         life3.setVisibility(View.INVISIBLE);
                         finish();
-                       /* AlertDialog.Builder builder = new AlertDialog.Builder(Matem_game.this);
-                        builder.setTitle("")
-                                .setMessage("Попытки закончились!")
-                                .setNegativeButton("ОК",
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                dialog.cancel();
-                                                finish();
-                                            }
-                                        });
-                        AlertDialog alert = builder.create();
-                        alert.show();*/
                     }
                     response.setVisibility(View.VISIBLE);
                     chooseQuestion();
@@ -293,21 +265,6 @@ public class Matem_game extends Activity implements OnClickListener {
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
                     finish();
-                  //  Intent intent = new Intent(this, Matem.class);
-                   // startActivity(intent);
-                   /* AlertDialog.Builder builder = new AlertDialog.Builder(Matem_game.this);
-                    builder.setTitle("")
-                            .setMessage("Попытки закончились!")
-                            .setNegativeButton("ОК",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.cancel();
-                                            finish();
-                                        }
-                                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();*/
-
                 }
                 response.setVisibility(View.VISIBLE);
             }

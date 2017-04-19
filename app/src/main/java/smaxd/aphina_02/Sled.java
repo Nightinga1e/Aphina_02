@@ -7,17 +7,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -346,7 +342,6 @@ public class Sled extends Activity implements OnClickListener {
                     scoreTxt.setText("Score: "+(exScore+1));
                     response.setImageResource(R.drawable.tick);
                     response.setVisibility(View.VISIBLE);
-                    //  countDownTimer.start();
                     lvl=lvl+1;
                     if (lvl==35){
                         finish();
@@ -368,8 +363,6 @@ public class Sled extends Activity implements OnClickListener {
                 }else if (lifecount==0){
                     finish();
                 }
-               // chooseField();
-               // countDownTimer.start();
             }
         }
     }
@@ -411,12 +404,6 @@ public class Sled extends Activity implements OnClickListener {
         }
 
         shuffleArray(fillarray);
-/*
-        for (int l=0; l < 36; l++){
-            if (fillarray[l]== 1) {
-                answer = l;
-            }
-        }*/
 
   for (int l = 0; l < 36; l++) {
             if (fillarray[l]==1) {

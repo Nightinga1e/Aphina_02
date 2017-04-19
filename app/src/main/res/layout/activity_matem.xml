@@ -48,7 +48,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/help_btn"
+            android:id="@+id/Menubut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/play_btn"
@@ -65,7 +65,7 @@
             android:id="@+id/high_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/help_btn"
+            android:layout_below="@id/Menubut"
             android:layout_centerHorizontal="true"
             android:layout_margin="5dp"
             android:background="@drawable/enter_back"

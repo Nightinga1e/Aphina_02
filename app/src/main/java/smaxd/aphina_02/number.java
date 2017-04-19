@@ -7,9 +7,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
@@ -25,10 +22,10 @@ public class number extends Activity implements OnClickListener {
 
     private int level = 0, answer = 0, lifecount= 3;
     private String enteredAnswer;
-    private int[][] levelMin = {{1, 11, 21}, {1, 5, 10}, {2, 5, 10},
-            {2, 3, 5}};
-    private int[][] levelMax = {{10, 25, 50}, {10, 20, 30}, {5, 10, 15},
-            {10, 50, 100}};
+  //  private int[][] levelMin = {{1, 11, 21}, {1, 5, 10}, {2, 5, 10},
+  //          {2, 3, 5}};
+ //   private int[][] levelMax = {{10, 25, 50}, {10, 20, 30}, {5, 10, 15},
+  //          {10, 50, 100}};
 
     private SharedPreferences numPrefs;
     public static final String NUM_PREFS = "NumberFile";
@@ -255,18 +252,6 @@ public class number extends Activity implements OnClickListener {
                 }else if (lifecount==0){
                     life3.setVisibility(View.INVISIBLE);
                     finish();
-                   /* AlertDialog.Builder builder = new AlertDialog.Builder(number.this);
-                    builder.setTitle("")
-                            .setMessage("Попытки закончились!")
-                            .setNegativeButton("ОК",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.cancel();
-                                            finish();
-                                        }
-                                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();*/
                 }
                 response.setVisibility(View.VISIBLE);
             }

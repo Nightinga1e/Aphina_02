@@ -7,31 +7,27 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Labirint extends Activity implements OnClickListener {
 
-    private String[] alert = {"Время вышло!" };
 
     private int level = 0, answer = 0, lifecount= 3, hercules_coordl =0, hercules_coordm =0;
-    private int enteredAnswer;
+//    private int enteredAnswer;
 
     private int entAns;
-    private int[][] levelMin = {{1, 11, 21}, {1, 5, 10}, {2, 5, 10},
-            {2, 3, 5}};
-    private int[][] levelMax = {{10, 25, 50}, {10, 20, 30}, {5, 10, 15},
-            {10, 50, 100}};
+  //  private int[][] levelMin = {{1, 11, 21}, {1, 5, 10}, {2, 5, 10},
+  //          {2, 3, 5}};
+  //  private int[][] levelMax = {{10, 25, 50}, {10, 20, 30}, {5, 10, 15},
+   //         {10, 50, 100}};
 
     private SharedPreferences LabPrefs;
     public static final String LAB_PREFS = "LabirFile";
@@ -48,7 +44,7 @@ public class Labirint extends Activity implements OnClickListener {
             R.mipmap.ic_down
     };
 
-    private int hercules_coords;
+   // private int hercules_coords;
     private ImageButton life1,life2,life3;
     private Random random;
     private TextView scoreTxt;
@@ -103,7 +99,6 @@ public class Labirint extends Activity implements OnClickListener {
         putbuttons = new ArrayList<ImageButton>();
         for (int id : PUT_IDS) {
             ImageButton putbut = (ImageButton) findViewById(id);
-              //imgbut.setOnClickListener(this); //
             putbuttons.add(putbut);
         }
 
@@ -150,20 +145,6 @@ public class Labirint extends Activity implements OnClickListener {
             public void onFinish() {
                 mTimer.setText("0");
                 finish();
-                    /*AlertDialog.Builder builder = new AlertDialog.Builder(Labirint.this);
-                    builder.setTitle("")
-                            .setMessage("Время вышло!")
-                            .setNegativeButton("ОК",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.cancel();
-                                            finish();
-                                        }
-                                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-*/
-
             }
         };
         countDownTimer.start();
@@ -353,7 +334,6 @@ public class Labirint extends Activity implements OnClickListener {
                 scoreTxt.setText("Score: "+(exScore+1));
                 response.setImageResource(R.drawable.tick);
                 response.setVisibility(View.VISIBLE);
-              //  countDownTimer.start();
                 chooseField();
 
             }else{
@@ -367,24 +347,9 @@ public class Labirint extends Activity implements OnClickListener {
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
                     finish();
-                    /*
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Labirint.this);
-                    builder.setTitle("")
-                            .setMessage("Попытки закончились")
-                            .setNegativeButton("ОК",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.cancel();
-                                            finish();
-                                        }
-                                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();*/
                 }
                 response.setVisibility(View.VISIBLE);
             }
-           // chooseField();
-          // countDownTimer.start();
         }
     }
 

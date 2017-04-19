@@ -7,29 +7,26 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class pamyat extends Activity implements OnClickListener {
 
-    private int level = 0, answer = 1, lifecount= 3;
+    private int level = 0, lifecount= 3;
     private int entAns;
-    private String enteredAnswer;
-    private int[][] levelMin = {{1, 11, 21}, {1, 5, 10}, {2, 5, 10},
-            {2, 3, 5}};
-    private int[][] levelMax = {{10, 25, 50}, {10, 20, 30}, {5, 10, 15},
-            {10, 50, 100}};
+ //   private String enteredAnswer;
+  //  private int[][] levelMin = {{1, 11, 21}, {1, 5, 10}, {2, 5, 10},
+  //          {2, 3, 5}};
+  //  private int[][] levelMax = {{10, 25, 50}, {10, 20, 30}, {5, 10, 15},
+   //         {10, 50, 100}};
     private int lvl= 1,check= 1;
 
     private SharedPreferences PamPrefs;
@@ -47,12 +44,6 @@ public class pamyat extends Activity implements OnClickListener {
             0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0};
- /*   private int[] picnumarray = {1, 2, 3, 4, 5, 6,
-            7, 8, 9, 10, 11, 12,
-            13, 14, 15, 16, 17, 18,
-            19, 20, 21, 22, 23, 24,
-            25, 26, 27, 28, 29, 30,
-            31, 32, 33, 34, 35};*/
 
     private List<ImageButton> imgbuttons;
     private static final int[] IMGBUTTON_IDS = {
@@ -74,9 +65,6 @@ public class pamyat extends Activity implements OnClickListener {
         setContentView(R.layout.activity_pamyat);
 
         PamPrefs = getSharedPreferences(PAM_PREFS, 0);
-
-/*
-        shuffleArray(picnumarray);*/
 
         imgbuttons = new ArrayList<ImageButton>();
         // or slightly better
@@ -218,8 +206,6 @@ public class pamyat extends Activity implements OnClickListener {
 
     @Override
     public void onClick(View view) {
-        //  response.setVisibility(View.INVISIBLE);
-
 
         switch (view.getId()){
             case R.id.img1:
@@ -343,7 +329,6 @@ public class pamyat extends Activity implements OnClickListener {
                     scoreTxt.setText("Score: "+(exScore+1));
                     response.setImageResource(R.drawable.tick);
                     response.setVisibility(View.VISIBLE);
-                    //  countDownTimer.start();
                     lvl=lvl+1;
                     if (lvl==35){
                         finish();
@@ -351,7 +336,6 @@ public class pamyat extends Activity implements OnClickListener {
                     for (int l = 0; l < 36; l++) {
                         imgbuttons.get(l).setClickable(false);
                     }
-                   // countDownTimer2.start();
                 }
             }else{
                 //incorrect
@@ -406,13 +390,6 @@ public class pamyat extends Activity implements OnClickListener {
         }
 
         shuffleArray(fillarray);
-/*
-        for (int l=0; l < 36; l++){
-            if (fillarray[l]== 1) {
-                answer = l;
-            }
-        }*/
-
 
         for (int l = 0; l < 36; l++) {
             if (fillarray[l]==1) {

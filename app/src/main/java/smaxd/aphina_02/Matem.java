@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -20,20 +19,13 @@ public class Matem extends Activity implements OnClickListener {
         setContentView(R.layout.activity_matem);
 
         Button playBtn = (Button) findViewById(R.id.play_btn);
-        Button helpBtn = (Button) findViewById(R.id.help_btn);
+        Button helpBtn = (Button) findViewById(R.id.Menubut);
         Button highBtn = (Button) findViewById(R.id.high_btn);
 
         playBtn.setOnClickListener(this);
         helpBtn.setOnClickListener(this);
         highBtn.setOnClickListener(this);
     }
-
-  /*  @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }*/
 
     private void startPlay(int chosenLevel) {
         // start gameplay
@@ -61,7 +53,7 @@ public class Matem extends Activity implements OnClickListener {
                 AlertDialog ad = builder.create();
                 ad.show();
             }
-        } else if (view.getId() == R.id.help_btn) {
+        } else if (view.getId() == R.id.Menubut) {
             // how to play button
             Intent helpIntent = new Intent(this, HowTo.class);
             this.startActivity(helpIntent);

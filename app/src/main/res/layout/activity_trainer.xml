@@ -78,6 +78,15 @@
             android:textColor="@color/windowBackground" />
 
         <Button
+            android:id="@+id/StartAssoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
+            android:onClick="ToAssoc"
+            android:text="Ассоциации"
+            android:textColor="@color/windowBackground" />
+
+        <Button
             android:id="@+id/StartMatem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -120,15 +129,6 @@
             android:background="@drawable/enter_back"
             android:onClick="ToVihr"
             android:text="Вихрь"
-            android:textColor="@color/windowBackground" />
-
-        <Button
-            android:id="@+id/StartAssoc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/enter_back"
-            android:onClick="ToAssoc"
-            android:text="Ассоциации"
             android:textColor="@color/windowBackground" />
 
     </LinearLayout>

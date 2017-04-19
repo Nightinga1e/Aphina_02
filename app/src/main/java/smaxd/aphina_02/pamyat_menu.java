@@ -1,11 +1,8 @@
 package smaxd.aphina_02;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -20,7 +17,7 @@ public class pamyat_menu extends Activity implements OnClickListener {
         setContentView(R.layout.activity_pamyat_menu);
 
         Button playBtn = (Button) findViewById(R.id.play_btn);
-        Button helpBtn = (Button) findViewById(R.id.help_btn);
+        Button helpBtn = (Button) findViewById(R.id.Menubut);
         Button highBtn = (Button) findViewById(R.id.high_btn);
 
         playBtn.setOnClickListener(this);
@@ -52,7 +49,7 @@ public class pamyat_menu extends Activity implements OnClickListener {
                 Intent startintent = new Intent(this, pamyat.class);
                 this.startActivity(startintent);
             }
-        } else if (view.getId() == R.id.help_btn) {
+        } else if (view.getId() == R.id.Menubut) {
             // how to play button
             Intent helpIntent = new Intent(this, howtopamyat.class);
             this.startActivity(helpIntent);
