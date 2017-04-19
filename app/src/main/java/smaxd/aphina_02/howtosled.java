@@ -8,6 +8,15 @@ import android.view.View;
 public class howtosled extends AppCompatActivity {
 
     @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(howtosled.this, Sled_menu.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);

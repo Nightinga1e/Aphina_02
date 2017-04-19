@@ -11,6 +11,15 @@ public class Howtolab extends AppCompatActivity {
 
     private String[] levelNames = {"Легко", "Нормально", "Сложно" };
 
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(Howtolab.this, Labirint_menu.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();

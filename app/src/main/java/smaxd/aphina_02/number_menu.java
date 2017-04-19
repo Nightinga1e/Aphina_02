@@ -40,6 +40,13 @@ public class number_menu extends Activity implements OnClickListener {
         playIntent.putExtra("level", chosenLevel);
         this.startActivity(playIntent);
     }*/
+  @Override
+  public void onBackPressed() {
+
+      Intent intent = new Intent(number_menu.this, Trainer.class);
+      startActivity(intent);
+      super.onBackPressed();
+  }
 
     @Override
     public void onClick(View view) {

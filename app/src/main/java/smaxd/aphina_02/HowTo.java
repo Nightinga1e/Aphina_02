@@ -12,6 +12,15 @@ public class HowTo extends AppCompatActivity {
     private String[] levelNames = {"Легко", "Нормально", "Сложно" };
 
     @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(HowTo.this, Matem.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);

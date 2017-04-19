@@ -26,6 +26,16 @@ public class Assoc_menu extends Activity implements OnClickListener {
     }
 
     @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(Assoc_menu.this, Trainer.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
+
+
+
+    @Override
     public void onClick(View view) {
         //
         if (view.getId() == R.id.play_btn) {

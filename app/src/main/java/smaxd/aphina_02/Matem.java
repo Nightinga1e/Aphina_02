@@ -14,6 +14,14 @@ public class Matem extends Activity implements OnClickListener {
     private String[] levelNames = {"Легко", "Нормально", "Сложно" };
 
     @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(Matem.this, Trainer.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matem);

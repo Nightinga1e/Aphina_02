@@ -8,6 +8,15 @@ import android.view.View;
 public class howtopamyat extends AppCompatActivity {
 
     @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(howtopamyat.this, pamyat_menu.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);

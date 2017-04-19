@@ -34,6 +34,16 @@ public class Labirint_menu extends Activity implements OnClickListener {
         this.startActivity(playIntent);
     }
 */
+
+@Override
+public void onBackPressed() {
+
+    Intent intent = new Intent(Labirint_menu.this, Trainer.class);
+    startActivity(intent);
+    super.onBackPressed();
+}
+
+
     @Override
     public void onClick(View view) {
         //
