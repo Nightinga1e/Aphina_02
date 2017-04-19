@@ -336,6 +336,8 @@ public class pamyat extends Activity implements OnClickListener {
                     for (int l = 0; l < 36; l++) {
                         imgbuttons.get(l).setClickable(false);
                     }
+                    chooseField();
+                    countDownTimer.start();
                 }
             }else{
                 //incorrect
