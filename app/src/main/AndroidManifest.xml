@@ -85,6 +85,8 @@
         <activity android:name=".sledscore" />
         <activity android:name=".Assocscore" />
         <activity android:name=".howtoassoc" />
+        <activity android:name=".Matemquest" />
+        <activity android:name=".Statistics"></activity>
     </application>
 
 </manifest>

@@ -1,9 +1,17 @@
 package smaxd.aphina_02;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 public class Profile extends AppCompatActivity {
 
@@ -34,5 +42,10 @@ public class Profile extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    public void ToStats(View view) {
+        Intent intent = new Intent(this, Statistics.class);
+        startActivity(intent);
+    }
 
-}
+    }
+

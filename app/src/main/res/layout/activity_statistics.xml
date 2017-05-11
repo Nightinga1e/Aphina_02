@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_trainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="smaxd.aphina_02.Trainer">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_gotrainers"
+        android:background="@null"
+        android:id="@+id/PlayButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:onClick="ToTrainers" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_gooptions"
+        android:background="@null"
+        android:id="@+id/SettingsButton"
+        android:onClick="ToSettings"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_goquest"
+        android:background="@null"
+        android:id="@+id/QuestButton"
+        android:onClick="ToQuest"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/PlayButton"
+        android:layout_marginStart="25dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_goprofile"
+        android:background="@null"
+        android:id="@+id/ProfileButton"
+        android:onClick="ToProfile"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/SettingsButton"
+        android:layout_marginEnd="25dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Статистика тренажеров" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/StartLabirint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
+            android:onClick="Tolabirint"
+            android:text="Лабиринт"
+            android:textColor="@color/windowBackground" />
+
+        <Button
+            android:id="@+id/StartAssoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
+            android:onClick="ToAssoc"
+            android:text="Ассоциации"
+            android:textColor="@color/windowBackground" />
+
+        <Button
+            android:id="@+id/StartMatem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
+            android:onClick="ToMatem"
+            android:text="Математика"
+            android:textColor="@color/windowBackground" />
+
+        <Button
+            android:id="@+id/StartKolvo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
+            android:onClick="Tonumber"
+            android:text="Количество"
+            android:textColor="@color/windowBackground" />
+
+        <Button
+            android:id="@+id/StartPamyat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
+            android:onClick="Topamyat"
+            android:text="Память"
+            android:textColor="@color/windowBackground" />
+
+        <Button
+            android:id="@+id/StartSled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
+            android:onClick="ToSled"
+            android:text="След"
+            android:textColor="@color/windowBackground" />
+
+        <Button
+            android:id="@+id/StartVihr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
+            android:onClick="ToVihr"
+            android:text="Вихрь"
+            android:textColor="@color/windowBackground" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_gomain"
+        android:id="@+id/HomeButton"
+        android:background="@null"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="ToMain" />
+
+</RelativeLayout>

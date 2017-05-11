@@ -76,56 +76,18 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
         android:weightSum="1"
-        android:layout_above="@+id/PlayButton">
-
-        <TextView
-            android:id="@+id/QuestName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Горизонтальные крабы"
-            android:visibility="invisible" />
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true">
 
         <Button
             android:id="@+id/QuestStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Приступить"
+            android:onClick="ToMatemquest"
+            android:text="Математический квест"
             android:textColor="@color/windowBackground"
-            android:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/QuestResultText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Результат:"
-            android:visibility="invisible" />
-
-        <RatingBar
-            android:id="@+id/QuestResult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:clickable="true"
-            android:isIndicator="false"
-            android:numStars="5"
-            android:rating="0"
-            android:stepSize="1.0"
-            android:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Хотите улучшить результат?"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
     </LinearLayout>
 

@@ -18,11 +18,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Matem_game extends Activity implements OnClickListener {
+public class Matemquest extends Activity implements OnClickListener {
 
     private int level = 0, answer = 0, operator = 0, operand1 = 0,
             operand2 = 0, lifecount= 3;
-    private String enteredAnswer;
+    private int enteredAnswer;
     private final int ADD_OPERATOR = 0, SUBTRACT_OPERATOR = 1,
             MULTIPLY_OPERATOR = 2, DIVIDE_OPERATOR = 3;
     private String[] operators = { "+", "-", "x", "/" };
@@ -31,16 +31,16 @@ public class Matem_game extends Activity implements OnClickListener {
             { 2, 3, 5 } };
     private int[][] levelMax = { { 10, 25, 50 }, { 10, 20, 30 }, { 5, 10, 15 },
             { 10, 50, 100 } };
-
+    private int newanswer;
     private Random random;
 
-    private SharedPreferences gamePrefs;
-    public static final String GAME_PREFS = "ArithmeticFile";
+    private SharedPreferences gamePrefs2;
+    public static final String GAME_PREFS2 = "ArithmeticFile";
 
     private TextView question, answerTxt, scoreTxt;
     private ImageView response;
     private ImageButton life1,life2,life3;
-    private Button btn1, btn2, btn3, btn4;
+    private Button btn1, btn2;
     private TextView mTimer;
 
     CountDownTimer countDownTimer;
@@ -48,9 +48,9 @@ public class Matem_game extends Activity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_matem_game);
+        setContentView(R.layout.activity_matemquest);
 
-        gamePrefs = getSharedPreferences(GAME_PREFS, 0);
+        gamePrefs2 = getSharedPreferences(GAME_PREFS2, 0);
 
         question = (TextView) findViewById(R.id.question);
         answerTxt = (TextView) findViewById(R.id.answer);
@@ -65,13 +65,9 @@ public class Matem_game extends Activity implements OnClickListener {
         response.setVisibility(View.INVISIBLE);
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn4 = (Button) findViewById(R.id.btn4);
 
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
-        btn3.setOnClickListener(this);
-        btn4.setOnClickListener(this);
 
         mTimer = (TextView) findViewById(R.id.timer);
 
@@ -188,10 +184,10 @@ public class Matem_game extends Activity implements OnClickListener {
         // set high score
         int exScore = getScore();
         if (exScore > 0) {
-            SharedPreferences.Editor scoreEdit = gamePrefs.edit();
+            SharedPreferences.Editor scoreEdit = gamePrefs2.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
             String dateOutput = dateForm.format(new Date());
-            String scores = gamePrefs.getString("highScores", "");
+            String scores = gamePrefs2.getString("highScores", "");
 
             if (scores.length() > 0) {
                 // we have existing scores
@@ -231,23 +227,17 @@ public class Matem_game extends Activity implements OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn1:
-                enteredAnswer = (btn1).getText().toString();
+                enteredAnswer = 1;
                 break;
             case R.id.btn2:
-                enteredAnswer = (btn2).getText().toString();
-                break;
-            case R.id.btn3:
-                enteredAnswer = (btn3).getText().toString();
-                break;
-            case R.id.btn4:
-                enteredAnswer = (btn4).getText().toString();
+                enteredAnswer = 2;
                 break;
         }
 
 
-        if(enteredAnswer!=null && lifecount!=0){
+        if(enteredAnswer!=0 && lifecount!=0){
             int exScore = getScore();
-            if(enteredAnswer==(Integer.toString(answer))){
+            if(enteredAnswer==newanswer){
                 //correct
                 scoreTxt.setText("Score: "+(exScore+1));
                 response.setImageResource(R.drawable.tick);
@@ -289,9 +279,9 @@ public class Matem_game extends Activity implements OnClickListener {
 
     private void chooseQuestion() {
         // get a question
-        answerTxt.setText("= ?");
         operator = random.nextInt(operators.length);
-        int otv = random.nextInt(4) + 1;
+        int otv = random.nextInt(2)+1;
+        int wrongotv = random.nextInt(2)+1;
         operand1 = getOperand();
         operand2 = getOperand();
 
@@ -326,25 +316,12 @@ public class Matem_game extends Activity implements OnClickListener {
         }
         question.setText(operand1 + " " + operators[operator] + " " + operand2);
         if (otv == 1) {
-            btn1.setText(Integer.toString(answer));
-            btn2.setText(Integer.toString(answer + 1));
-            btn3.setText(Integer.toString(answer + 2));
-            btn4.setText(Integer.toString(answer + 3));
+            answerTxt.setText("= " + answer);
+            newanswer = 1;
         } else if (otv == 2) {
-            btn2.setText(Integer.toString(answer));
-            btn1.setText(Integer.toString(answer - 1));
-            btn3.setText(Integer.toString(answer + 1));
-            btn4.setText(Integer.toString(answer + 2));
-        } else if (otv == 3) {
-            btn3.setText(Integer.toString(answer));
-            btn2.setText(Integer.toString(answer - 1));
-            btn1.setText(Integer.toString(answer - 2));
-            btn4.setText(Integer.toString(answer + 1));
-        } else if (otv == 4) {
-            btn4.setText(Integer.toString(answer));
-            btn2.setText(Integer.toString(answer - 2));
-            btn1.setText(Integer.toString(answer - 3));
-            btn3.setText(Integer.toString(answer - 1));
+            answer=answer+wrongotv;
+            answerTxt.setText("= " + answer);
+            newanswer = 2;
         }
     }
 
