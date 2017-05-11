@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "325826792435",
+    "firebase_url": "https://aphina02-b53cd.firebaseio.com",
+    "project_id": "aphina02-b53cd",
+    "storage_bucket": "aphina02-b53cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325826792435:android:e680579ef5be3a07",
+        "android_client_info": {
+          "package_name": "smaxd.aphina_02"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "325826792435-p0kvnptu4cq1b0n80h3r5b29ehuugvtb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "smaxd.aphina_02",
+            "certificate_hash": "94ae1c84c671431355fc3d5fe6d10a22aa32e646"
+          }
+        },
+        {
+          "client_id": "325826792435-9529i2r8upnqlvl91i1qi62cmv25u7rj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wkZFhS8D7SZWEoxKWtBW8FkYBUqaZaI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "325826792435-9529i2r8upnqlvl91i1qi62cmv25u7rj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

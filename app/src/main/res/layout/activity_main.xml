@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView7"
-            android:text="Добрый день! Афина рада вас видеть."
+            android:text="\n\nДобрый день!\n\n Афина рада вас видеть."
             android:textAlignment="center"
             android:textSize="20sp" />
 
@@ -101,7 +101,8 @@
             android:layout_marginTop="13dp"
             android:text="Ежедневное задание не выполнено!"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="invisible" />
 
         <ImageButton
             android:id="@+id/GooglePlay"
@@ -113,7 +114,8 @@
             android:layout_toStartOf="@+id/SettingsButton"
             android:layout_weight="0.39"
             android:background="@null"
-            app:srcCompat="@drawable/common_ic_googleplayservices" />
+            android:visibility="invisible"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
 
         <TextView
             android:id="@+id/textView14"
@@ -124,7 +126,8 @@
             android:layout_alignStart="@+id/GooglePlay"
             android:text="Google Play"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="invisible" />
 
         <ImageButton
             android:id="@+id/VkAutor"

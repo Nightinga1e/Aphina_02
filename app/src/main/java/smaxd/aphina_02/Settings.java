@@ -1,19 +1,27 @@
 package smaxd.aphina_02;
 
+import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import java.sql.Time;
 
 public class Settings extends AppCompatActivity {
 
     TextView MSGTime;
+    TimePicker timePicker;
+    AlarmManager alarmManager;
+    Switch notifonoff;
 
     public void TimeSelect(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this);
@@ -42,6 +50,11 @@ public class Settings extends AppCompatActivity {
             getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        notifonoff =(Switch) findViewById(R.id.switch3);
+        timePicker =(TimePicker) findViewById(R.id.timePicker);
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
             }
 
 

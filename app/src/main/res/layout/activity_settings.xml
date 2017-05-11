@@ -74,35 +74,39 @@
         android:layout_centerHorizontal="true" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1"
-        android:layout_below="@+id/textView3"
+        android:layout_above="@+id/PlayButton"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/PlayButton">
+        android:layout_below="@+id/textView3"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:weightSum="1">
 
         <Switch
+            android:id="@+id/switch4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Звук"
             android:textColor="@color/textColor"
             android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/switch4" />
+            android:visibility="visible" />
 
         <Switch
+            android:id="@+id/switch3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Уведомления"
             android:textColor="@color/textColor"
             android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/switch3" />
+            android:visibility="visible" />
 
         <TimePicker
+            android:id="@+id/timePicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/textColor"
-            android:id="@+id/timePicker" />
+            android:visibility="visible" />
 
     </LinearLayout>
 

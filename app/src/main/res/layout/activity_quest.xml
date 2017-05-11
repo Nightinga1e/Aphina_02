@@ -82,25 +82,28 @@
         android:layout_above="@+id/PlayButton">
 
         <TextView
-            android:text="Горизонтальные крабы"
+            android:id="@+id/QuestName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:id="@+id/QuestName" />
+            android:text="Горизонтальные крабы"
+            android:visibility="invisible" />
 
         <Button
-            android:text="Приступить"
+            android:id="@+id/QuestStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/QuestStart"
-            android:textColor="@color/windowBackground"/>
+            android:text="Приступить"
+            android:textColor="@color/windowBackground"
+            android:visibility="invisible" />
 
         <TextView
-            android:text="Результат:"
-            android:layout_gravity="center"
+            android:id="@+id/QuestResultText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/QuestResultText" />
+            android:layout_gravity="center"
+            android:text="Результат:"
+            android:visibility="invisible" />
 
         <RatingBar
             android:id="@+id/QuestResult"
@@ -113,14 +116,16 @@
             android:isIndicator="false"
             android:numStars="5"
             android:rating="0"
-            android:stepSize="1.0"/>
+            android:stepSize="1.0"
+            android:visibility="invisible" />
 
         <TextView
-            android:text="Хотите улучшить результат?"
+            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView8"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:text="Хотите улучшить результат?"
+            android:visibility="invisible" />
 
     </LinearLayout>
 

@@ -70,36 +70,40 @@
         android:layout_above="@+id/PlayButton">
 
         <Button
-            android:text="Статистика"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/button3"
-            android:textSize="20sp"
-            android:textColor="@color/windowBackground"/>
-
-        <Button
-            android:text="Достижения"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Статистика"
+            android:textColor="@color/windowBackground"
+            android:textSize="20sp"
+            android:visibility="invisible" />
+
+        <Button
             android:id="@+id/button4"
-            android:textSize="20sp"
-            android:textColor="@color/windowBackground"/>
-
-        <Button
-            android:text="Поделиться с друзьями"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Достижения"
+            android:textColor="@color/windowBackground"
+            android:textSize="20sp"
+            android:visibility="invisible" />
+
+        <Button
             android:id="@+id/button5"
-            android:textSize="20sp"
-            android:textColor="@color/windowBackground"/>
-
-        <Button
-            android:text="Сбросить статистику"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button6"
+            android:text="Поделиться с друзьями"
+            android:textColor="@color/windowBackground"
             android:textSize="20sp"
-            android:textColor="@color/windowBackground"/>
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Сбросить статистику"
+            android:textColor="@color/windowBackground"
+            android:textSize="20sp"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <ImageButton
