@@ -9,4 +9,6 @@
     <string name="help_info7">Если на экране написано "Значение", то вам нужно сконцентрироваться на значении слова, если на экране написано цвет, то необходимо выбрать ответ соответствующего цвета.  \n\n</string>
     <integer name="com_vk_sdk_AppId">5896323</integer>
     <string name="title_activity_namya_tb">namyaTb</string>
+    <string name="signin_other_error">There was an issue with sign-in, please try again later.</string>
+    <string name="signin_failure">Unable to sign in</string>
 </resources>
