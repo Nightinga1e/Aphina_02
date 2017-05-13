@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class Assoc_menu extends Activity implements OnClickListener {
+public class AssocMenu extends Activity implements OnClickListener {
 
     private String[] levelNames = { "Easy", "Medium", "Hard" };
 
@@ -28,7 +28,7 @@ public class Assoc_menu extends Activity implements OnClickListener {
     @Override
     public void onBackPressed() {
 
-        Intent intent = new Intent(Assoc_menu.this, Trainer.class);
+        Intent intent = new Intent(AssocMenu.this, Trainer.class);
         startActivity(intent);
         super.onBackPressed();
     }
@@ -41,7 +41,7 @@ public class Assoc_menu extends Activity implements OnClickListener {
         if (view.getId() == R.id.play_btn) {
             // play button
             if (view.getId() == R.id.play_btn) {
-                Intent helpIntent = new Intent(this, howtoassoc.class);
+                Intent helpIntent = new Intent(this, HowToAssoc.class);
                 this.startActivity(helpIntent);
             }
         } else if (view.getId() == R.id.Menubut) {
@@ -50,7 +50,7 @@ public class Assoc_menu extends Activity implements OnClickListener {
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
             // high scores button
-            Intent highIntent = new Intent(this, Assocscore.class);
+            Intent highIntent = new Intent(this, AssocScore.class);
             this.startActivity(highIntent);
         }
         // high scores button
