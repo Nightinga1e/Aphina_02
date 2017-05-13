@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class Howtolab extends AppCompatActivity {
+public class HowToLabirint extends AppCompatActivity {
 
     private String[] levelNames = {"Легко", "Нормально", "Сложно" };
 
@@ -15,7 +15,7 @@ public class Howtolab extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent intent = new Intent(Howtolab.this, Labirint_menu.class);
+        Intent intent = new Intent(HowToLabirint.this, LabirintMenu.class);
         startActivity(intent);
         super.onBackPressed();
     }
@@ -27,7 +27,7 @@ public class Howtolab extends AppCompatActivity {
         setContentView(R.layout.activity_howtolab);
     }
     public void BackToMenu(View view) {
-        Intent intent = new Intent(this, Labirint_menu.class);
+        Intent intent = new Intent(this, LabirintMenu.class);
         startActivity(intent);
     }
     private void startPlay(int chosenLevel) {

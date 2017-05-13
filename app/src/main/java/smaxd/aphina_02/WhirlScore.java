@@ -2,25 +2,25 @@ package smaxd.aphina_02;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class labirint_score extends Activity implements View.OnClickListener {
+public class WhirlScore extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-       // getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_labirint_score);
+        setContentView(R.layout.activity_vihr_score);
         Button ResetBtn = (Button) findViewById(R.id.button2);
         ResetBtn.setOnClickListener(this);
 
+
         TextView scoreView = (TextView) findViewById(R.id.high_scores_list);
         SharedPreferences scorePrefs = getSharedPreferences(
-                Labirint.LAB_PREFS, 0);
+                Whirl.VIHR_PREFS, 0);
         String[] savedScores = scorePrefs.getString("highScores", "").split(
                 "\\|");
         StringBuilder scoreBuild = new StringBuilder("");
@@ -41,7 +41,7 @@ public class labirint_score extends Activity implements View.OnClickListener {
     public void Reset() {
         TextView scoreView = (TextView) findViewById(R.id.high_scores_list);
         SharedPreferences scorePrefs = getSharedPreferences(
-                Labirint.LAB_PREFS, 0);
+                Whirl.VIHR_PREFS, 0);
         String[] savedScores = scorePrefs.getString("highScores", "").split(
                 "\\|");
         StringBuilder scoreBuild = new StringBuilder("");
@@ -49,6 +49,6 @@ public class labirint_score extends Activity implements View.OnClickListener {
             scoreBuild.append("" + "\n");
         }
         scoreView.setText(scoreBuild.toString());
-        getSharedPreferences(Labirint.LAB_PREFS,0).edit().clear().commit();
+        getSharedPreferences(Whirl.VIHR_PREFS,0).edit().clear().commit();
     }
 }

@@ -35,7 +35,7 @@ public class Quest extends AppCompatActivity {
         startActivity(intent);
     }
     public void ToMatemquest(View view) {
-        Intent intent = new Intent(this, Matemquest.class);
+        Intent intent = new Intent(this, MathQuest.class);
         startActivity(intent);
     }
 

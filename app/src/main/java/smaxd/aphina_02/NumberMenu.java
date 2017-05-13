@@ -7,14 +7,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class pamyat_menu extends Activity implements OnClickListener {
+public class NumberMenu extends Activity implements OnClickListener {
 
-    private String[] levelNames = { "Easy", "Medium", "Hard" };
+    private String[] levelNames = {"Легко", "Нормально", "Сложно" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pamyat_menu);
+        setContentView(R.layout.activity_number_menu);
 
         Button playBtn = (Button) findViewById(R.id.play_btn);
         Button helpBtn = (Button) findViewById(R.id.Menubut);
@@ -31,22 +31,20 @@ public class pamyat_menu extends Activity implements OnClickListener {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }*/
-
+/*
     private void startPlay(int chosenLevel) {
         // start gameplay
-        Intent playIntent = new Intent(this, pamyat.class);
+        Intent playIntent = new Intent(this, NumberTrainer.class);
         playIntent.putExtra("level", chosenLevel);
         this.startActivity(playIntent);
-    }
+    }*/
+  @Override
+  public void onBackPressed() {
 
-    @Override
-    public void onBackPressed() {
-
-        Intent intent = new Intent(pamyat_menu.this, Trainer.class);
-        startActivity(intent);
-        super.onBackPressed();
-    }
-
+      Intent intent = new Intent(NumberMenu.this, Trainer.class);
+      startActivity(intent);
+      super.onBackPressed();
+  }
 
     @Override
     public void onClick(View view) {
@@ -54,9 +52,9 @@ public class pamyat_menu extends Activity implements OnClickListener {
         if (view.getId() == R.id.play_btn) {
             // play button
             if (view.getId() == R.id.play_btn) {
-
-                Intent startintent = new Intent(this, howtopamyat.class);
-                this.startActivity(startintent);
+                // play button
+                Intent helpIntent = new Intent(this, HowToNumber.class);
+                this.startActivity(helpIntent);
             }
         } else if (view.getId() == R.id.Menubut) {
             // how to play button
@@ -64,7 +62,7 @@ public class pamyat_menu extends Activity implements OnClickListener {
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
             // high scores button
-            Intent highIntent = new Intent(this, pamyatscore.class);
+            Intent highIntent = new Intent(this, NumberScore.class);
             this.startActivity(highIntent);
         }
         // high scores button

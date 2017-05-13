@@ -36,16 +36,16 @@
             android:name=".Trainer"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Sled"
+            android:name=".Trace"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Vihr"
+            android:name=".Whirl"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Matem"
+            android:name=".Math"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Matem_game"
+            android:name=".MathGame"
             android:screenOrientation="portrait" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -54,39 +54,40 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
+        <meta-data android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/app_id" />
         <activity
             android:name=".HighScores"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HowTo"
+            android:name=".HowToMath"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".number"
+            android:name=".NumberTrainer"
             android:screenOrientation="portrait" />
-        <activity android:name=".pamyat" />
+        <activity android:name=".Memory" />
         <activity android:name=".Labirint" />
         <activity android:name=".Assoc" />
-        <activity android:name=".number_menu" />
-        <activity android:name=".pamyat_menu" />
-        <activity android:name=".Sled_menu" />
-        <activity android:name=".Vihr_menu" />
-        <activity android:name=".Labirint_menu" />
-        <activity android:name=".Assoc_menu" />
+        <activity android:name=".NumberMenu" />
+        <activity android:name=".MemoryMenu" />
+        <activity android:name=".TraceMenu" />
+        <activity android:name=".WhirlMenu" />
+        <activity android:name=".LabirintMenu" />
+        <activity android:name=".AssocMenu" />
         <activity android:name=".HowToNumber" />
-        <activity android:name=".numberscore" />
-        <activity android:name=".labirint_score" />
-        <activity android:name=".Howtolab" />
-        <activity android:name=".Vihr_score" />
-        <activity android:name=".Vihr_How" />
-        <activity android:name=".howtopamyat" />
-        <activity android:name=".pamyatscore" />
-        <activity android:name=".howtosled" />
-        <activity android:name=".sledscore" />
-        <activity android:name=".Assocscore" />
-        <activity android:name=".howtoassoc" />
-        <activity android:name=".Matemquest" />
-        <activity android:name=".Statistics"></activity>
+        <activity android:name=".NumberScore" />
+        <activity android:name=".LabirintScore" />
+        <activity android:name=".HowToLabirint" />
+        <activity android:name=".WhirlScore" />
+        <activity android:name=".HowToWhirl" />
+        <activity android:name=".HowToMemory" />
+        <activity android:name=".MemoryScore" />
+        <activity android:name=".HowToTrace" />
+        <activity android:name=".TraceScore" />
+        <activity android:name=".AssocScore" />
+        <activity android:name=".HowToAssoc" />
+        <activity android:name=".MathQuest" />
+        <activity android:name=".Statistics" />
     </application>
 
 </manifest>

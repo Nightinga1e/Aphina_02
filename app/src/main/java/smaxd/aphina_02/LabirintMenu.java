@@ -1,6 +1,5 @@
 package smaxd.aphina_02;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -8,14 +7,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class Sled_menu extends Activity implements OnClickListener {
+public class LabirintMenu extends Activity implements OnClickListener {
 
-    private String[] levelNames = { "Easy", "Medium", "Hard" };
+    private String[] levelNames = {"Легко", "Нормально", "Сложно" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sled_menu);
+        setContentView(R.layout.activity_labirint_menu);
 
         Button playBtn = (Button) findViewById(R.id.play_btn);
         Button helpBtn = (Button) findViewById(R.id.Menubut);
@@ -25,21 +24,22 @@ public class Sled_menu extends Activity implements OnClickListener {
         helpBtn.setOnClickListener(this);
         highBtn.setOnClickListener(this);
     }
-
+/*
     private void startPlay(int chosenLevel) {
         // start gameplay
-        Intent playIntent = new Intent(this, Sled.class);
+        Intent playIntent = new Intent(this, Labirint.class);
         playIntent.putExtra("level", chosenLevel);
         this.startActivity(playIntent);
     }
+*/
 
-    @Override
-    public void onBackPressed() {
+@Override
+public void onBackPressed() {
 
-        Intent intent = new Intent(Sled_menu.this, Trainer.class);
-        startActivity(intent);
-        super.onBackPressed();
-    }
+    Intent intent = new Intent(LabirintMenu.this, Trainer.class);
+    startActivity(intent);
+    super.onBackPressed();
+}
 
 
     @Override
@@ -48,16 +48,16 @@ public class Sled_menu extends Activity implements OnClickListener {
         if (view.getId() == R.id.play_btn) {
             // play button
             if (view.getId() == R.id.play_btn) {
-                Intent startintent = new Intent(this, howtosled.class);
-                this.startActivity(startintent);
+                Intent helpIntent = new Intent(this, HowToLabirint.class);
+                this.startActivity(helpIntent);
             }
-        } else if (view.getId() == R.id.Menubut) {
+            } else if (view.getId() == R.id.Menubut) {
             // how to play button
             Intent helpIntent = new Intent(this, Trainer.class);
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
             // high scores button
-            Intent highIntent = new Intent(this, sledscore.class);
+            Intent highIntent = new Intent(this, LabirintScore.class);
             this.startActivity(highIntent);
         }
         // high scores button

@@ -2,7 +2,6 @@ package smaxd.aphina_02;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +19,7 @@ public class HighScores extends Activity implements View.OnClickListener {
 
         TextView scoreView = (TextView) findViewById(R.id.high_scores_list);
         SharedPreferences scorePrefs = getSharedPreferences(
-                Matem_game.GAME_PREFS, 0);
+                MathGame.GAME_PREFS, 0);
         String[] savedScores = scorePrefs.getString("highScores", "").split(
                 "\\|");
         StringBuilder scoreBuild = new StringBuilder("");
@@ -41,7 +40,7 @@ public class HighScores extends Activity implements View.OnClickListener {
     public void Reset() {
         TextView scoreView = (TextView) findViewById(R.id.high_scores_list);
         SharedPreferences scorePrefs = getSharedPreferences(
-                Matem_game.GAME_PREFS, 0);
+                MathGame.GAME_PREFS, 0);
         String[] savedScores = scorePrefs.getString("highScores", "").split(
                 "\\|");
         StringBuilder scoreBuild = new StringBuilder("");
@@ -49,6 +48,6 @@ public class HighScores extends Activity implements View.OnClickListener {
             scoreBuild.append("" + "\n");
         }
         scoreView.setText(scoreBuild.toString());
-        getSharedPreferences(Matem_game.GAME_PREFS,0).edit().clear().commit();
+        getSharedPreferences(MathGame.GAME_PREFS,0).edit().clear().commit();
     }
 }

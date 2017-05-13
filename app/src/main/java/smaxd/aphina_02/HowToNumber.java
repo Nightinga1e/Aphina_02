@@ -14,7 +14,7 @@ public class HowToNumber extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent intent = new Intent(HowToNumber.this, number_menu.class);
+        Intent intent = new Intent(HowToNumber.this, NumberMenu.class);
         startActivity(intent);
         super.onBackPressed();
     }
@@ -28,13 +28,13 @@ public class HowToNumber extends AppCompatActivity {
     }
 
     public void BackToMenu(View view) {
-        Intent intent = new Intent(this, number_menu.class);
+        Intent intent = new Intent(this, NumberMenu.class);
         startActivity(intent);
     }
 
     private void startPlay(int chosenLevel) {
         // start gameplay
-        Intent playIntent = new Intent(this, number.class);
+        Intent playIntent = new Intent(this, NumberTrainer.class);
         playIntent.putExtra("level", chosenLevel);
         this.startActivity(playIntent);
     }

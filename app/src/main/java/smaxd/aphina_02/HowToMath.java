@@ -7,14 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class HowTo extends AppCompatActivity {
+public class HowToMath extends AppCompatActivity {
 
     private String[] levelNames = {"Легко", "Нормально", "Сложно" };
 
     @Override
     public void onBackPressed() {
 
-        Intent intent = new Intent(HowTo.this, Matem.class);
+        Intent intent = new Intent(HowToMath.this, Math.class);
         startActivity(intent);
         super.onBackPressed();
     }
@@ -28,13 +28,13 @@ public class HowTo extends AppCompatActivity {
     }
 
     public void BackToMenu(View view) {
-        Intent intent = new Intent(this, Matem.class);
+        Intent intent = new Intent(this, Math.class);
         startActivity(intent);
     }
 
     private void startPlay(int chosenLevel) {
         // start gameplay
-        Intent playIntent = new Intent(this, Matem_game.class);
+        Intent playIntent = new Intent(this, MathGame.class);
         playIntent.putExtra("level", chosenLevel);
         this.startActivity(playIntent);
     }

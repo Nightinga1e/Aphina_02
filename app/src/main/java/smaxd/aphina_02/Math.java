@@ -7,14 +7,22 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class Vihr_menu extends Activity implements OnClickListener {
+public class Math extends Activity implements OnClickListener {
 
-    private String[] levelNames = { "Easy", "Medium", "Hard" };
+    private String[] levelNames = {"Легко", "Нормально", "Сложно" };
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(Math.this, Trainer.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vihr_menu);
+        setContentView(R.layout.activity_matem);
 
         Button playBtn = (Button) findViewById(R.id.play_btn);
         Button helpBtn = (Button) findViewById(R.id.Menubut);
@@ -24,20 +32,13 @@ public class Vihr_menu extends Activity implements OnClickListener {
         helpBtn.setOnClickListener(this);
         highBtn.setOnClickListener(this);
     }
-/*
+
     private void startPlay(int chosenLevel) {
         // start gameplay
-        Intent playIntent = new Intent(this, Vihr.class);
+        Intent playIntent = new Intent(this, MathGame.class);
         playIntent.putExtra("level", chosenLevel);
         this.startActivity(playIntent);
-    }*/
-@Override
-public void onBackPressed() {
-
-    Intent intent = new Intent(Vihr_menu.this, Trainer.class);
-    startActivity(intent);
-    super.onBackPressed();
-}
+    }
 
     @Override
     public void onClick(View view) {
@@ -45,9 +46,8 @@ public void onBackPressed() {
         if (view.getId() == R.id.play_btn) {
             // play button
             if (view.getId() == R.id.play_btn) {
-
-                Intent startintent = new Intent(this, Vihr_How.class);
-                this.startActivity(startintent);
+                Intent helpIntent = new Intent(this, HowToMath.class);
+                this.startActivity(helpIntent);
             }
         } else if (view.getId() == R.id.Menubut) {
             // how to play button
@@ -55,7 +55,7 @@ public void onBackPressed() {
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
             // high scores button
-            Intent highIntent = new Intent(this, Vihr_score.class);
+            Intent highIntent = new Intent(this, HighScores.class);
             this.startActivity(highIntent);
         }
         // high scores button

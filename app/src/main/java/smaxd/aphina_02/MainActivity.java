@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    public void ToGooglePlay(View view) {
+
+    }
 
 
     public void ToVkAutorisation(View view) {

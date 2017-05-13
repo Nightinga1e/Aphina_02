@@ -1,7 +1,6 @@
 package smaxd.aphina_02;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -9,22 +8,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class Matem extends Activity implements OnClickListener {
+public class TraceMenu extends Activity implements OnClickListener {
 
-    private String[] levelNames = {"Легко", "Нормально", "Сложно" };
-
-    @Override
-    public void onBackPressed() {
-
-        Intent intent = new Intent(Matem.this, Trainer.class);
-        startActivity(intent);
-        super.onBackPressed();
-    }
+    private String[] levelNames = { "Easy", "Medium", "Hard" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_matem);
+        setContentView(R.layout.activity_sled_menu);
 
         Button playBtn = (Button) findViewById(R.id.play_btn);
         Button helpBtn = (Button) findViewById(R.id.Menubut);
@@ -37,10 +28,19 @@ public class Matem extends Activity implements OnClickListener {
 
     private void startPlay(int chosenLevel) {
         // start gameplay
-        Intent playIntent = new Intent(this, Matem_game.class);
+        Intent playIntent = new Intent(this, Trace.class);
         playIntent.putExtra("level", chosenLevel);
         this.startActivity(playIntent);
     }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(TraceMenu.this, Trainer.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -48,8 +48,8 @@ public class Matem extends Activity implements OnClickListener {
         if (view.getId() == R.id.play_btn) {
             // play button
             if (view.getId() == R.id.play_btn) {
-                Intent helpIntent = new Intent(this, HowTo.class);
-                this.startActivity(helpIntent);
+                Intent startintent = new Intent(this, HowToTrace.class);
+                this.startActivity(startintent);
             }
         } else if (view.getId() == R.id.Menubut) {
             // how to play button
@@ -57,7 +57,7 @@ public class Matem extends Activity implements OnClickListener {
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
             // high scores button
-            Intent highIntent = new Intent(this, HighScores.class);
+            Intent highIntent = new Intent(this, TraceScore.class);
             this.startActivity(highIntent);
         }
         // high scores button

@@ -18,7 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Vihr extends Activity implements OnClickListener {
+public class Trace extends Activity implements OnClickListener {
 
     private int level = 0, answer = 1, lifecount= 3;
     private int entAns;
@@ -27,48 +27,11 @@ public class Vihr extends Activity implements OnClickListener {
             {2, 3, 5}};
     private int[][] levelMax = {{10, 25, 50}, {10, 20, 30}, {5, 10, 15},
             {10, 50, 100}};
-    private int lvl= 1;
+    private int lvl= 1,check= 1;
 
-    private SharedPreferences VihrPrefs;
-    public static final String VIHR_PREFS = "VihrFile";
-
-    private int[] Imgarr = {R.mipmap.pic1,
-            R.mipmap.pic2,
-            R.mipmap.pic3,
-            R.mipmap.pic4,
-            R.mipmap.pic5,
-            R.mipmap.pic6,
-            R.mipmap.ic_pic7,
-            R.mipmap.ic_pic8,
-            R.mipmap.ic_pic9,
-            R.mipmap.ic_pic10,
-            R.mipmap.ic_pic11,
-            R.mipmap.ic_pic12,
-            R.mipmap.ic_pic13,
-            R.mipmap.ic_pic14,
-            R.mipmap.ic_pic15,
-            R.mipmap.ic_pic16,
-            R.mipmap.ic_pic17,
-            R.mipmap.ic_pic18,
-            R.mipmap.ic_pic19,
-            R.mipmap.ic_pic20,
-            R.mipmap.ic_pic21,
-            R.mipmap.ic_pic22,
-            R.mipmap.ic_pic23,
-            R.mipmap.ic_pic24,
-            R.mipmap.ic_pic25,
-            R.mipmap.ic_pic26,
-            R.mipmap.ic_pic27,
-            R.mipmap.ic_pic28,
-            R.mipmap.ic_pic29,
-            R.mipmap.ic_pic30,
-            R.mipmap.ic_pic31,
-            R.mipmap.ic_pic32,
-            R.mipmap.ic_pic33,
-            R.mipmap.ic_pic34,
-            R.mipmap.ic_pic35,
-            R.mipmap.ic_pic36};
-
+    private SharedPreferences SledPrefs;
+    public static final String SLED_PREFS = "SledFile";
+    private int nextanswer=0;
     private ImageButton life1,life2,life3;
     private Random random;
     private TextView scoreTxt,answerfu;
@@ -81,12 +44,12 @@ public class Vihr extends Activity implements OnClickListener {
             0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0};
-    private int[] picnumarray = {1, 2, 3, 4, 5, 6,
-            7, 8, 9, 10, 11, 12,
-            13, 14, 15, 16, 17, 18,
-            19, 20, 21, 22, 23, 24,
-            25, 26, 27, 28, 29, 30,
-            31, 32, 33, 34, 35};
+    private int[] fillarray2 = {0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0};
 
     private List<ImageButton> imgbuttons;
     private static final int[] IMGBUTTON_IDS = {
@@ -99,18 +62,19 @@ public class Vihr extends Activity implements OnClickListener {
     };
 
     CountDownTimer countDownTimer;
+    CountDownTimer countDownTimer2;
+    CountDownTimer countDownTimer3;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vihr);
+        setContentView(R.layout.activity_pamyat);
 
-        VihrPrefs = getSharedPreferences(VIHR_PREFS, 0);
+        SledPrefs = getSharedPreferences(SLED_PREFS, 0);
 
 
-        shuffleArray(picnumarray);
-
+     //   shuffleArray(picnumarray);
 
         imgbuttons = new ArrayList<ImageButton>();
         // or slightly better
@@ -153,10 +117,25 @@ public class Vihr extends Activity implements OnClickListener {
 
         random = new Random();
         chooseField();
+        for (int l = 0; l < 36; l++) {
+            imgbuttons.get(l).setClickable(false);
+        }
 
-        //Создаем таймер обратного отсчета на 10 секунд с шагом отсчета
-        //в 1 секунду (задаем значения в миллисекундах):
-        countDownTimer = new CountDownTimer(60000, 1000) {
+        countDownTimer2 = new CountDownTimer(2000, 1000) {
+            //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
+            public void onTick(long millisUntilFinished) {
+                //  mTimer.setText("" + millisUntilFinished / 1000);
+            }
+
+            @Override
+            public void onFinish() {
+                // mTimer.setText("0");
+                chooseField();
+                countDownTimer.start();
+            }
+        };
+
+        countDownTimer = new CountDownTimer(3000, 1000) {
             //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
             public void onTick(long millisUntilFinished) {
                 mTimer.setText("" + millisUntilFinished / 1000);
@@ -166,9 +145,9 @@ public class Vihr extends Activity implements OnClickListener {
             public void onFinish() {
                 mTimer.setText("0");
                 for (int l = 0; l < fillarray.length; l++) {
-                    imgbuttons.get(l).setVisibility(View.INVISIBLE);
+                   // imgbuttons.get(l).setImageResource(R.mipmap.emptysquare);
+                    imgbuttons.get(l).setClickable(true);
                 }
-                finish();
             }
         };
         countDownTimer.start();
@@ -179,10 +158,10 @@ public class Vihr extends Activity implements OnClickListener {
         // set high score
         int exScore = getScore();
         if (exScore > 0) {
-            SharedPreferences.Editor scoreEdit = VihrPrefs.edit();
+            SharedPreferences.Editor scoreEdit = SledPrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
             String dateOutput = dateForm.format(new Date());
-            String scores = VihrPrefs.getString("highScores", "");
+            String scores = SledPrefs.getString("highScores", "");
 
             if (scores.length() > 0) {
                 // we have existing scores
@@ -238,6 +217,7 @@ public class Vihr extends Activity implements OnClickListener {
     @Override
     public void onClick(View view) {
         //  response.setVisibility(View.INVISIBLE);
+
 
         switch (view.getId()){
             case R.id.img1:
@@ -352,18 +332,25 @@ public class Vihr extends Activity implements OnClickListener {
 
         if(entAns!=0){
             int exScore = getScore();
-            if((Integer.toString(entAns))==(Integer.toString(answer))){
-                //correct
-                scoreTxt.setText("Score: "+(exScore+1));
-                response.setImageResource(R.drawable.tick);
-                response.setVisibility(View.VISIBLE);
-                //  countDownTimer.start();
-                lvl=lvl+1;
-                if (lvl==35){
-                    finish();
+            if (entAns-1==fillarray2[nextanswer])
+            {
+                nextanswer=nextanswer+1;
+                imgbuttons.get(entAns-1).setImageResource(R.mipmap.truesquare);
+                check= check-1;
+                if(check==0){
+                    //correct
+                    scoreTxt.setText("Score: "+(exScore+1));
+                    response.setImageResource(R.drawable.tick);
+                    response.setVisibility(View.VISIBLE);
+                    lvl=lvl+1;
+                    if (lvl==35){
+                        finish();
+                    }
+                    for (int l = 0; l < 36; l++) {
+                        imgbuttons.get(l).setClickable(false);
+                    }
+                    countDownTimer2.start();
                 }
-                chooseField();
-
             }else{
                 //incorrect
                 scoreTxt.setText("Score: "+(exScore));
@@ -399,34 +386,34 @@ public class Vihr extends Activity implements OnClickListener {
 
 
     private void chooseField() {
-
+        nextanswer = 0;
+        check=lvl;
+        int x=0;
         answerfu.setVisibility(View.INVISIBLE);
         // get a field
 
         for (int l = 0; l < 36; l++) {
             fillarray[l]=0;
+            fillarray2[l]=0;
+            imgbuttons.get(l).setClickable(false);
         }
 
         for (int l=0; l < lvl; l++){
-            fillarray[l]= picnumarray[l];
+            fillarray[l]= 1;
 
         }
 
         shuffleArray(fillarray);
 
-        for (int l=0; l < 36; l++){
-            if (fillarray[l]==picnumarray[lvl-1] && l!=0) {
-                answer = l+1;
-            }
-        }
+  for (int l = 0; l < 36; l++) {
+            if (fillarray[l]==1) {
 
+                imgbuttons.get(l).setImageResource(R.mipmap.fillsquare);
+                fillarray2[x]=l;
+                x=x+1;
 
-        for (int l = 0; l < 36; l++) {
-            if (fillarray[l]!=0) {
-                imgbuttons.get(l).setVisibility(View.VISIBLE);
-                imgbuttons.get(l).setImageResource(Imgarr[fillarray[l]]);
             } else {
-                imgbuttons.get(l).setVisibility(View.INVISIBLE);
+                imgbuttons.get(l).setImageResource(R.mipmap.emptysquare);
             }
         }
     }

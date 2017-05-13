@@ -5,28 +5,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class Vihr_How extends AppCompatActivity {
+public class HowToMemory extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
 
-        Intent intent = new Intent(Vihr_How.this, Vihr_menu.class);
+        Intent intent = new Intent(HowToMemory.this, MemoryMenu.class);
         startActivity(intent);
         super.onBackPressed();
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vihr__how);
+        setContentView(R.layout.activity_howtopamyat);
     }
     public void BackToMenu(View view) {
-        Intent intent = new Intent(this, Vihr_menu.class);
+        Intent intent = new Intent(this, MemoryMenu.class);
         startActivity(intent);
     }
     public void Starttrain(View view) {
-        Intent startintent = new Intent(this, Vihr.class);
+        Intent startintent = new Intent(this, Memory.class);
         this.startActivity(startintent);
     }
 }

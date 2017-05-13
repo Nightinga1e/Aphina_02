@@ -1,7 +1,5 @@
 package smaxd.aphina_02;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -9,14 +7,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class Labirint_menu extends Activity implements OnClickListener {
+public class MemoryMenu extends Activity implements OnClickListener {
 
-    private String[] levelNames = {"Легко", "Нормально", "Сложно" };
+    private String[] levelNames = { "Easy", "Medium", "Hard" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_labirint_menu);
+        setContentView(R.layout.activity_pamyat_menu);
 
         Button playBtn = (Button) findViewById(R.id.play_btn);
         Button helpBtn = (Button) findViewById(R.id.Menubut);
@@ -26,22 +24,28 @@ public class Labirint_menu extends Activity implements OnClickListener {
         helpBtn.setOnClickListener(this);
         highBtn.setOnClickListener(this);
     }
-/*
+
+  /*  @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }*/
+
     private void startPlay(int chosenLevel) {
         // start gameplay
-        Intent playIntent = new Intent(this, Labirint.class);
+        Intent playIntent = new Intent(this, Memory.class);
         playIntent.putExtra("level", chosenLevel);
         this.startActivity(playIntent);
     }
-*/
 
-@Override
-public void onBackPressed() {
+    @Override
+    public void onBackPressed() {
 
-    Intent intent = new Intent(Labirint_menu.this, Trainer.class);
-    startActivity(intent);
-    super.onBackPressed();
-}
+        Intent intent = new Intent(MemoryMenu.this, Trainer.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
 
 
     @Override
@@ -50,16 +54,17 @@ public void onBackPressed() {
         if (view.getId() == R.id.play_btn) {
             // play button
             if (view.getId() == R.id.play_btn) {
-                Intent helpIntent = new Intent(this, Howtolab.class);
-                this.startActivity(helpIntent);
+
+                Intent startintent = new Intent(this, HowToMemory.class);
+                this.startActivity(startintent);
             }
-            } else if (view.getId() == R.id.Menubut) {
+        } else if (view.getId() == R.id.Menubut) {
             // how to play button
             Intent helpIntent = new Intent(this, Trainer.class);
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
             // high scores button
-            Intent highIntent = new Intent(this, labirint_score.class);
+            Intent highIntent = new Intent(this, MemoryScore.class);
             this.startActivity(highIntent);
         }
         // high scores button

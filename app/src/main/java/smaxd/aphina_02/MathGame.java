@@ -18,7 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Matem_game extends Activity implements OnClickListener {
+public class MathGame extends Activity implements OnClickListener {
 
     private int level = 0, answer = 0, operator = 0, operand1 = 0,
             operand2 = 0, lifecount= 3;
@@ -162,7 +162,7 @@ public class Matem_game extends Activity implements OnClickListener {
                     } else if (lifecount == 0) {
                         life3.setVisibility(View.INVISIBLE);
                         finish();
-                        /*AlertDialog.Builder builder = new AlertDialog.Builder(Matem_game.this);
+                        /*AlertDialog.Builder builder = new AlertDialog.Builder(MathGame.this);
                         builder.setTitle("")
                                 .setMessage("Попытки закончились!")
                                 .setNegativeButton("ОК",

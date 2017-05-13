@@ -36,11 +36,11 @@ public class Statistics extends AppCompatActivity {
         startActivity(intent);
     }
     public void ToSled(View view) {
-        Intent intent = new Intent(this, sledscore.class);
+        Intent intent = new Intent(this, TraceScore.class);
         startActivity(intent);
     }
     public void ToVihr(View view) {
-        Intent intent = new Intent(this, Vihr_score.class);
+        Intent intent = new Intent(this, WhirlScore.class);
         startActivity(intent);
     }
     public void ToMatem(View view) {
@@ -48,19 +48,19 @@ public class Statistics extends AppCompatActivity {
         startActivity(intent);
     }
     public void Tonumber(View view) {
-        Intent intent = new Intent(this, numberscore.class);
+        Intent intent = new Intent(this, NumberScore.class);
         startActivity(intent);
     }
     public void Topamyat(View view) {
-        Intent intent = new Intent(this, pamyatscore.class);
+        Intent intent = new Intent(this, MemoryScore.class);
         startActivity(intent);
     }
     public void Tolabirint(View view) {
-        Intent intent = new Intent(this, labirint_score.class);
+        Intent intent = new Intent(this, LabirintScore.class);
         startActivity(intent);
     }
     public void ToAssoc(View view) {
-        Intent intent = new Intent(this, Assocscore.class);
+        Intent intent = new Intent(this, AssocScore.class);
         startActivity(intent);
     }
 }

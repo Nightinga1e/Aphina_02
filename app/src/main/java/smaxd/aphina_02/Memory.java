@@ -7,41 +7,35 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class number extends Activity implements OnClickListener {
+public class Memory extends Activity implements OnClickListener {
 
-    private int level = 0, answer = 0, lifecount= 3;
-    private String enteredAnswer;
+    private int level = 0, lifecount= 3;
+    private int entAns;
+ //   private String enteredAnswer;
   //  private int[][] levelMin = {{1, 11, 21}, {1, 5, 10}, {2, 5, 10},
   //          {2, 3, 5}};
- //   private int[][] levelMax = {{10, 25, 50}, {10, 20, 30}, {5, 10, 15},
-  //          {10, 50, 100}};
+  //  private int[][] levelMax = {{10, 25, 50}, {10, 20, 30}, {5, 10, 15},
+   //         {10, 50, 100}};
+    private int lvl= 1,check= 1;
 
-    private SharedPreferences numPrefs;
-    public static final String NUM_PREFS = "NumberFile";
-
-    private int[] Imgarr = {R.mipmap.pic1,
-            R.mipmap.pic2,
-            R.mipmap.pic3,
-            R.mipmap.pic4,
-            R.mipmap.pic5,
-            R.mipmap.pic6};
+    private SharedPreferences PamPrefs;
+    public static final String PAM_PREFS = "PamFile";
 
     private ImageButton life1,life2,life3;
     private Random random;
     private TextView scoreTxt,answerfu;
     private ImageView response;
-    private Button btn1, btn2, btn3, btn4;
     private TextView mTimer;
 
     private int[] fillarray = {0, 0, 0, 0, 0, 0,
@@ -62,21 +56,22 @@ public class number extends Activity implements OnClickListener {
     };
 
     CountDownTimer countDownTimer;
+    CountDownTimer countDownTimer2;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_number);
+        setContentView(R.layout.activity_pamyat);
 
-        numPrefs = getSharedPreferences(NUM_PREFS, 0);
+        PamPrefs = getSharedPreferences(PAM_PREFS, 0);
 
         imgbuttons = new ArrayList<ImageButton>();
         // or slightly better
         // buttons = new ArrayList<Button>(BUTTON_IDS.length);
         for (int id : IMGBUTTON_IDS) {
             ImageButton imgbut = (ImageButton) findViewById(id);
-            //  imgbut.setOnClickListener(this); //
+            imgbut.setOnClickListener(this); //
             imgbuttons.add(imgbut);
         }
 
@@ -84,21 +79,7 @@ public class number extends Activity implements OnClickListener {
         scoreTxt = (TextView) findViewById(R.id.score);
         response.setVisibility(View.INVISIBLE);
 
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn4 = (Button) findViewById(R.id.btn4);
         answerfu =(TextView) findViewById(R.id.Answerfu);
-
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
-        btn3.setOnClickListener(this);
-        btn4.setOnClickListener(this);
-
-        btn1.setVisibility(View.INVISIBLE);
-        btn2.setVisibility(View.INVISIBLE);
-        btn3.setVisibility(View.INVISIBLE);
-        btn4.setVisibility(View.INVISIBLE);
 
         answerfu.setVisibility(View.INVISIBLE);
 
@@ -126,9 +107,24 @@ public class number extends Activity implements OnClickListener {
 
         random = new Random();
         chooseField();
+        for (int l = 0; l < 36; l++) {
+            imgbuttons.get(l).setClickable(false);
+        }
 
-        //Создаем таймер обратного отсчета на 10 секунд с шагом отсчета
-        //в 1 секунду (задаем значения в миллисекундах):
+        countDownTimer2 = new CountDownTimer(2000, 1000) {
+            //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
+            public void onTick(long millisUntilFinished) {
+              //  mTimer.setText("" + millisUntilFinished / 1000);
+            }
+
+            @Override
+            public void onFinish() {
+               // mTimer.setText("0");
+                    chooseField();
+                    countDownTimer.start();
+            }
+        };
+
         countDownTimer = new CountDownTimer(3000, 1000) {
             //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
             public void onTick(long millisUntilFinished) {
@@ -139,14 +135,9 @@ public class number extends Activity implements OnClickListener {
             public void onFinish() {
                 mTimer.setText("0");
                 for (int l = 0; l < fillarray.length; l++) {
-                    imgbuttons.get(l).setVisibility(View.INVISIBLE);
-                    }
-                btn1.setVisibility(View.VISIBLE);
-                btn2.setVisibility(View.VISIBLE);
-                btn3.setVisibility(View.VISIBLE);
-                btn4.setVisibility(View.VISIBLE);
-
-                answerfu.setVisibility(View.VISIBLE);
+                    imgbuttons.get(l).setImageResource(R.mipmap.emptysquare);
+                    imgbuttons.get(l).setClickable(true);
+                }
             }
         };
         countDownTimer.start();
@@ -157,10 +148,10 @@ public class number extends Activity implements OnClickListener {
         // set high score
         int exScore = getScore();
         if (exScore > 0) {
-            SharedPreferences.Editor scoreEdit = numPrefs.edit();
+            SharedPreferences.Editor scoreEdit = PamPrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
             String dateOutput = dateForm.format(new Date());
-            String scores = numPrefs.getString("highScores", "");
+            String scores = PamPrefs.getString("highScores", "");
 
             if (scores.length() > 0) {
                 // we have existing scores
@@ -215,31 +206,139 @@ public class number extends Activity implements OnClickListener {
 
     @Override
     public void onClick(View view) {
-      //  response.setVisibility(View.INVISIBLE);
+
         switch (view.getId()){
-            case R.id.btn1:
-                enteredAnswer = (btn1).getText().toString();
+            case R.id.img1:
+                entAns = 1;
                 break;
-            case R.id.btn2:
-                enteredAnswer = (btn2).getText().toString();
+            case R.id.img2:
+                entAns = 2;
                 break;
-            case R.id.btn3:
-                enteredAnswer = (btn3).getText().toString();
+            case R.id.img3:
+                entAns = 3;
                 break;
-            case R.id.btn4:
-                enteredAnswer = (btn4).getText().toString();
+            case R.id.img4:
+                entAns = 4;
+                break;
+            case R.id.img5:
+                entAns = 5;
+                break;
+            case R.id.img6:
+                entAns = 6;
+                break;
+            case R.id.img7:
+                entAns = 7;
+                break;
+            case R.id.img8:
+                entAns = 8;
+                break;
+            case R.id.img9:
+                entAns = 9;
+                break;
+            case R.id.img10:
+                entAns = 10;
+                break;
+            case R.id.img11:
+                entAns = 11;
+                break;
+            case R.id.img12:
+                entAns = 12;
+                break;
+            case R.id.img13:
+                entAns = 13;
+                break;
+            case R.id.img14:
+                entAns = 14;
+                break;
+            case R.id.img15:
+                entAns = 15;
+                break;
+            case R.id.img16:
+                entAns = 16;
+                break;
+            case R.id.img17:
+                entAns = 17;
+                break;
+            case R.id.img18:
+                entAns = 18;
+                break;
+            case R.id.img19:
+                entAns = 19;
+                break;
+            case R.id.img20:
+                entAns = 20;
+                break;
+            case R.id.img21:
+                entAns = 21;
+                break;
+            case R.id.img22:
+                entAns = 22;
+                break;
+            case R.id.img23:
+                entAns = 23;
+                break;
+            case R.id.img24:
+                entAns = 24;
+                break;
+            case R.id.img25:
+                entAns = 25;
+                break;
+            case R.id.img26:
+                entAns = 26;
+                break;
+            case R.id.img27:
+                entAns = 27;
+                break;
+            case R.id.img28:
+                entAns = 28;
+                break;
+            case R.id.img29:
+                entAns = 29;
+                break;
+            case R.id.img30:
+                entAns = 30;
+                break;
+            case R.id.img31:
+                entAns = 31;
+                break;
+            case R.id.img32:
+                entAns = 32;
+                break;
+            case R.id.img33:
+                entAns = 33;
+                break;
+            case R.id.img34:
+                entAns = 34;
+                break;
+            case R.id.img35:
+                entAns = 35;
+                break;
+            case R.id.img36:
+                entAns = 36;
                 break;
         }
 
-        if(enteredAnswer!=null){
+        if(entAns!=0){
             int exScore = getScore();
-            if(enteredAnswer==(Integer.toString(answer))){
-                //correct
-                scoreTxt.setText("Score: "+(exScore+1));
-                response.setImageResource(R.drawable.tick);
-                response.setVisibility(View.VISIBLE);
-                countDownTimer.start();
-
+            if (fillarray[entAns-1]!=0)
+            {
+                imgbuttons.get(entAns-1).setImageResource(R.mipmap.truesquare);
+                check= check-1;
+                if(check==0){
+                    //correct
+                    scoreTxt.setText("Score: "+(exScore+1));
+                    response.setImageResource(R.drawable.tick);
+                    response.setVisibility(View.VISIBLE);
+                    lvl=lvl+1;
+                    if (lvl==35){
+                        finish();
+                    }
+                    for (int l = 0; l < 36; l++) {
+                        imgbuttons.get(l).setClickable(false);
+                    }
+                    chooseField();
+                    countDownTimer.start();
+                }
             }else{
                 //incorrect
                 scoreTxt.setText("Score: "+(exScore));
@@ -250,86 +349,61 @@ public class number extends Activity implements OnClickListener {
                 }else if (lifecount==1) {
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
-                    life3.setVisibility(View.INVISIBLE);
                     finish();
                 }
-                response.setVisibility(View.VISIBLE);
+                chooseField();
+                countDownTimer.start();
             }
-            chooseField();
-            countDownTimer.start();
-            }
+        }
+    }
+
+    public static void shuffleArray(int[] a) {
+        int n = a.length;
+        Random random = new Random();
+        random.nextInt();
+        for (int i = 0; i < n; i++) {
+            int change = i + random.nextInt(n - i);
+            swap(a, i, change);
+        }
+    }
+
+    private static void swap(int[] a, int i, int change) {
+        int temp = a[i];
+        a[i] = a[change];
+        a[change] = temp;
     }
 
 
 
     private void chooseField() {
 
-        btn1.setVisibility(View.INVISIBLE);
-        btn2.setVisibility(View.INVISIBLE);
-        btn3.setVisibility(View.INVISIBLE);
-        btn4.setVisibility(View.INVISIBLE);
-
+        check=lvl;
         answerfu.setVisibility(View.INVISIBLE);
         // get a field
-        answer = 0;
-        int otv = random.nextInt(4) + 1;
-        int lvl= 0;
-       if (level==0) {
-            lvl = random.nextInt(10)+3;
-        }else if (level==1) {
-            lvl= random.nextInt(10)+5;
-        }else if (level==2) {
-            lvl= random.nextInt(10)+10;
-        }
-        for (int l = 0; l < fillarray.length; l++) {
-            int chance = random.nextInt(100) + 1;
-                if (chance < 60 && lvl!=0) {
-                int imgtype = random.nextInt(6);
-                fillarray[l] = imgtype;
-                    answer=answer+1;
-                    lvl=lvl-1;
-              } else {
-                fillarray[l] = 6;
-              }
+
+        for (int l = 0; l < 36; l++) {
+            fillarray[l]=0;
+            imgbuttons.get(l).setClickable(false);
         }
 
-            for (int l = 0; l < fillarray.length; l++) {
+        for (int l=0; l < lvl; l++){
+            fillarray[l]= 1;
 
-                if (fillarray[l] <6) {
-                    imgbuttons.get(l).setVisibility(View.VISIBLE);
-                    imgbuttons.get(l).setImageResource(Imgarr[fillarray[l]]);
-                } else if (fillarray[l] == 6) {
-                    imgbuttons.get(l).setVisibility(View.INVISIBLE);
-                }
-             /*   if (l>=lvl) {
-                    imgbuttons.get(l).setVisibility(View.INVISIBLE);
-                }*/
+        }
+
+        shuffleArray(fillarray);
+
+        for (int l = 0; l < 36; l++) {
+            if (fillarray[l]==1) {
+                imgbuttons.get(l).setImageResource(R.mipmap.fillsquare);
+            } else {
+                imgbuttons.get(l).setImageResource(R.mipmap.emptysquare);
             }
-        if (otv == 1) {
-            btn1.setText(Integer.toString(answer));
-            btn2.setText(Integer.toString(answer + 1));
-            btn3.setText(Integer.toString(answer + 2));
-            btn4.setText(Integer.toString(answer + 3));
-        } else if (otv == 2) {
-            btn2.setText(Integer.toString(answer));
-            btn1.setText(Integer.toString(answer - 1));
-            btn3.setText(Integer.toString(answer + 1));
-            btn4.setText(Integer.toString(answer + 2));
-        } else if (otv == 3) {
-            btn3.setText(Integer.toString(answer));
-            btn2.setText(Integer.toString(answer - 1));
-            btn1.setText(Integer.toString(answer - 2));
-            btn4.setText(Integer.toString(answer + 1));
-        } else if (otv == 4) {
-            btn4.setText(Integer.toString(answer));
-            btn2.setText(Integer.toString(answer - 2));
-            btn1.setText(Integer.toString(answer - 3));
-            btn3.setText(Integer.toString(answer - 1));
         }
-        }
+    }
 
     private int getScore(){
         String scoreStr = scoreTxt.getText().toString();
         return Integer.parseInt(scoreStr.substring(scoreStr.lastIndexOf(" ")+1));
     }
-    }
+}

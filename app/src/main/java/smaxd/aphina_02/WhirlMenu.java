@@ -1,7 +1,5 @@
 package smaxd.aphina_02;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -9,14 +7,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class number_menu extends Activity implements OnClickListener {
+public class WhirlMenu extends Activity implements OnClickListener {
 
-    private String[] levelNames = {"Легко", "Нормально", "Сложно" };
+    private String[] levelNames = { "Easy", "Medium", "Hard" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_number_menu);
+        setContentView(R.layout.activity_vihr_menu);
 
         Button playBtn = (Button) findViewById(R.id.play_btn);
         Button helpBtn = (Button) findViewById(R.id.Menubut);
@@ -26,27 +24,20 @@ public class number_menu extends Activity implements OnClickListener {
         helpBtn.setOnClickListener(this);
         highBtn.setOnClickListener(this);
     }
-
-  /*  @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }*/
 /*
     private void startPlay(int chosenLevel) {
         // start gameplay
-        Intent playIntent = new Intent(this, number.class);
+        Intent playIntent = new Intent(this, Whirl.class);
         playIntent.putExtra("level", chosenLevel);
         this.startActivity(playIntent);
     }*/
-  @Override
-  public void onBackPressed() {
+@Override
+public void onBackPressed() {
 
-      Intent intent = new Intent(number_menu.this, Trainer.class);
-      startActivity(intent);
-      super.onBackPressed();
-  }
+    Intent intent = new Intent(WhirlMenu.this, Trainer.class);
+    startActivity(intent);
+    super.onBackPressed();
+}
 
     @Override
     public void onClick(View view) {
@@ -54,9 +45,9 @@ public class number_menu extends Activity implements OnClickListener {
         if (view.getId() == R.id.play_btn) {
             // play button
             if (view.getId() == R.id.play_btn) {
-                // play button
-                Intent helpIntent = new Intent(this, HowToNumber.class);
-                this.startActivity(helpIntent);
+
+                Intent startintent = new Intent(this, HowToWhirl.class);
+                this.startActivity(startintent);
             }
         } else if (view.getId() == R.id.Menubut) {
             // how to play button
@@ -64,7 +55,7 @@ public class number_menu extends Activity implements OnClickListener {
             this.startActivity(helpIntent);
         } else if (view.getId() == R.id.high_btn) {
             // high scores button
-            Intent highIntent = new Intent(this, numberscore.class);
+            Intent highIntent = new Intent(this, WhirlScore.class);
             this.startActivity(highIntent);
         }
         // high scores button
