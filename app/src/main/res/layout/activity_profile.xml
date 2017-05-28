@@ -67,17 +67,21 @@
         android:layout_height="match_parent"
         android:weightSum="1"
         android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp"
+        android:layout_above="@+id/PlayButton">
 
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
             android:onClick="ToStats"
             android:text="Статистика"
-            android:textColor="@color/windowBackground"
             android:textSize="20sp"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:textColor="@color/windowBackground"
+            />
 
         <Button
             android:id="@+id/button4"
@@ -85,6 +89,7 @@
             android:layout_height="wrap_content"
             android:onClick="ToAchievements"
             android:text="Достижения"
+            android:background="@drawable/enter_back"
             android:textColor="@color/windowBackground"
             android:textSize="20sp"
             android:visibility="visible" />
@@ -94,6 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Поделиться с друзьями"
+            android:background="@drawable/enter_back"
             android:textColor="@color/windowBackground"
             android:textSize="20sp"
             android:visibility="visible" />
