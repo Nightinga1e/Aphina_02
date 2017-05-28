@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,6 +17,9 @@ import java.util.Date;
 import java.util.List;
 
 public class Profile extends AppCompatActivity {
+
+    private static final int REQUEST_ACHIEVEMENTS = 5;
+   // private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,10 @@ public class Profile extends AppCompatActivity {
     public void ToStats(View view) {
         Intent intent = new Intent(this, Statistics.class);
         startActivity(intent);
+    }
+    public void ToAchievements(View view) {
+        startActivityForResult(Games.Achievements.getAchievementsIntent(MainActivity.mGoogleApiClient),
+                REQUEST_ACHIEVEMENTS);
     }
 
     }

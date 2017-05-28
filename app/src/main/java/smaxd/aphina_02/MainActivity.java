@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity implements
 {
 
     private String[] scope = new String[] {VKScope.MESSAGES,VKScope.FRIENDS,VKScope.WALL};
-    private GoogleApiClient mGoogleApiClient;
+
+    public static GoogleApiClient mGoogleApiClient;
 
     private static int RC_SIGN_IN = 9001;
 
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements
     protected void onStop() {
         super.onStop();
         if (mGoogleApiClient.isConnected()) {
-            mGoogleApiClient.disconnect();
+       //     mGoogleApiClient.disconnect();
         }
     }
 

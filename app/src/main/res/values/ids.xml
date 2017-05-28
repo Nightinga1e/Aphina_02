@@ -6,5 +6,9 @@ Save this file as res/values/games-ids.xml in your project.
 <resources>
     <string name="app_id">257481809159</string>
     <string name="package_name">smaxd.aphina_02</string>
-    <string name="achievement_testachievement">CgkIh7rymL8HEAIQAQ</string>
+    <string name="achievement_clear_mind">CgkIh7rymL8HEAIQAg</string>
+    <string name="achievement_pathfinder">CgkIh7rymL8HEAIQAw</string>
+    <string name="achievement_associate_this">CgkIh7rymL8HEAIQBA</string>
+    <string name="achievement_hurricane">CgkIh7rymL8HEAIQBQ</string>
+    <string name="achievement_abacus">CgkIh7rymL8HEAIQBg</string>
 </resources>

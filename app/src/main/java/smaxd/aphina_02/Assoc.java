@@ -12,13 +12,25 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.CountDownTimer;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Assoc extends Activity implements OnClickListener {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
+
+public class Assoc extends Activity implements
+        View.OnClickListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
+
+    private boolean mAutoStartSignInFlow = true;
+
+    private GoogleApiClient mGoogleApiClient;
 
     private int level = 0, answer = 1, lifecount= 3;
     private int entAns;
@@ -108,6 +120,13 @@ public class Assoc extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assoc);
+
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                .build();
 
         AssocPrefs = getSharedPreferences(ASSOC_PREFS, 0);
 
@@ -212,11 +231,33 @@ public class Assoc extends Activity implements OnClickListener {
         }
     }
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        // findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+        //  findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        // Attempt to reconnect
+        //  mGoogleApiClient.connect();
+    }
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        //  if (mResolvingConnectionFailure) {
+        // already resolving
+        return;
+    }
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
 
     protected void onDestroy() {
         setHighScore();
         super.onDestroy();
     }
+
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -269,6 +310,9 @@ public class Assoc extends Activity implements OnClickListener {
             if (answer == entAns) {
                 //correct
                 scoreTxt.setText("Score: " + (exScore + 1));
+                if (exScore+1==40 && mGoogleApiClient.isConnected()){
+                    Games.Achievements.unlock(mGoogleApiClient, getString(R.string.achievement_associate_this));
+                }
                 response.setImageResource(R.drawable.tick);
                 response.setVisibility(View.VISIBLE);
                 lvl = lvl + 1;
@@ -410,4 +454,5 @@ public class Assoc extends Activity implements OnClickListener {
         String scoreStr = scoreTxt.getText().toString();
         return Integer.parseInt(scoreStr.substring(scoreStr.lastIndexOf(" ")+1));
     }
+
 }

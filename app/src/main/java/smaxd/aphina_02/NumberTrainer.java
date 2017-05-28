@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.CountDownTimer;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -18,8 +19,17 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class NumberTrainer extends Activity implements OnClickListener {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
 
+public class NumberTrainer extends Activity implements
+        View.OnClickListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
+
+
+    private GoogleApiClient mGoogleApiClient;
     private int level = 0, answer = 0, lifecount= 3;
     private String enteredAnswer;
   //  private int[][] levelMin = {{1, 11, 21}, {1, 5, 10}, {2, 5, 10},
@@ -68,6 +78,12 @@ public class NumberTrainer extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_number);
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                .build();
 
         numPrefs = getSharedPreferences(NUM_PREFS, 0);
 
@@ -198,6 +214,29 @@ public class NumberTrainer extends Activity implements OnClickListener {
     }
 
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        // findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+        //  findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        // Attempt to reconnect
+        //  mGoogleApiClient.connect();
+    }
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        //  if (mResolvingConnectionFailure) {
+        // already resolving
+        return;
+    }
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
+
     protected void onDestroy() {
         setHighScore();
         super.onDestroy();
@@ -236,6 +275,9 @@ public class NumberTrainer extends Activity implements OnClickListener {
             if(enteredAnswer==(Integer.toString(answer))){
                 //correct
                 scoreTxt.setText("Score: "+(exScore+1));
+                if (exScore+1==15 && mGoogleApiClient.isConnected()){
+                    Games.Achievements.unlock(mGoogleApiClient, getString(R.string.achievement_abacus));
+                }
                 response.setImageResource(R.drawable.tick);
                 response.setVisibility(View.VISIBLE);
                 countDownTimer.start();
