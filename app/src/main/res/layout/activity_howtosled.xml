@@ -26,7 +26,7 @@
             android:layout_below="@id/operators"
             android:layout_centerHorizontal="true"
             android:padding="20dp"
-            android:text="След"
+            android:text="Обман"
             android:textColor="#ffffffff"
             android:textSize="20sp"
             android:textStyle="bold" />

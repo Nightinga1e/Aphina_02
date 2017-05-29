@@ -1,6 +1,7 @@
 package smaxd.aphina_02;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,12 @@ public class HighScores extends Activity implements View.OnClickListener {
         //
         if (view.getId() == R.id.button2) {
             Reset();
+        }
+
+        if (view.getId() == R.id.button8) {
+           // Intent intent = new Intent(this, Math.class);
+            //startActivity(intent);
+            finish();
         }
     }
 

@@ -162,15 +162,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#808080"
+            android:background="@drawable/enter_back"
             android:onClick="onClick"
             app:srcCompat="@null" />
 
         <ImageButton
-            android:id="@+id/emptybut1"
+            android:id="@+id/imageButton2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.63"
             android:visibility="invisible"
             app:srcCompat="@drawable/app_back" />
 
@@ -179,7 +179,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#808080"
+            android:background="@drawable/enter_back"
             android:onClick="onClick"
             app:srcCompat="@null" />
 
@@ -196,7 +196,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#808080"
+            android:background="@drawable/enter_back"
             android:onClick="onClick"
             app:srcCompat="@null" />
 
@@ -204,7 +204,7 @@
             android:id="@+id/emptybut2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.63"
             android:visibility="invisible"
             app:srcCompat="@drawable/app_back" />
 
@@ -213,8 +213,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#808080"
+            android:background="@drawable/enter_back"
             android:onClick="onClick"
+
             app:srcCompat="@null" />
 
     </LinearLayout>

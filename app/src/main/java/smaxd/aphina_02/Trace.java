@@ -7,99 +7,72 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Trace extends Activity implements OnClickListener {
 
-    private int level = 0, answer = 1, lifecount= 3;
-    private int entAns;
-    private String enteredAnswer;
-    private int[][] levelMin = {{1, 11, 21}, {1, 5, 10}, {2, 5, 10},
-            {2, 3, 5}};
-    private int[][] levelMax = {{10, 25, 50}, {10, 20, 30}, {5, 10, 15},
-            {10, 50, 100}};
-    private int lvl= 1,check= 1;
+    private int level = 0, answer = 0, operator = 0, operand1 = 0,
+            operand2 = 0, lifecount= 3;
+    private int enteredAnswer;
+    private final int ADD_OPERATOR = 0, SUBTRACT_OPERATOR = 1,
+            MULTIPLY_OPERATOR = 2, DIVIDE_OPERATOR = 3;
+    private String[] operators = { "+", "-", "x", "/" };
+
+    private int[][] levelMin = { { 1, 11, 21 }, { 1, 5, 10 }, { 2, 5, 10 },
+            { 2, 3, 5 } };
+    private int[][] levelMax = { { 10, 25, 50 }, { 10, 20, 30 }, { 5, 10, 15 },
+            { 10, 50, 100 } };
+    private int newanswer;
 
     private SharedPreferences SledPrefs;
     public static final String SLED_PREFS = "SledFile";
     private int nextanswer=0;
-    private ImageButton life1,life2,life3;
     private Random random;
-    private TextView scoreTxt,answerfu;
+    private TextView answerfu;
+
+    private TextView question, answerTxt, scoreTxt;
     private ImageView response;
+    private ImageButton life1,life2,life3;
+    private Button btn1, btn2;
     private TextView mTimer;
 
-    private int[] fillarray = {0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0};
-    private int[] fillarray2 = {0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0};
-
-    private List<ImageButton> imgbuttons;
-    private static final int[] IMGBUTTON_IDS = {
-            R.id.img1, R.id.img2, R.id.img3, R.id.img4, R.id.img5, R.id.img6,
-            R.id.img7, R.id.img8, R.id.img9, R.id.img10, R.id.img11, R.id.img12,
-            R.id.img13, R.id.img14, R.id.img15, R.id.img16, R.id.img17, R.id.img18,
-            R.id.img19, R.id.img20, R.id.img21, R.id.img22, R.id.img23, R.id.img24,
-            R.id.img25, R.id.img26, R.id.img27, R.id.img28, R.id.img29, R.id.img30,
-            R.id.img31, R.id.img32, R.id.img33, R.id.img34, R.id.img35, R.id.img36
-    };
-
     CountDownTimer countDownTimer;
-    CountDownTimer countDownTimer2;
-    CountDownTimer countDownTimer3;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pamyat);
+        setContentView(R.layout.activity_matemquest);
 
         SledPrefs = getSharedPreferences(SLED_PREFS, 0);
 
-
-     //   shuffleArray(picnumarray);
-
-        imgbuttons = new ArrayList<ImageButton>();
-        // or slightly better
-        // buttons = new ArrayList<Button>(BUTTON_IDS.length);
-        for (int id : IMGBUTTON_IDS) {
-            ImageButton imgbut = (ImageButton) findViewById(id);
-            imgbut.setOnClickListener(this); //
-            imgbuttons.add(imgbut);
-        }
-
+        question = (TextView) findViewById(R.id.question);
+        answerTxt = (TextView) findViewById(R.id.answer);
         response = (ImageView) findViewById(R.id.response);
         scoreTxt = (TextView) findViewById(R.id.score);
-        response.setVisibility(View.INVISIBLE);
-
-        answerfu =(TextView) findViewById(R.id.Answerfu);
-
-        answerfu.setVisibility(View.INVISIBLE);
-
         life1 = (ImageButton) findViewById(R.id.life1);
         life2 = (ImageButton) findViewById(R.id.life2);
         life3 = (ImageButton) findViewById(R.id.life3);
         life3.setVisibility(View.VISIBLE);
         life2.setVisibility(View.VISIBLE);
         life1.setVisibility(View.VISIBLE);
+        response.setVisibility(View.INVISIBLE);
+        btn1 = (Button) findViewById(R.id.btn1);
+        btn2 = (Button) findViewById(R.id.btn2);
+
+        btn1.setOnClickListener(this);
+        btn2.setOnClickListener(this);
+
         mTimer = (TextView) findViewById(R.id.timer);
+
 
         if (savedInstanceState != null) {
             // restore state
@@ -114,45 +87,100 @@ public class Trace extends Activity implements OnClickListener {
                     level = passedLevel;
             }
         }
-
         random = new Random();
-        chooseField();
-        for (int l = 0; l < 36; l++) {
-            imgbuttons.get(l).setClickable(false);
-        }
+        chooseQuestion();
 
-        countDownTimer2 = new CountDownTimer(2000, 1000) {
-            //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
-            public void onTick(long millisUntilFinished) {
-                //  mTimer.setText("" + millisUntilFinished / 1000);
-            }
-
-            @Override
-            public void onFinish() {
-                // mTimer.setText("0");
-                chooseField();
-                countDownTimer.start();
-            }
-        };
-
-        countDownTimer = new CountDownTimer(3000, 1000) {
-            //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
-            public void onTick(long millisUntilFinished) {
-                mTimer.setText("" + millisUntilFinished / 1000);
-            }
-
-            @Override
-            public void onFinish() {
-                mTimer.setText("0");
-                for (int l = 0; l < fillarray.length; l++) {
-                   // imgbuttons.get(l).setImageResource(R.mipmap.emptysquare);
-                    imgbuttons.get(l).setClickable(true);
+        //Создаем таймер обратного отсчета на 10 секунд с шагом отсчета
+        //в 1 секунду (задаем значения в миллисекундах):
+        if (level == 0) {
+            countDownTimer = new CountDownTimer(3000, 1000) {
+                //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
+                public void onTick(long millisUntilFinished) {
+                    mTimer.setText("" + millisUntilFinished / 1000);
                 }
-            }
-        };
-        countDownTimer.start();
-    }
 
+                @Override
+                public void onFinish() {
+                    response.setImageResource(R.drawable.cross);
+                    lifecount -= 1;
+                    if (lifecount == 2) {
+                        life1.setVisibility(View.INVISIBLE);
+                    } else if (lifecount == 1) {
+                        life2.setVisibility(View.INVISIBLE);
+                    } else if (lifecount == 0) {
+                        life3.setVisibility(View.INVISIBLE);
+                        finish();
+                    }
+                    response.setVisibility(View.VISIBLE);
+                    chooseQuestion();
+                    countDownTimer.start();
+                }
+            };
+            countDownTimer.start();
+        }else if (level == 1) {
+            countDownTimer = new CountDownTimer(8000, 1000) {
+                //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
+                public void onTick(long millisUntilFinished) {
+                    mTimer.setText("" + millisUntilFinished / 1000);
+                }
+
+                @Override
+                public void onFinish() {
+                    response.setImageResource(R.drawable.cross);
+                    lifecount -= 1;
+                    if (lifecount == 2) {
+                        life1.setVisibility(View.INVISIBLE);
+                    } else if (lifecount == 1) {
+                        life2.setVisibility(View.INVISIBLE);
+                    } else if (lifecount == 0) {
+                        life3.setVisibility(View.INVISIBLE);
+                        finish();
+                    }
+                    response.setVisibility(View.VISIBLE);
+                    chooseQuestion();
+                    countDownTimer.start();
+                }
+            };
+            countDownTimer.start();
+        } else if (level == 2) {
+            countDownTimer = new CountDownTimer(6000, 1000) {
+                //Здесь обновляем текст счетчика обратного отсчета с каждой секундой
+                public void onTick(long millisUntilFinished) {
+                    mTimer.setText("" + millisUntilFinished / 1000);
+                }
+
+                @Override
+                public void onFinish() {
+                    response.setImageResource(R.drawable.cross);
+                    lifecount -= 1;
+                    if (lifecount == 2) {
+                        life1.setVisibility(View.INVISIBLE);
+                    } else if (lifecount == 1) {
+                        life2.setVisibility(View.INVISIBLE);
+                    } else if (lifecount == 0) {
+                        life3.setVisibility(View.INVISIBLE);
+                        finish();
+                        /*AlertDialog.Builder builder = new AlertDialog.Builder(MathGame.this);
+                        builder.setTitle("")
+                                .setMessage("Попытки закончились!")
+                                .setNegativeButton("ОК",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.cancel();
+                                                finish();
+                                            }
+                                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();*/
+                    }
+                    response.setVisibility(View.VISIBLE);
+                    chooseQuestion();
+                    countDownTimer.start();
+                }
+            };
+            countDownTimer.start();
+        }
+    }
 
     private void setHighScore() {
         // set high score
@@ -197,7 +225,45 @@ public class Trace extends Activity implements OnClickListener {
             }
         }
     }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn1:
+                enteredAnswer = 1;
+                break;
+            case R.id.btn2:
+                enteredAnswer = 2;
+                break;
+        }
 
+
+        if(enteredAnswer!=0 && lifecount!=0){
+            int exScore = getScore();
+            if(enteredAnswer==newanswer){
+                //correct
+                scoreTxt.setText("Score: "+(exScore+1));
+                response.setImageResource(R.drawable.tick);
+                response.setVisibility(View.VISIBLE);
+                countDownTimer.start();
+            }else{
+                //incorrect
+                scoreTxt.setText("Score: "+(exScore));
+                response.setImageResource(R.drawable.cross);
+                lifecount-=1;
+                if (lifecount==2) {
+                    life1.setVisibility(View.INVISIBLE);
+                }else if (lifecount==1) {
+                    life2.setVisibility(View.INVISIBLE);
+                }else if (lifecount==0){
+                    finish();
+                }
+                response.setVisibility(View.VISIBLE);
+            }
+            chooseQuestion();
+            countDownTimer.start();
+            //response.setVisibility(View.INVISIBLE);
+        }
+    }
 
     protected void onDestroy() {
         setHighScore();
@@ -213,209 +279,57 @@ public class Trace extends Activity implements OnClickListener {
         super.onSaveInstanceState(savedInstanceState);
     }
 
+    private void chooseQuestion() {
+        // get a question
+        operator = random.nextInt(operators.length);
+        int otv = random.nextInt(2)+1;
+        int wrongotv = random.nextInt(2)+1;
+        operand1 = getOperand();
+        operand2 = getOperand();
 
-    @Override
-    public void onClick(View view) {
-        //  response.setVisibility(View.INVISIBLE);
-
-
-        switch (view.getId()){
-            case R.id.img1:
-                entAns = 1;
-                break;
-            case R.id.img2:
-                entAns = 2;
-                break;
-            case R.id.img3:
-                entAns = 3;
-                break;
-            case R.id.img4:
-                entAns = 4;
-                break;
-            case R.id.img5:
-                entAns = 5;
-                break;
-            case R.id.img6:
-                entAns = 6;
-                break;
-            case R.id.img7:
-                entAns = 7;
-                break;
-            case R.id.img8:
-                entAns = 8;
-                break;
-            case R.id.img9:
-                entAns = 9;
-                break;
-            case R.id.img10:
-                entAns = 10;
-                break;
-            case R.id.img11:
-                entAns = 11;
-                break;
-            case R.id.img12:
-                entAns = 12;
-                break;
-            case R.id.img13:
-                entAns = 13;
-                break;
-            case R.id.img14:
-                entAns = 14;
-                break;
-            case R.id.img15:
-                entAns = 15;
-                break;
-            case R.id.img16:
-                entAns = 16;
-                break;
-            case R.id.img17:
-                entAns = 17;
-                break;
-            case R.id.img18:
-                entAns = 18;
-                break;
-            case R.id.img19:
-                entAns = 19;
-                break;
-            case R.id.img20:
-                entAns = 20;
-                break;
-            case R.id.img21:
-                entAns = 21;
-                break;
-            case R.id.img22:
-                entAns = 22;
-                break;
-            case R.id.img23:
-                entAns = 23;
-                break;
-            case R.id.img24:
-                entAns = 24;
-                break;
-            case R.id.img25:
-                entAns = 25;
-                break;
-            case R.id.img26:
-                entAns = 26;
-                break;
-            case R.id.img27:
-                entAns = 27;
-                break;
-            case R.id.img28:
-                entAns = 28;
-                break;
-            case R.id.img29:
-                entAns = 29;
-                break;
-            case R.id.img30:
-                entAns = 30;
-                break;
-            case R.id.img31:
-                entAns = 31;
-                break;
-            case R.id.img32:
-                entAns = 32;
-                break;
-            case R.id.img33:
-                entAns = 33;
-                break;
-            case R.id.img34:
-                entAns = 34;
-                break;
-            case R.id.img35:
-                entAns = 35;
-                break;
-            case R.id.img36:
-                entAns = 36;
-                break;
-        }
-
-        if(entAns!=0){
-            int exScore = getScore();
-            if (entAns-1==fillarray2[nextanswer])
-            {
-                nextanswer=nextanswer+1;
-                imgbuttons.get(entAns-1).setImageResource(R.mipmap.truesquare);
-                check= check-1;
-                if(check==0){
-                    //correct
-                    scoreTxt.setText("Score: "+(exScore+1));
-                    response.setImageResource(R.drawable.tick);
-                    response.setVisibility(View.VISIBLE);
-                    lvl=lvl+1;
-                    if (lvl==35){
-                        finish();
-                    }
-                    for (int l = 0; l < 36; l++) {
-                        imgbuttons.get(l).setClickable(false);
-                    }
-                    countDownTimer2.start();
-                }
-            }else{
-                //incorrect
-                scoreTxt.setText("Score: "+(exScore));
-                response.setImageResource(R.drawable.cross);
-                lifecount-=1;
-                if (lifecount==2) {
-                    life1.setVisibility(View.INVISIBLE);
-                }else if (lifecount==1) {
-                    life2.setVisibility(View.INVISIBLE);
-                }else if (lifecount==0){
-                    finish();
-                }
+        if (operator == SUBTRACT_OPERATOR) {
+            while (operand2 > operand1) {
+                operand1 = getOperand();
+                operand2 = getOperand();
+            }
+        } else if (operator == DIVIDE_OPERATOR) {
+            while ((((double) operand1 / (double) operand2) % 1 > 0)
+                    || (operand1 == operand2)) {
+                operand1 = getOperand();
+                operand2 = getOperand();
             }
         }
-    }
 
-    public static void shuffleArray(int[] a) {
-        int n = a.length;
-        Random random = new Random();
-        random.nextInt();
-        for (int i = 0; i < n; i++) {
-            int change = i + random.nextInt(n - i);
-            swap(a, i, change);
+        switch (operator) {
+            case ADD_OPERATOR:
+                answer = operand1 + operand2;
+                break;
+            case SUBTRACT_OPERATOR:
+                answer = operand1 - operand2;
+                break;
+            case MULTIPLY_OPERATOR:
+                answer = operand1 * operand2;
+                break;
+            case DIVIDE_OPERATOR:
+                answer = operand1 / operand2;
+                break;
+            default:
+                break;
+        }
+        question.setText(operand1 + " " + operators[operator] + " " + operand2);
+        if (otv == 1) {
+            answerTxt.setText("= " + answer);
+            newanswer = 1;
+        } else if (otv == 2) {
+            answer=answer+wrongotv;
+            answerTxt.setText("= " + answer);
+            newanswer = 2;
         }
     }
 
-    private static void swap(int[] a, int i, int change) {
-        int temp = a[i];
-        a[i] = a[change];
-        a[change] = temp;
-    }
-
-
-
-    private void chooseField() {
-        nextanswer = 0;
-        check=lvl;
-        int x=0;
-        answerfu.setVisibility(View.INVISIBLE);
-        // get a field
-
-        for (int l = 0; l < 36; l++) {
-            fillarray[l]=0;
-            fillarray2[l]=0;
-            imgbuttons.get(l).setClickable(false);
-        }
-
-        for (int l=0; l < lvl; l++){
-            fillarray[l]= 1;
-
-        }
-
-        shuffleArray(fillarray);
-
-  for (int l = 0; l < 36; l++) {
-            if (fillarray[l]==1) {
-
-                imgbuttons.get(l).setImageResource(R.mipmap.fillsquare);
-                fillarray2[x]=l;
-                x=x+1;
-
-            } else {
-                imgbuttons.get(l).setImageResource(R.mipmap.emptysquare);
-            }
-        }
+    private int getOperand() {
+        // return operand number
+        return random.nextInt(levelMax[operator][level] - levelMin[operator][level] + 1) + levelMin[operator][level];
     }
 
     private int getScore(){

@@ -69,12 +69,12 @@
         android:layout_alignParentStart="true">
 
         <Button
-            android:id="@+id/StartLabirint"
+            android:id="@+id/StartMatem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/enter_back"
-            android:onClick="Tolabirint"
-            android:text="Лабиринт"
+            android:onClick="ToMatem"
+            android:text="Математика"
             android:textColor="@color/windowBackground" />
 
         <Button
@@ -84,15 +84,6 @@
             android:background="@drawable/enter_back"
             android:onClick="ToAssoc"
             android:text="Ассоциации"
-            android:textColor="@color/windowBackground" />
-
-        <Button
-            android:id="@+id/StartMatem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/enter_back"
-            android:onClick="ToMatem"
-            android:text="Математика"
             android:textColor="@color/windowBackground" />
 
         <Button
@@ -114,21 +105,30 @@
             android:textColor="@color/windowBackground" />
 
         <Button
-            android:id="@+id/StartSled"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/enter_back"
-            android:onClick="ToSled"
-            android:text="След"
-            android:textColor="@color/windowBackground" />
-
-        <Button
             android:id="@+id/StartVihr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/enter_back"
             android:onClick="ToVihr"
             android:text="Вихрь"
+            android:textColor="@color/windowBackground" />
+
+        <Button
+            android:id="@+id/StartLabirint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
+            android:onClick="Tolabirint"
+            android:text="Лабиринт"
+            android:textColor="@color/windowBackground" />
+
+        <Button
+            android:id="@+id/StartSled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/enter_back"
+            android:onClick="ToSled"
+            android:text="Обман"
             android:textColor="@color/windowBackground" />
 
     </LinearLayout>

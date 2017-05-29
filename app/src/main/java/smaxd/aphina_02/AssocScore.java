@@ -1,6 +1,7 @@
 package smaxd.aphina_02;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +39,11 @@ public class AssocScore extends Activity implements View.OnClickListener {
         if (view.getId() == R.id.button2) {
             Reset();
         }
+        if (view.getId() == R.id.button8) {
+           // Intent intent = new Intent(this, AssocMenu.class);
+             //   startActivity(intent);
+            finish();
+                    }
     }
 
     public void Reset() {

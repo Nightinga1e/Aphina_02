@@ -86,7 +86,6 @@
         <activity android:name=".TraceScore" />
         <activity android:name=".AssocScore" />
         <activity android:name=".HowToAssoc" />
-        <activity android:name=".MathQuest" />
         <activity android:name=".Statistics" />
     </application>
 
