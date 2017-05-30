@@ -11,4 +11,6 @@ Save this file as res/values/games-ids.xml in your project.
     <string name="achievement_associate_this">CgkIh7rymL8HEAIQBA</string>
     <string name="achievement_hurricane">CgkIh7rymL8HEAIQBQ</string>
     <string name="achievement_abacus">CgkIh7rymL8HEAIQBg</string>
+    <string name="achievement_test1">CgkIh7rymL8HEAIQBw</string>
+
 </resources>
