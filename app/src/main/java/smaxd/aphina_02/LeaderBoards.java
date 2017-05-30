@@ -1,7 +1,6 @@
 package smaxd.aphina_02;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,30 +10,19 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-
-public class Profile extends AppCompatActivity implements
+public class LeaderBoards extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
 
     private GoogleApiClient mGoogleApiClient;
-
-    private static final int REQUEST_ACHIEVEMENTS = 5;
-   // private GoogleApiClient mGoogleApiClient;
-
-
+    private static final int RC_UNUSED = 5001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        getSupportActionBar().hide();
+        setContentView(R.layout.activity_leader_boards);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -53,8 +41,8 @@ public class Profile extends AppCompatActivity implements
 
     @Override
     public void onConnectionSuspended(int i) {
-       //  Attempt to reconnect
-          mGoogleApiClient.connect();
+        //  Attempt to reconnect
+        mGoogleApiClient.connect();
     }
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
@@ -65,10 +53,6 @@ public class Profile extends AppCompatActivity implements
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
-    }
-
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     public void ToSettings(View view) {
@@ -91,21 +75,25 @@ public class Profile extends AppCompatActivity implements
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-    public void ToStats(View view) {
-        Intent intent = new Intent(this, Statistics.class);
-        startActivity(intent);
+    public void ToSled(View view) {
+        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, getString(R.string.leaderboard_best__deception_training)), RC_UNUSED);
     }
-    public void ToAchievements(View view) {
-
-        if (mGoogleApiClient.isConnected()){
-        startActivityForResult(Games.Achievements.getAchievementsIntent(MainActivity.mGoogleApiClient),
-                REQUEST_ACHIEVEMENTS);
-        }
-        }
-    public void ToLeaderboards(View view) {
-        Intent intent = new Intent(this, LeaderBoards.class);
-        startActivity(intent);
+    public void ToVihr(View view) {
+        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, getString(R.string.leaderboard_best_whirl_training)), RC_UNUSED);
     }
+    public void ToMatem(View view) {
+        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, getString(R.string.leaderboard_best_math_training)), RC_UNUSED);
     }
-
-
+    public void Tonumber(View view) {
+        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, getString(R.string.leaderboard_best_number_training)), RC_UNUSED);
+    }
+    public void Topamyat(View view) {
+        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, getString(R.string.leaderboard_best_memory_training)), RC_UNUSED);
+    }
+    public void Tolabirint(View view) {
+        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, getString(R.string.leaderboard_best_labirint_training)), RC_UNUSED);
+    }
+    public void ToAssoc(View view) {
+        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, getString(R.string.leaderboard_best_associacion_training)), RC_UNUSED);
+    }
+}

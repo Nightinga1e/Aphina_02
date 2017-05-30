@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.CountDownTimer;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -18,8 +19,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Trace extends Activity implements OnClickListener {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
 
+public class Trace extends Activity implements
+        View.OnClickListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
+    private int exScore;
     private int level = 0, answer = 0, operator = 0, operand1 = 0,
             operand2 = 0, lifecount= 3;
     private int enteredAnswer;
@@ -44,6 +52,7 @@ public class Trace extends Activity implements OnClickListener {
     private ImageButton life1,life2,life3;
     private Button btn1, btn2;
     private TextView mTimer;
+    private GoogleApiClient mGoogleApiClient;
 
     CountDownTimer countDownTimer;
 
@@ -51,6 +60,13 @@ public class Trace extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matemquest);
+
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                .build();
 
         SledPrefs = getSharedPreferences(SLED_PREFS, 0);
 
@@ -77,7 +93,7 @@ public class Trace extends Activity implements OnClickListener {
         if (savedInstanceState != null) {
             // restore state
             level = savedInstanceState.getInt("level");
-            int exScore = savedInstanceState.getInt("score");
+            exScore = savedInstanceState.getInt("score");
             scoreTxt.setText("Score: " + exScore);
         } else {
             Bundle extras = getIntent().getExtras();
@@ -109,6 +125,9 @@ public class Trace extends Activity implements OnClickListener {
                         life2.setVisibility(View.INVISIBLE);
                     } else if (lifecount == 0) {
                         life3.setVisibility(View.INVISIBLE);
+                        if (mGoogleApiClient.isConnected()) {
+                            Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best__deception_training), exScore);
+                        }
                         finish();
                     }
                     response.setVisibility(View.VISIBLE);
@@ -134,6 +153,9 @@ public class Trace extends Activity implements OnClickListener {
                         life2.setVisibility(View.INVISIBLE);
                     } else if (lifecount == 0) {
                         life3.setVisibility(View.INVISIBLE);
+                        if (mGoogleApiClient.isConnected()) {
+                            Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best__deception_training), exScore);
+                        }
                         finish();
                     }
                     response.setVisibility(View.VISIBLE);
@@ -159,6 +181,9 @@ public class Trace extends Activity implements OnClickListener {
                         life2.setVisibility(View.INVISIBLE);
                     } else if (lifecount == 0) {
                         life3.setVisibility(View.INVISIBLE);
+                        if (mGoogleApiClient.isConnected()) {
+                            Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best__deception_training), exScore);
+                        }
                         finish();
                         /*AlertDialog.Builder builder = new AlertDialog.Builder(MathGame.this);
                         builder.setTitle("")
@@ -184,7 +209,7 @@ public class Trace extends Activity implements OnClickListener {
 
     private void setHighScore() {
         // set high score
-        int exScore = getScore();
+        exScore = getScore();
         if (exScore > 0) {
             SharedPreferences.Editor scoreEdit = SledPrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
@@ -238,7 +263,7 @@ public class Trace extends Activity implements OnClickListener {
 
 
         if(enteredAnswer!=0 && lifecount!=0){
-            int exScore = getScore();
+            exScore = getScore();
             if(enteredAnswer==newanswer){
                 //correct
                 scoreTxt.setText("Score: "+(exScore+1));
@@ -255,6 +280,9 @@ public class Trace extends Activity implements OnClickListener {
                 }else if (lifecount==1) {
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
+                    if (mGoogleApiClient.isConnected()) {
+                        Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best__deception_training), exScore);
+                    }
                     finish();
                 }
                 response.setVisibility(View.VISIBLE);
@@ -265,15 +293,40 @@ public class Trace extends Activity implements OnClickListener {
         }
     }
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        // findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+        //  findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        // Attempt to reconnect
+        //  mGoogleApiClient.connect();
+    }
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        //  if (mResolvingConnectionFailure) {
+        // already resolving
+        return;
+    }
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
     protected void onDestroy() {
         setHighScore();
+        if (mGoogleApiClient.isConnected()) {
+            Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_whirl_training), exScore);
+        }
         super.onDestroy();
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         //     save state
-        int exScore = getScore();
+        exScore = getScore();
         savedInstanceState.putInt("score", exScore);
         savedInstanceState.putInt("level", level);
         super.onSaveInstanceState(savedInstanceState);

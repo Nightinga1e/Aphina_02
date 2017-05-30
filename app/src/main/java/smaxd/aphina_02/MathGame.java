@@ -47,7 +47,7 @@ public class MathGame extends Activity implements
 
     private SharedPreferences gamePrefs;
     public static final String GAME_PREFS = "ArithmeticFile";
-
+    private int exScore;
     private TextView question, answerTxt, scoreTxt;
     private ImageView response;
     private ImageButton life1,life2,life3;
@@ -96,7 +96,7 @@ public class MathGame extends Activity implements
         if (savedInstanceState != null) {
             // restore state
             level = savedInstanceState.getInt("level");
-            int exScore = savedInstanceState.getInt("score");
+            exScore = savedInstanceState.getInt("score");
             scoreTxt.setText("Score: " + exScore);
         } else {
             Bundle extras = getIntent().getExtras();
@@ -128,6 +128,9 @@ public class MathGame extends Activity implements
                         life2.setVisibility(View.INVISIBLE);
                     } else if (lifecount == 0) {
                         life3.setVisibility(View.INVISIBLE);
+                        if (mGoogleApiClient.isConnected()) {
+                            Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_math_training), exScore);
+                        }
                         finish();
                     }
                     response.setVisibility(View.VISIBLE);
@@ -153,6 +156,9 @@ public class MathGame extends Activity implements
                         life2.setVisibility(View.INVISIBLE);
                     } else if (lifecount == 0) {
                         life3.setVisibility(View.INVISIBLE);
+                        if (mGoogleApiClient.isConnected()) {
+                            Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_math_training), exScore);
+                        }
                         finish();
                     }
                     response.setVisibility(View.VISIBLE);
@@ -178,6 +184,9 @@ public class MathGame extends Activity implements
                         life2.setVisibility(View.INVISIBLE);
                     } else if (lifecount == 0) {
                         life3.setVisibility(View.INVISIBLE);
+                        if (mGoogleApiClient.isConnected()) {
+                            Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_math_training), exScore);
+                        }
                         finish();
                         /*AlertDialog.Builder builder = new AlertDialog.Builder(MathGame.this);
                         builder.setTitle("")
@@ -203,7 +212,7 @@ public class MathGame extends Activity implements
 
     private void setHighScore() {
         // set high score
-        int exScore = getScore();
+        exScore = getScore();
         if (exScore > 0) {
             SharedPreferences.Editor scoreEdit = gamePrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
@@ -263,7 +272,7 @@ public class MathGame extends Activity implements
 
 
         if(enteredAnswer!=null && lifecount!=0){
-            int exScore = getScore();
+            exScore = getScore();
             if(enteredAnswer==(Integer.toString(answer))){
                 //correct
                 scoreTxt.setText("Score: "+(exScore+1));
@@ -283,7 +292,11 @@ public class MathGame extends Activity implements
                 }else if (lifecount==1) {
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
+                    if (mGoogleApiClient.isConnected()) {
+                        Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_math_training), exScore);
+                    }
                     finish();
+
                 }
                 response.setVisibility(View.VISIBLE);
             }
@@ -297,8 +310,6 @@ public class MathGame extends Activity implements
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        // findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-        //  findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -319,13 +330,16 @@ public class MathGame extends Activity implements
 
     protected void onDestroy() {
         setHighScore();
+        if (mGoogleApiClient.isConnected()) {
+            Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_whirl_training), exScore);
+        }
         super.onDestroy();
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         //     save state
-        int exScore = getScore();
+        exScore = getScore();
         savedInstanceState.putInt("score", exScore);
         savedInstanceState.putInt("level", level);
         super.onSaveInstanceState(savedInstanceState);

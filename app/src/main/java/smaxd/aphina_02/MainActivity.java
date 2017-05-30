@@ -1,11 +1,11 @@
 package smaxd.aphina_02;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -16,7 +16,6 @@ import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKScope;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
-import com.google.android.gms.*;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.example.games.basegameutils.BaseGameUtils;
 
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements
     private boolean mAutoStartSignInFlow = true;
     private boolean mSignInClicked = false;
     private boolean mExplicitSignOut = false;
+    private TextView googletxt, vktext;
     private boolean mInSignInFlow = false; // set to true when you're in the middle of the
     // sign in flow, to know you should not attempt
     // to connect in onStart()
@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
+        googletxt = (TextView) findViewById(R.id.gogtxt);
+
+
 
         // Create the Google Api Client with access to the Play Games services
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -133,14 +136,16 @@ public class MainActivity extends AppCompatActivity implements
 
 
     public void ToVkAutorisation(View view) {
+
+      //  googletext.setText("Авторизация\\n Google Play");
         VKSdk.login(this,scope);
-    }
+           }
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         findViewById(R.id.sign_in_button).setVisibility(View.GONE);
         findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
-
+        googletxt.setText("Выход\n Google Play");
     }
 
     @Override
@@ -179,24 +184,27 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.sign_in_button) {
+        if (view.getId() == R.id.sign_in_button || view.getId() ==  R.id.gogtxt) {
             // start the asynchronous sign in flow
             mSignInClicked = true;
             mGoogleApiClient.connect();
-        }
-        else if (view.getId() == R.id.sign_out_button) {
-            // sign out.
+           // googletext.setText("Выход\\n Google Play");
+        }else
+            if (view.getId() == R.id.sign_out_button || view.getId() == R.id.gogtxt) {
+                // sign out.
             // user explicitly signed out, so turn off auto sign in
             mExplicitSignOut = true;
             if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
                 Games.signOut(mGoogleApiClient);
                 mGoogleApiClient.disconnect();
+             //   googletext.setText("Выход\\n Google Play");
             }
             mSignInClicked = false;
 
             // show sign-in button, hide the sign-out button
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_button).setVisibility(View.GONE);
+                  googletxt.setText("Авторизация\n Google Play");
         }
     }
 }

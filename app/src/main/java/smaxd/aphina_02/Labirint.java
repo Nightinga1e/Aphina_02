@@ -27,7 +27,7 @@ public class Labirint extends Activity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
-
+    private int exScore;
     private GoogleApiClient mGoogleApiClient;
     private int level = 0, answer = 0, lifecount= 3, hercules_coordl =0, hercules_coordm =0;
 //    private int enteredAnswer;
@@ -134,7 +134,7 @@ public class Labirint extends Activity implements
         if (savedInstanceState != null) {
             // restore state
             level = savedInstanceState.getInt("level");
-            int exScore = savedInstanceState.getInt("score");
+            exScore = savedInstanceState.getInt("score");
             scoreTxt.setText("Score: " + exScore);
         } else {
             Bundle extras = getIntent().getExtras();
@@ -169,7 +169,7 @@ public class Labirint extends Activity implements
 
     private void setHighScore() {
         // set high score
-        int exScore = getScore();
+        exScore = getScore();
         if (exScore > 0) {
             SharedPreferences.Editor scoreEdit = LabPrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
@@ -237,13 +237,16 @@ public class Labirint extends Activity implements
 
     protected void onDestroy() {
         setHighScore();
+        if (mGoogleApiClient.isConnected()) {
+            Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_whirl_training), exScore);
+        }
         super.onDestroy();
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         //     save state
-        int exScore = getScore();
+        exScore = getScore();
         savedInstanceState.putInt("score", exScore);
         savedInstanceState.putInt("level", level);
         super.onSaveInstanceState(savedInstanceState);
@@ -366,7 +369,7 @@ public class Labirint extends Activity implements
         }
 
         if(entAns!=0){
-            int exScore = getScore();
+            exScore = getScore();
             if((Integer.toString(entAns))==(Integer.toString(answer))){
                 //correct
                 scoreTxt.setText("Score: "+(exScore+1));
@@ -387,6 +390,9 @@ public class Labirint extends Activity implements
                 }else if (lifecount==1) {
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
+                    if (mGoogleApiClient.isConnected()) {
+                    Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_labirint_training), exScore);
+                }
                     finish();
                 }
                 response.setVisibility(View.VISIBLE);

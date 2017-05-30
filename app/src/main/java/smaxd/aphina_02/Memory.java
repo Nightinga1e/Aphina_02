@@ -12,14 +12,25 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.CountDownTimer;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Memory extends Activity implements OnClickListener {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
 
+public class Memory extends Activity implements
+        View.OnClickListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
+
+
+    private GoogleApiClient mGoogleApiClient;
+    private int exScore;
     private int level = 0, lifecount= 3;
     private int entAns;
  //   private String enteredAnswer;
@@ -64,6 +75,13 @@ public class Memory extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pamyat);
 
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                .build();
+
         PamPrefs = getSharedPreferences(PAM_PREFS, 0);
 
         imgbuttons = new ArrayList<ImageButton>();
@@ -94,7 +112,7 @@ public class Memory extends Activity implements OnClickListener {
         if (savedInstanceState != null) {
             // restore state
             level = savedInstanceState.getInt("level");
-            int exScore = savedInstanceState.getInt("score");
+            exScore = savedInstanceState.getInt("score");
             scoreTxt.setText("Score: " + exScore);
         } else {
             Bundle extras = getIntent().getExtras();
@@ -146,7 +164,7 @@ public class Memory extends Activity implements OnClickListener {
 
     private void setHighScore() {
         // set high score
-        int exScore = getScore();
+        exScore = getScore();
         if (exScore > 0) {
             SharedPreferences.Editor scoreEdit = PamPrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
@@ -189,15 +207,39 @@ public class Memory extends Activity implements OnClickListener {
     }
 
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        // Attempt to reconnect
+        //  mGoogleApiClient.connect();
+    }
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        //  if (mResolvingConnectionFailure) {
+        // already resolving
+        return;
+    }
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
     protected void onDestroy() {
         setHighScore();
+        if (mGoogleApiClient.isConnected()) {
+            Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_whirl_training), exScore);
+        }
         super.onDestroy();
     }
+
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         //     save state
-        int exScore = getScore();
+        exScore = getScore();
         savedInstanceState.putInt("score", exScore);
         savedInstanceState.putInt("level", level);
         super.onSaveInstanceState(savedInstanceState);
@@ -319,7 +361,7 @@ public class Memory extends Activity implements OnClickListener {
         }
 
         if(entAns!=0){
-            int exScore = getScore();
+            exScore = getScore();
             if (fillarray[entAns-1]!=0)
             {
                 imgbuttons.get(entAns-1).setImageResource(R.mipmap.truesquare);
@@ -349,6 +391,9 @@ public class Memory extends Activity implements OnClickListener {
                 }else if (lifecount==1) {
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
+                    if (mGoogleApiClient.isConnected()) {
+                        Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_memory_training), exScore);
+                    }
                     finish();
                 }
                 chooseField();

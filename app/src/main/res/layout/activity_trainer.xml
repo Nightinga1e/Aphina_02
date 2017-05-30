@@ -10,26 +10,37 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="smaxd.aphina_02.Trainer">
-
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_gotrainers"
         android:background="@null"
         android:id="@+id/PlayButton"
+        android:onClick="ToTrainers"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:onClick="ToTrainers" />
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:id="@+id/SettingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/presence_invisible"
+        android:onClick="ToSettings"
+        android:visibility="invisible"
+        app:srcCompat="@mipmap/ic_gooptions"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_gooptions"
+        android:id="@+id/HomeButton"
+        app:srcCompat="@mipmap/ic_gomain"
         android:background="@null"
-        android:id="@+id/SettingsButton"
-        android:onClick="ToSettings"
+        android:onClick="ToMain"
+        android:layout_marginEnd="30dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_toStartOf="@+id/ProfileButton" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -40,18 +51,17 @@
         android:onClick="ToQuest"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/PlayButton"
-        android:layout_marginStart="25dp" />
+        android:layout_marginStart="30dp" />
 
     <ImageButton
+        android:id="@+id/ProfileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_goprofile"
-        android:background="@null"
-        android:id="@+id/ProfileButton"
-        android:onClick="ToProfile"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/SettingsButton"
-        android:layout_marginEnd="25dp" />
+        android:layout_alignParentEnd="true"
+        android:background="@null"
+        android:onClick="ToProfile"
+        app:srcCompat="@mipmap/ic_goprofile" />
 
     <TextView
         android:text="Список тренажёров"
@@ -132,15 +142,5 @@
             android:textColor="@color/windowBackground" />
 
     </LinearLayout>
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_gomain"
-        android:id="@+id/HomeButton"
-        android:background="@null"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="ToMain" />
 
 </RelativeLayout>

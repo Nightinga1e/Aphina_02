@@ -28,7 +28,7 @@ public class NumberTrainer extends Activity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
-
+    private int exScore;
     private GoogleApiClient mGoogleApiClient;
     private int level = 0, answer = 0, lifecount= 3;
     private String enteredAnswer;
@@ -129,7 +129,7 @@ public class NumberTrainer extends Activity implements
         if (savedInstanceState != null) {
             // restore state
             level = savedInstanceState.getInt("level");
-            int exScore = savedInstanceState.getInt("score");
+            exScore = savedInstanceState.getInt("score");
             scoreTxt.setText("Score: " + exScore);
         } else {
             Bundle extras = getIntent().getExtras();
@@ -171,7 +171,7 @@ public class NumberTrainer extends Activity implements
 
     private void setHighScore() {
         // set high score
-        int exScore = getScore();
+        exScore = getScore();
         if (exScore > 0) {
             SharedPreferences.Editor scoreEdit = numPrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
@@ -239,13 +239,16 @@ public class NumberTrainer extends Activity implements
 
     protected void onDestroy() {
         setHighScore();
+        if (mGoogleApiClient.isConnected()) {
+            Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_whirl_training), exScore);
+        }
         super.onDestroy();
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         //     save state
-        int exScore = getScore();
+        exScore = getScore();
         savedInstanceState.putInt("score", exScore);
         savedInstanceState.putInt("level", level);
         super.onSaveInstanceState(savedInstanceState);
@@ -271,7 +274,7 @@ public class NumberTrainer extends Activity implements
         }
 
         if(enteredAnswer!=null){
-            int exScore = getScore();
+            exScore = getScore();
             if(enteredAnswer==(Integer.toString(answer))){
                 //correct
                 scoreTxt.setText("Score: "+(exScore+1));
@@ -293,6 +296,9 @@ public class NumberTrainer extends Activity implements
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
                     life3.setVisibility(View.INVISIBLE);
+                    if (mGoogleApiClient.isConnected()) {
+                        Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_number_training), exScore);
+                    }
                     finish();
                 }
                 response.setVisibility(View.VISIBLE);

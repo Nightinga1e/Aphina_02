@@ -29,7 +29,7 @@ public class Assoc extends Activity implements
         GoogleApiClient.OnConnectionFailedListener {
 
     private boolean mAutoStartSignInFlow = true;
-
+    private int exScore;
     private GoogleApiClient mGoogleApiClient;
 
     private int level = 0, answer = 1, lifecount= 3;
@@ -157,7 +157,7 @@ public class Assoc extends Activity implements
         if (savedInstanceState != null) {
             // restore state
             level = savedInstanceState.getInt("level");
-            int exScore = savedInstanceState.getInt("score");
+            exScore = savedInstanceState.getInt("score");
             scoreTxt.setText("Score: " + exScore);
         } else {
             Bundle extras = getIntent().getExtras();
@@ -189,7 +189,7 @@ public class Assoc extends Activity implements
 
     private void setHighScore() {
         // set high score
-        int exScore = getScore();
+        exScore = getScore();
         if (exScore > 0) {
             SharedPreferences.Editor scoreEdit = AssocPrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
@@ -255,6 +255,9 @@ public class Assoc extends Activity implements
 
     protected void onDestroy() {
         setHighScore();
+        if (mGoogleApiClient.isConnected()) {
+            Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_whirl_training), exScore);
+        }
         super.onDestroy();
     }
 
@@ -262,7 +265,7 @@ public class Assoc extends Activity implements
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         //     save state
-        int exScore = getScore();
+        exScore = getScore();
         savedInstanceState.putInt("score", exScore);
         savedInstanceState.putInt("level", level);
         super.onSaveInstanceState(savedInstanceState);
@@ -305,7 +308,7 @@ public class Assoc extends Activity implements
         }
 
         if(entAns!=0) {
-            int exScore = getScore();
+            exScore = getScore();
 
             if (answer == entAns) {
                 //correct
@@ -327,6 +330,9 @@ public class Assoc extends Activity implements
                 }else if (lifecount==1) {
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
+                    if (mGoogleApiClient.isConnected()) {
+                    Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_associacion_training), exScore);
+                }
                     finish();
                 }
                 chooseField();

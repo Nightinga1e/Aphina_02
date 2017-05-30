@@ -12,5 +12,13 @@ Save this file as res/values/games-ids.xml in your project.
     <string name="achievement_hurricane">CgkIh7rymL8HEAIQBQ</string>
     <string name="achievement_abacus">CgkIh7rymL8HEAIQBg</string>
     <string name="achievement_test1">CgkIh7rymL8HEAIQBw</string>
+    <string name="leaderboard_best_math_training">CgkIh7rymL8HEAIQCg</string>
+    <string name="leaderboard_best_labirint_training">CgkIh7rymL8HEAIQCw</string>
+    <string name="leaderboard_best_associacion_training">CgkIh7rymL8HEAIQDA</string>
+    <string name="leaderboard_best_number_training">CgkIh7rymL8HEAIQDQ</string>
+    <string name="leaderboard_best_memory_training">CgkIh7rymL8HEAIQDg</string>
+    <string name="leaderboard_best_whirl_training">CgkIh7rymL8HEAIQDw</string>
+    <string name="leaderboard_best__deception_training">CgkIh7rymL8HEAIQEA</string>
+    <string name="event_train_them_all">CgkIh7rymL8HEAIQCQ</string>
 
 </resources>

@@ -32,6 +32,7 @@ public class Whirl extends Activity implements
 {
     private boolean mAutoStartSignInFlow = true;
 
+    private int exScore;
     private GoogleApiClient mGoogleApiClient;
     private int level = 0, answer = 1, lifecount= 3;
     private int entAns;
@@ -159,7 +160,7 @@ public class Whirl extends Activity implements
         if (savedInstanceState != null) {
             // restore state
             level = savedInstanceState.getInt("level");
-            int exScore = savedInstanceState.getInt("score");
+            exScore = savedInstanceState.getInt("score");
             scoreTxt.setText("Score: " + exScore);
         } else {
             Bundle extras = getIntent().getExtras();
@@ -196,7 +197,7 @@ public class Whirl extends Activity implements
 
     private void setHighScore() {
         // set high score
-        int exScore = getScore();
+        exScore = getScore();
         if (exScore > 0) {
             SharedPreferences.Editor scoreEdit = VihrPrefs.edit();
             DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
@@ -262,13 +263,16 @@ public class Whirl extends Activity implements
 
     protected void onDestroy() {
         setHighScore();
+        if (mGoogleApiClient.isConnected()) {
+            Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_whirl_training), exScore);
+        }
         super.onDestroy();
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         //     save state
-        int exScore = getScore();
+        exScore = getScore();
         savedInstanceState.putInt("score", exScore);
         savedInstanceState.putInt("level", level);
         super.onSaveInstanceState(savedInstanceState);
@@ -391,7 +395,7 @@ public class Whirl extends Activity implements
         }
 
         if(entAns!=0){
-            int exScore = getScore();
+            exScore = getScore();
             if((Integer.toString(entAns))==(Integer.toString(answer))){
                 //correct
                 scoreTxt.setText("Score: "+(exScore+1));
@@ -417,6 +421,9 @@ public class Whirl extends Activity implements
                 }else if (lifecount==1) {
                     life2.setVisibility(View.INVISIBLE);
                 }else if (lifecount==0){
+                    if (mGoogleApiClient.isConnected()) {
+                    Games.Leaderboards.submitScore(mGoogleApiClient, getString(R.string.leaderboard_best_whirl_training), exScore);
+                }
                     finish();
                 }
             }
