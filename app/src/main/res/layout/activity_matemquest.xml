@@ -90,7 +90,7 @@
 
         <TextView
             android:id="@+id/question"
-            android:layout_width="243dp"
+            android:layout_width="229dp"
             android:layout_height="match_parent"
             android:layout_marginBottom="2dp"
             android:layout_marginLeft="2dp"
@@ -101,7 +101,7 @@
             android:text="0 + 0"
             android:textAlignment="center"
             android:textColor="#ff333333"
-            android:textSize="60sp" />
+            android:textSize="50sp" />
 
         <TextView
             android:id="@+id/answer"
@@ -115,7 +115,7 @@
             android:padding="5dp"
             android:text="= ?"
             android:textColor="#ff333333"
-            android:textSize="60sp" />
+            android:textSize="50sp" />
 
     </LinearLayout>
 

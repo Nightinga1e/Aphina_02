@@ -90,7 +90,7 @@
             android:text="Звук"
             android:textColor="@color/textColor"
             android:textSize="20sp"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
         <Switch
             android:id="@+id/switch3"
@@ -99,14 +99,14 @@
             android:text="Уведомления"
             android:textColor="@color/textColor"
             android:textSize="20sp"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
         <TimePicker
             android:id="@+id/timePicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/textColor"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
     </LinearLayout>
 
